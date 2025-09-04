@@ -3,34 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayoub Hidri - Resume</title>
+  <title>Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert</title>
+  <meta name="description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development. Expert in modernizing legacy systems and cutting-edge technologies.">
+  <meta name="keywords" content="Full Stack Engineer, React Developer, TypeScript, JavaScript, Node.js, Frontend Developer, Backend Developer, Software Engineer, Freelance Developer">
+  <meta name="author" content="Ayoub Hidri">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert">
+  <meta property="og:description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.">
+  <meta property="og:url" content="https://ayhid.github.io/resume/">
+  <meta property="og:site_name" content="Ayoub Hidri Resume">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert">
+  <meta property="twitter:description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.">
+  
+  <link rel="canonical" href="https://ayhid.github.io/resume/">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayoub Hidri",
+    "jobTitle": "Full Stack Engineer",
+    "description": "Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.",
+    "url": "https://ayhid.github.io/resume/",
+    "sameAs": [
+      "https://linkedin.com/in/ayoub-hidri",
+      "https://medium.com/@ayhidr"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Strasbourg",
+      "addressCountry": "France"
+    },
+    "email": "ayoub.hidri@gmail.com",
+    "telephone": "+33605604105",
+    "knowsAbout": [
+      "React.js",
+      "TypeScript",
+      "JavaScript",
+      "Next.js",
+      "Node.js",
+      "Full Stack Development",
+      "Frontend Development",
+      "Backend Development",
+      "Software Architecture",
+      "Team Leadership"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "ESPRIT",
+      "description": "Software Engineering"
+    },
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Salomon",
+        "description": "Frontend Developer & E-commerce Platform Specialist"
+      }
+    ],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Full Stack Engineer",
+      "description": "Specializing in React JS/TypeScript development",
+      "skills": [
+        "React.js",
+        "TypeScript",
+        "Next.js",
+        "Node.js",
+        "GraphQL",
+        "Docker",
+        "AWS",
+        "Microservices"
+      ]
+    }
+  }
+  </script>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            'roboto': ['Roboto', 'sans-serif']
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'Consolas', 'monospace']
           },
           colors: {
-            'slate-blue': '#2c3e50',
-            'bright-blue': '#3498db',
-            'red-accent': '#e74c3c',
-            'gray-text': '#444',
-            'gray-light': '#555'
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: {
+              DEFAULT: "hsl(var(--primary))",
+              foreground: "hsl(var(--primary-foreground))",
+            },
+            secondary: {
+              DEFAULT: "hsl(var(--secondary))",
+              foreground: "hsl(var(--secondary-foreground))",
+            },
+            destructive: {
+              DEFAULT: "hsl(var(--destructive))",
+              foreground: "hsl(var(--destructive-foreground))",
+            },
+            muted: {
+              DEFAULT: "hsl(var(--muted))",
+              foreground: "hsl(var(--muted-foreground))",
+            },
+            accent: {
+              DEFAULT: "hsl(var(--accent))",
+              foreground: "hsl(var(--accent-foreground))",
+            },
+            card: {
+              DEFAULT: "hsl(var(--card))",
+              foreground: "hsl(var(--card-foreground))",
+            },
+          },
+          borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
           }
         }
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+      --primary: 221.2 83.2% 53.3%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96%;
+      --secondary-foreground: 222.2 84% 4.9%;
+      --muted: 210 40% 96%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --accent: 210 40% 96%;
+      --accent-foreground: 222.2 84% 4.9%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 221.2 83.2% 53.3%;
+      --radius: 0.5rem;
+    }
+    
     .lang-section {
       display: none;
     }
     .lang-section.active {
       display: block;
     }
+    
+    /* shadcn/ui button styles */
+    .btn-primary {
+      @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2;
+    }
+    
+    .btn-destructive {
+      @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 h-9 px-4 py-2;
+    }
+    
+    /* shadcn/ui card styles */
+    .card {
+      @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+    }
+    
     @media print {
       .print\\:hidden {
         display: none !important;
@@ -38,8 +186,8 @@
       .print\\:text-xs {
         font-size: 0.75rem !important;
       }
-      .print\\:p-5 {
-        padding: 1.25rem !important;
+      .print\\:p-4 {
+        padding: 1rem !important;
       }
       .print\\:max-w-none {
         max-width: none !important;
@@ -47,403 +195,415 @@
     }
   </style>
 </head>
-<body class="font-roboto text-sm leading-relaxed text-gray-800 bg-white print:text-xs">
-  <div class="fixed top-5 right-5 flex gap-2.5 z-50 md:relative md:top-auto md:right-auto md:justify-center md:mb-5 print:hidden">
-    <button class="bg-bright-blue hover:bg-blue-600 text-white border-none px-4 py-2 rounded cursor-pointer text-sm font-medium transition-colors duration-300 min-w-[60px]" onclick="toggleLanguage()">FR</button>
-    <button class="bg-red-accent hover:bg-red-600 text-white border-none px-4 py-2 rounded cursor-pointer text-sm font-medium transition-colors duration-300" onclick="downloadPDF()">📄 PDF</button>
+<body class="min-h-screen bg-background font-sans antialiased print:text-xs">
+  <div class="fixed top-4 right-4 flex gap-2 z-50 md:relative md:top-auto md:right-auto md:justify-center md:mb-6 print:hidden">
+    <button class="btn-primary min-w-[60px]" onclick="toggleLanguage()">FR</button>
+    <button class="btn-destructive" onclick="downloadPDF()">📄 PDF</button>
   </div>
   
-  <div class="max-w-4xl mx-auto py-10 px-5 print:max-w-none print:p-5">
+  <div class="container mx-auto max-w-4xl py-8 px-6 print:max-w-none print:p-4">
     <!-- Header EN -->
     <div class="lang-section active" id="lang-en">
-    <div class="text-center mb-10 border-b-2 border-slate-blue pb-8">
-      <h1 class="text-4xl font-bold text-slate-blue mb-2.5 tracking-tight md:text-3xl">Ayoub Hidri</h1>
-      <div class="text-xl font-medium text-bright-blue mb-5">Freelance Full Stack Engineer | React JS/TS Senior Developer</div>
-      <div class="text-base text-gray-light">
-        Strasbourg, France<br>
-        +33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com<br>
-        <a href="https://linkedin.com/in/ayoub-hidri" class="text-bright-blue hover:underline mx-2.5">LinkedIn</a> | 
-        <a href="https://medium.com/@ayhidr" class="text-bright-blue hover:underline mx-2.5">Medium Blog</a>
-      </div>
-    </div>
-
-    <!-- Profile -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Profile</h2>
-      <div class="text-base leading-7 text-gray-text text-justify">
-        Experienced <strong>Full Stack Engineer</strong> specializing in <strong>React JS/TypeScript</strong> with 15+ years in software development. Expert in creating innovative solutions, modernizing legacy systems, and adapting cutting-edge technologies to meet client needs. Strong background in team leadership, architecture design, and agile methodologies.
-      </div>
-    </section>
-
-    <!-- Technical Skills -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Technical Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Frontend</h4>
-          <p class="text-gray-light leading-6">React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Backend</h4>
-          <p class="text-gray-light leading-6">Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">DevOps & Tools</h4>
-          <p class="text-gray-light leading-6">Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Architecture & Methodologies</h4>
-          <p class="text-gray-light leading-6">Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Professional Experience -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Professional Experience</h2>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Frontend Developer & E-commerce Platform Specialist</div>
-            <div class="font-medium text-bright-blue italic">Salomon | Remote</div>
+      <header class="text-center mb-12 pb-8 border-b-2 border-primary">
+        <h1 class="text-4xl font-bold text-foreground mb-3 tracking-tight lg:text-5xl">Ayoub Hidri</h1>
+        <p class="text-xl font-medium text-primary mb-6">Freelance Full Stack Engineer | React JS/TS Senior Developer</p>
+        <div class="text-base text-muted-foreground space-y-1">
+          <p>Strasbourg, France</p>
+          <p>+33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com</p>
+          <div class="flex justify-center gap-4 mt-2">
+            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors">LinkedIn</a>
+            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors">Medium Blog</a>
           </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2024 - Present</div>
         </div>
-        <p class="mb-4">Enhanced <strong>global e-commerce platform</strong> performance and user experience for leading sports equipment brand:</p>
-        <ul class="my-4 pl-5 space-y-2">
-          <li class="text-gray-text leading-6"><strong>Optimized platform performance</strong> by migrating to React Server Components and implementing mobile navigation improvements</li>
-          <li class="text-gray-text leading-6"><strong>Built complete wishlist functionality</strong> with event-driven state management using React hooks and TypeScript</li>
-          <li class="text-gray-text leading-6"><strong>Enhanced accessibility standards</strong> implementing WCAG compliance for global customer base inclusivity</li>
-          <li class="text-gray-text leading-6"><strong>Developed feature flag architecture</strong> using Vercel Edge Config and Next.js middleware for controlled rollouts and A/B testing</li>
-          <li class="text-gray-text leading-6"><strong>Unified image handling systems</strong> with Next.js Image optimization and responsive design patterns using Tailwind CSS</li>
-          <li class="text-gray-text leading-6"><strong>Led team mentoring</strong> for 4 junior developers on React/Next.js best practices and modern development patterns</li>
-          <li class="text-gray-text leading-6"><strong>Created comprehensive testing frameworks</strong> with Storybook and documentation improving team productivity</li>
+      </header>
+
+      <!-- Profile -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Profile</h2>
+        <p class="text-base leading-relaxed text-foreground">
+          Experienced <strong>Full Stack Engineer</strong> specializing in <strong>React JS/TypeScript</strong> with 15+ years in software development. Expert in creating innovative solutions, modernizing legacy systems, and adapting cutting-edge technologies to meet client needs. Strong background in team leadership, architecture design, and agile methodologies.
+        </p>
+      </section>
+
+      <!-- Technical Skills -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Technical Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Frontend</h3>
+            <p class="text-sm text-muted-foreground">React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Backend</h3>
+            <p class="text-sm text-muted-foreground">Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">DevOps & Tools</h3>
+            <p class="text-sm text-muted-foreground">Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Architecture & Methodologies</h3>
+            <p class="text-sm text-muted-foreground">Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Experience -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Professional Experience</h2>
+
+        <div class="space-y-8">
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Frontend Developer & E-commerce Platform Specialist</h3>
+                <p class="font-medium text-primary italic">Salomon | Remote</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2024 - Present</span>
+            </div>
+            <p class="mb-4 text-foreground">Enhanced <strong>global e-commerce platform</strong> performance and user experience for leading sports equipment brand:</p>
+            <ul class="space-y-2 text-sm text-foreground ml-4 list-disc">
+              <li><strong>Optimized platform performance</strong> by migrating to React Server Components and implementing mobile navigation improvements</li>
+              <li><strong>Built complete wishlist functionality</strong> with event-driven state management using React hooks and TypeScript</li>
+              <li><strong>Enhanced accessibility standards</strong> implementing WCAG compliance for global customer base inclusivity</li>
+              <li><strong>Developed feature flag architecture</strong> using Vercel Edge Config and Next.js middleware for controlled rollouts and A/B testing</li>
+              <li><strong>Unified image handling systems</strong> with Next.js Image optimization and responsive design patterns using Tailwind CSS</li>
+              <li><strong>Led team mentoring</strong> for 4 junior developers on React/Next.js best practices and modern development patterns</li>
+              <li><strong>Created comprehensive testing frameworks</strong> with Storybook and documentation improving team productivity</li>
+            </ul>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Senior Frontend Consultant</h3>
+                <p class="font-medium text-primary italic">Leboncoin | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jun 2022 - Oct 2024</span>
+            </div>
+            <p class="mb-4 text-foreground">Led development of <strong>post-moderation tools</strong> for France's leading classified ads platform:</p>
+            <ul class="space-y-2 text-sm text-foreground ml-4 list-disc">
+              <li><strong>Modernized legacy codebase</strong> by integrating React-Query, improving performance and maintainability</li>
+              <li><strong>Implemented automated dependency management</strong> with Dependabot, enhancing code security</li>
+              <li><strong>Achieved 100% test coverage</strong> through comprehensive testing strategies</li>
+              <li><strong>Delivered new features</strong> in Agile environment across multiple teams (tribes/guilds)</li>
+            </ul>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: React, TypeScript, React-Query, Cypress, Jest</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">FullStack Expert</h3>
+                <p class="font-medium text-primary italic">Deloitte Digital Factory | La Défense</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jan 2022 - May 2022</span>
+            </div>
+            <p class="text-foreground">Enhanced <strong>risk management processes</strong> through tools and technologies development. Reduced technical debt, established code quality standards, and implemented E2E testing with Cypress.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: React, Node.js, TypeScript, Cypress</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">FullStack/JAMstack Expert</h3>
+                <p class="font-medium text-primary italic">Engie Digital | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Mar 2021 - Dec 2021</span>
+            </div>
+            <p class="text-foreground">Developed <strong>mobile operator platform</strong> for security and operational efficiency. Built NFC-enabled applications, automated dependency management with Renovate, and developed serverless microservices.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Technical Project Director & Architect</h3>
+                <p class="font-medium text-primary italic">Isobar (Dentsu Group) | Courbevoie</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jul 2017 - Feb 2021</span>
+            </div>
+            <p class="text-foreground">Cross-functional technical leader collaborating with CTO/COO. Led feasibility studies, architected MVPs/POCs, pioneered Headless CMS implementations for major accounts including MMA/COVEA and Technip Energies.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: React, Next.js, GraphQL, Node.js, NestJS</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Technical Leader & Architect</h3>
+                <p class="font-medium text-primary italic">Cleanio | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Apr 2015 - May 2017</span>
+            </div>
+            <p class="text-foreground">Architected comprehensive ecosystem for dry cleaning services. Designed microservices architecture, implemented automated testing, and established CI/CD pipelines.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: Meteor.js, Node.js, MongoDB, React</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Lead Developer & Web Architect</h3>
+                <p class="font-medium text-primary italic">Business & Decision | Tunis/Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2011 - Mar 2015</span>
+            </div>
+            <p class="text-foreground">Led enterprise projects including Peugeot and Citroën website redesigns. Managed teams of up to 10 developers across multiple countries.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: Symfony 2, MongoDB, MySQL</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Software Engineer</h3>
+                <p class="font-medium text-primary italic">DigitalMania Studios | Tunis</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2009 - Aug 2011</span>
+            </div>
+            <p class="text-foreground">Developed enterprise solutions and Unity 3D plugins for Tunisia's first independent video game development studio.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies: Drupal, Unity 3D, PHP</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education and Languages -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="card p-6">
+          <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Education</h2>
+          <h3 class="text-lg font-semibold text-foreground mb-2">Software Engineering</h3>
+          <p class="text-foreground"><strong>ESPRIT</strong> | Jan 2010</p>
+          <p class="text-muted-foreground italic">Graduated with Excellent Distinction</p>
+        </div>
+
+        <div class="card p-6">
+          <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Languages</h2>
+          <div class="space-y-1 text-foreground">
+            <p><strong>French</strong> - Native</p>
+            <p><strong>English</strong> - Fluent</p>
+            <p><strong>Arabic</strong> - Native</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hobbies & Key Achievements -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Hobbies & Interests</h2>
+        <p class="text-foreground">3D Printing • Drums & Keyboards • Bike Touring • Miniature Painting</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Key Achievements</h2>
+        <ul class="space-y-2 text-foreground ml-4 list-disc">
+          <li><strong>15+ years</strong> of software development experience</li>
+          <li><strong>Led teams</strong> of up to 10 developers across multiple countries</li>
+          <li><strong>Pioneered headless architecture</strong> adoption in enterprise environments</li>
+          <li><strong>Achieved 100% test coverage</strong> on critical applications</li>
+          <li><strong>Modernized legacy systems</strong> across multiple organizations</li>
+          <li><strong>Established CI/CD best practices</strong> and automated workflows</li>
         </ul>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Senior Frontend Consultant</div>
-            <div class="font-medium text-bright-blue italic">Leboncoin | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jun 2022 - Oct 2024</div>
-        </div>
-        <p class="mb-4">Led development of <strong>post-moderation tools</strong> for France's leading classified ads platform:</p>
-        <ul class="my-4 pl-5 space-y-2">
-          <li class="text-gray-text leading-6"><strong>Modernized legacy codebase</strong> by integrating React-Query, improving performance and maintainability</li>
-          <li class="text-gray-text leading-6"><strong>Implemented automated dependency management</strong> with Dependabot, enhancing code security</li>
-          <li class="text-gray-text leading-6"><strong>Achieved 100% test coverage</strong> through comprehensive testing strategies</li>
-          <li class="text-gray-text leading-6"><strong>Delivered new features</strong> in Agile environment across multiple teams (tribes/guilds)</li>
-        </ul>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: React, TypeScript, React-Query, Cypress, Jest</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">FullStack Expert</div>
-            <div class="font-medium text-bright-blue italic">Deloitte Digital Factory | La Défense</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jan 2022 - May 2022</div>
-        </div>
-        <p class="mb-4">Enhanced <strong>risk management processes</strong> through tools and technologies development. Reduced technical debt, established code quality standards, and implemented E2E testing with Cypress.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: React, Node.js, TypeScript, Cypress</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">FullStack/JAMstack Expert</div>
-            <div class="font-medium text-bright-blue italic">Engie Digital | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Mar 2021 - Dec 2021</div>
-        </div>
-        <p class="mb-4">Developed <strong>mobile operator platform</strong> for security and operational efficiency. Built NFC-enabled applications, automated dependency management with Renovate, and developed serverless microservices.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Technical Project Director & Architect</div>
-            <div class="font-medium text-bright-blue italic">Isobar (Dentsu Group) | Courbevoie</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jul 2017 - Feb 2021</div>
-        </div>
-        <p class="mb-4">Cross-functional technical leader collaborating with CTO/COO. Led feasibility studies, architected MVPs/POCs, pioneered Headless CMS implementations for major accounts including MMA/COVEA and Technip Energies.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: React, Next.js, GraphQL, Node.js, NestJS</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Technical Leader & Architect</div>
-            <div class="font-medium text-bright-blue italic">Cleanio | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Apr 2015 - May 2017</div>
-        </div>
-        <p class="mb-4">Architected comprehensive ecosystem for dry cleaning services. Designed microservices architecture, implemented automated testing, and established CI/CD pipelines.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: Meteor.js, Node.js, MongoDB, React</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Lead Developer & Web Architect</div>
-            <div class="font-medium text-bright-blue italic">Business & Decision | Tunis/Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2011 - Mar 2015</div>
-        </div>
-        <p class="mb-4">Led enterprise projects including Peugeot and Citroën website redesigns. Managed teams of up to 10 developers across multiple countries.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: Symfony 2, MongoDB, MySQL</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Software Engineer</div>
-            <div class="font-medium text-bright-blue italic">DigitalMania Studios | Tunis</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2009 - Aug 2011</div>
-        </div>
-        <p class="mb-4">Developed enterprise solutions and Unity 3D plugins for Tunisia's first independent video game development studio.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies: Drupal, Unity 3D, PHP</div>
-      </div>
-    </section>
-
-    <!-- Education and Languages -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-5">
-      <div class="bg-gray-50 p-5 rounded-lg">
-        <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Education</h2>
-        <h3 class="text-lg font-semibold text-slate-blue mt-6 mb-2.5">Software Engineering</h3>
-        <p><strong>ESPRIT</strong> | Jan 2010<br>
-        <em>Graduated with Excellent Distinction</em></p>
-      </div>
-
-      <div class="bg-gray-50 p-5 rounded-lg">
-        <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Languages</h2>
-        <p><strong>French</strong> - Native<br>
-        <strong>English</strong> - Fluent<br>
-        <strong>Arabic</strong> - Native</p>
-      </div>
-    </div>
-
-    <!-- Hobbies & Key Achievements -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Hobbies & Interests</h2>
-      <p>3D Printing • Drums & Keyboards • Bike Touring • Miniature Painting</p>
-    </section>
-
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Key Achievements</h2>
-      <ul class="pl-5 space-y-2">
-        <li class="text-gray-text leading-6"><strong>15+ years</strong> of software development experience</li>
-        <li class="text-gray-text leading-6"><strong>Led teams</strong> of up to 10 developers across multiple countries</li>
-        <li class="text-gray-text leading-6"><strong>Pioneered headless architecture</strong> adoption in enterprise environments</li>
-        <li class="text-gray-text leading-6"><strong>Achieved 100% test coverage</strong> on critical applications</li>
-        <li class="text-gray-text leading-6"><strong>Modernized legacy systems</strong> across multiple organizations</li>
-        <li class="text-gray-text leading-6"><strong>Established CI/CD best practices</strong> and automated workflows</li>
-      </ul>
-    </section>
+      </section>
     </div>
     
     <!-- Header FR -->
     <div class="lang-section" id="lang-fr">
-    <div class="text-center mb-10 border-b-2 border-slate-blue pb-8">
-      <h1 class="text-4xl font-bold text-slate-blue mb-2.5 tracking-tight md:text-3xl">Ayoub Hidri</h1>
-      <div class="text-xl font-medium text-bright-blue mb-5">Développeur Full Stack Freelance | Développeur Senior React JS/TS</div>
-      <div class="text-base text-gray-light">
-        Strasbourg, France<br>
-        +33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com<br>
-        <a href="https://linkedin.com/in/ayoub-hidri" class="text-bright-blue hover:underline mx-2.5">LinkedIn</a> | 
-        <a href="https://medium.com/@ayhidr" class="text-bright-blue hover:underline mx-2.5">Blog Medium</a>
-      </div>
-    </div>
-
-    <!-- Profil -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Profil</h2>
-      <div class="text-base leading-7 text-gray-text text-justify">
-        <strong>Ingénieur Full Stack</strong> expérimenté spécialisé en <strong>React JS/TypeScript</strong> avec plus de 15 ans d'expérience en développement logiciel. Expert dans la création de solutions innovantes, la modernisation de systèmes legacy et l'adaptation de technologies de pointe aux besoins clients. Solide expérience en leadership d'équipe, conception d'architecture et méthodologies agiles.
-      </div>
-    </section>
-
-    <!-- Compétences Techniques -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Compétences Techniques</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Frontend</h4>
-          <p class="text-gray-light leading-6">React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Backend</h4>
-          <p class="text-gray-light leading-6">Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">DevOps & Outils</h4>
-          <p class="text-gray-light leading-6">Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-bright-blue">
-          <h4 class="text-base font-medium text-slate-blue mb-2.5">Architecture & Méthodologies</h4>
-          <p class="text-gray-light leading-6">Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Expérience Professionnelle -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Expérience Professionnelle</h2>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Développeur Frontend & Spécialiste Plateforme E-commerce</div>
-            <div class="font-medium text-bright-blue italic">Salomon | Télétravail</div>
+      <header class="text-center mb-12 pb-8 border-b-2 border-primary">
+        <h1 class="text-4xl font-bold text-foreground mb-3 tracking-tight lg:text-5xl">Ayoub Hidri</h1>
+        <p class="text-xl font-medium text-primary mb-6">Développeur Full Stack Freelance | Développeur Senior React JS/TS</p>
+        <div class="text-base text-muted-foreground space-y-1">
+          <p>Strasbourg, France</p>
+          <p>+33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com</p>
+          <div class="flex justify-center gap-4 mt-2">
+            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors">LinkedIn</a>
+            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors">Blog Medium</a>
           </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2024 - Présent</div>
         </div>
-        <p class="mb-4">Amélioration des performances et de l'expérience utilisateur de la <strong>plateforme e-commerce mondiale</strong> pour une marque leader d'équipements sportifs :</p>
-        <ul class="my-4 pl-5 space-y-2">
-          <li class="text-gray-text leading-6"><strong>Optimisation des performances</strong> en migrant vers React Server Components et améliorations de la navigation mobile</li>
-          <li class="text-gray-text leading-6"><strong>Développement complet de la fonctionnalité wishlist</strong> avec gestion d'état événementielle utilisant React hooks et TypeScript</li>
-          <li class="text-gray-text leading-6"><strong>Amélioration des standards d'accessibilité</strong> en implémentant la conformité WCAG pour l'inclusivité de la clientèle mondiale</li>
-          <li class="text-gray-text leading-6"><strong>Développement d'architecture de feature flags</strong> utilisant Vercel Edge Config et middleware Next.js pour déploiements contrôlés et tests A/B</li>
-          <li class="text-gray-text leading-6"><strong>Unification des systèmes de gestion d'images</strong> avec optimisation Next.js Image et patterns responsive design utilisant Tailwind CSS</li>
-          <li class="text-gray-text leading-6"><strong>Mentorat d'équipe</strong> pour 4 développeurs juniors sur les bonnes pratiques React/Next.js et patterns de développement modernes</li>
-          <li class="text-gray-text leading-6"><strong>Création de frameworks de test complets</strong> avec Storybook et documentation améliorant la productivité d'équipe</li>
+      </header>
+
+      <!-- Profil -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Profil</h2>
+        <p class="text-base leading-relaxed text-foreground">
+          <strong>Ingénieur Full Stack</strong> expérimenté spécialisé en <strong>React JS/TypeScript</strong> avec plus de 15 ans d'expérience en développement logiciel. Expert dans la création de solutions innovantes, la modernisation de systèmes legacy et l'adaptation de technologies de pointe aux besoins clients. Solide expérience en leadership d'équipe, conception d'architecture et méthodologies agiles.
+        </p>
+      </section>
+
+      <!-- Compétences Techniques -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Compétences Techniques</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Frontend</h3>
+            <p class="text-sm text-muted-foreground">React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Backend</h3>
+            <p class="text-sm text-muted-foreground">Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">DevOps & Outils</h3>
+            <p class="text-sm text-muted-foreground">Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
+          </div>
+          <div class="card p-4">
+            <h3 class="font-semibold text-foreground mb-3">Architecture & Méthodologies</h3>
+            <p class="text-sm text-muted-foreground">Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Expérience Professionnelle -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Expérience Professionnelle</h2>
+
+        <div class="space-y-8">
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Développeur Frontend & Spécialiste Plateforme E-commerce</h3>
+                <p class="font-medium text-primary italic">Salomon | Télétravail</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2024 - Présent</span>
+            </div>
+            <p class="mb-4 text-foreground">Amélioration des performances et de l'expérience utilisateur de la <strong>plateforme e-commerce mondiale</strong> pour une marque leader d'équipements sportifs :</p>
+            <ul class="space-y-2 text-sm text-foreground ml-4 list-disc">
+              <li><strong>Optimisation des performances</strong> en migrant vers React Server Components et améliorations de la navigation mobile</li>
+              <li><strong>Développement complet de la fonctionnalité wishlist</strong> avec gestion d'état événementielle utilisant React hooks et TypeScript</li>
+              <li><strong>Amélioration des standards d'accessibilité</strong> en implémentant la conformité WCAG pour l'inclusivité de la clientèle mondiale</li>
+              <li><strong>Développement d'architecture de feature flags</strong> utilisant Vercel Edge Config et middleware Next.js pour déploiements contrôlés et tests A/B</li>
+              <li><strong>Unification des systèmes de gestion d'images</strong> avec optimisation Next.js Image et patterns responsive design utilisant Tailwind CSS</li>
+              <li><strong>Mentorat d'équipe</strong> pour 4 développeurs juniors sur les bonnes pratiques React/Next.js et patterns de développement modernes</li>
+              <li><strong>Création de frameworks de test complets</strong> avec Storybook et documentation améliorant la productivité d'équipe</li>
+            </ul>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Consultant Frontend Senior</h3>
+                <p class="font-medium text-primary italic">Leboncoin | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jun 2022 - Oct 2024</span>
+            </div>
+            <p class="mb-4 text-foreground">Direction du développement d'<strong>outils de post-modération</strong> pour la principale plateforme de petites annonces de France :</p>
+            <ul class="space-y-2 text-sm text-foreground ml-4 list-disc">
+              <li><strong>Modernisation du code legacy</strong> en intégrant React-Query, améliorant performances et maintenabilité</li>
+              <li><strong>Implémentation de la gestion automatisée des dépendances</strong> avec Dependabot, renforçant la sécurité du code</li>
+              <li><strong>Atteinte de 100% de couverture de tests</strong> grâce à des stratégies de test complètes</li>
+              <li><strong>Livraison de nouvelles fonctionnalités</strong> en environnement Agile à travers plusieurs équipes (tribes/guilds)</li>
+            </ul>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : React, TypeScript, React-Query, Cypress, Jest</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Expert FullStack</h3>
+                <p class="font-medium text-primary italic">Deloitte Digital Factory | La Défense</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jan 2022 - Mai 2022</span>
+            </div>
+            <p class="text-foreground">Amélioration des <strong>processus de gestion des risques</strong> par le développement d'outils et technologies. Réduction de la dette technique, établissement de standards de qualité code et implémentation de tests E2E avec Cypress.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : React, Node.js, TypeScript, Cypress</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Expert FullStack/JAMstack</h3>
+                <p class="font-medium text-primary italic">Engie Digital | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Mar 2021 - Déc 2021</span>
+            </div>
+            <p class="text-foreground">Développement de <strong>plateforme opérateur mobile</strong> pour sécurité et efficacité opérationnelle. Construction d'applications NFC, automatisation de gestion des dépendances avec Renovate, et développement de microservices serverless.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Directeur Technique de Projet & Architecte</h3>
+                <p class="font-medium text-primary italic">Isobar (Groupe Dentsu) | Courbevoie</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Jul 2017 - Fév 2021</span>
+            </div>
+            <p class="text-foreground">Leader technique transversal collaborant avec CTO/COO. Direction d'études de faisabilité, architecture MVPs/POCs, pionnier dans l'implémentation Headless CMS pour grands comptes incluant MMA/COVEA et Technip Energies.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : React, Next.js, GraphQL, Node.js, NestJS</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Leader Technique & Architecte</h3>
+                <p class="font-medium text-primary italic">Cleanio | Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Avr 2015 - Mai 2017</span>
+            </div>
+            <p class="text-foreground">Architecture d'écosystème complet pour services de pressing. Conception d'architecture microservices, implémentation de tests automatisés et établissement de pipelines CI/CD.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : Meteor.js, Node.js, MongoDB, React</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Développeur Principal & Architecte Web</h3>
+                <p class="font-medium text-primary italic">Business & Decision | Tunis/Paris</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2011 - Mar 2015</span>
+            </div>
+            <p class="text-foreground">Direction de projets d'entreprise incluant refonte sites Peugeot et Citroën. Management d'équipes jusqu'à 10 développeurs dans plusieurs pays.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : Symfony 2, MongoDB, MySQL</p>
+          </div>
+
+          <div class="card p-6 break-inside-avoid border-l-4 border-l-primary">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-foreground mb-1">Ingénieur Logiciel</h3>
+                <p class="font-medium text-primary italic">DigitalMania Studios | Tunis</p>
+              </div>
+              <span class="font-medium text-destructive text-sm whitespace-nowrap">Nov 2009 - Août 2011</span>
+            </div>
+            <p class="text-foreground">Développement de solutions d'entreprise et plugins Unity 3D pour le premier studio indépendant de développement de jeux vidéo de Tunisie.</p>
+            <p class="text-xs text-muted-foreground mt-4 font-mono">Technologies : Drupal, Unity 3D, PHP</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Formation et Langues -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="card p-6">
+          <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Formation</h2>
+          <h3 class="text-lg font-semibold text-foreground mb-2">Génie Logiciel</h3>
+          <p class="text-foreground"><strong>ESPRIT</strong> | Jan 2010</p>
+          <p class="text-muted-foreground italic">Diplômé avec Mention Très Bien</p>
+        </div>
+
+        <div class="card p-6">
+          <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Langues</h2>
+          <div class="space-y-1 text-foreground">
+            <p><strong>Français</strong> - Natif</p>
+            <p><strong>Anglais</strong> - Courant</p>
+            <p><strong>Arabe</strong> - Natif</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loisirs & Réalisations Clés -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Loisirs & Centres d'Intérêt</h2>
+        <p class="text-foreground">Impression 3D • Batterie & Claviers • Cyclotourisme • Peinture de Figurines</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-foreground mb-6 pb-2 border-b border-border uppercase tracking-wider">Réalisations Clés</h2>
+        <ul class="space-y-2 text-foreground ml-4 list-disc">
+          <li><strong>15+ années</strong> d'expérience en développement logiciel</li>
+          <li><strong>Direction d'équipes</strong> jusqu'à 10 développeurs dans plusieurs pays</li>
+          <li><strong>Pionnier de l'adoption d'architecture headless</strong> en environnements d'entreprise</li>
+          <li><strong>Atteinte de 100% de couverture de tests</strong> sur applications critiques</li>
+          <li><strong>Modernisation de systèmes legacy</strong> dans plusieurs organisations</li>
+          <li><strong>Établissement de bonnes pratiques CI/CD</strong> et workflows automatisés</li>
         </ul>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Consultant Frontend Senior</div>
-            <div class="font-medium text-bright-blue italic">Leboncoin | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jun 2022 - Oct 2024</div>
-        </div>
-        <p class="mb-4">Direction du développement d'<strong>outils de post-modération</strong> pour la principale plateforme de petites annonces de France :</p>
-        <ul class="my-4 pl-5 space-y-2">
-          <li class="text-gray-text leading-6"><strong>Modernisation du code legacy</strong> en intégrant React-Query, améliorant performances et maintenabilité</li>
-          <li class="text-gray-text leading-6"><strong>Implémentation de la gestion automatisée des dépendances</strong> avec Dependabot, renforçant la sécurité du code</li>
-          <li class="text-gray-text leading-6"><strong>Atteinte de 100% de couverture de tests</strong> grâce à des stratégies de test complètes</li>
-          <li class="text-gray-text leading-6"><strong>Livraison de nouvelles fonctionnalités</strong> en environnement Agile à travers plusieurs équipes (tribes/guilds)</li>
-        </ul>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : React, TypeScript, React-Query, Cypress, Jest</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Expert FullStack</div>
-            <div class="font-medium text-bright-blue italic">Deloitte Digital Factory | La Défense</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jan 2022 - Mai 2022</div>
-        </div>
-        <p class="mb-4">Amélioration des <strong>processus de gestion des risques</strong> par le développement d'outils et technologies. Réduction de la dette technique, établissement de standards de qualité code et implémentation de tests E2E avec Cypress.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : React, Node.js, TypeScript, Cypress</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Expert FullStack/JAMstack</div>
-            <div class="font-medium text-bright-blue italic">Engie Digital | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Mar 2021 - Déc 2021</div>
-        </div>
-        <p class="mb-4">Développement de <strong>plateforme opérateur mobile</strong> pour sécurité et efficacité opérationnelle. Construction d'applications NFC, automatisation de gestion des dépendances avec Renovate, et développement de microservices serverless.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Directeur Technique de Projet & Architecte</div>
-            <div class="font-medium text-bright-blue italic">Isobar (Groupe Dentsu) | Courbevoie</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Jul 2017 - Fév 2021</div>
-        </div>
-        <p class="mb-4">Leader technique transversal collaborant avec CTO/COO. Direction d'études de faisabilité, architecture MVPs/POCs, pionnier dans l'implémentation Headless CMS pour grands comptes incluant MMA/COVEA et Technip Energies.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : React, Next.js, GraphQL, Node.js, NestJS</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Leader Technique & Architecte</div>
-            <div class="font-medium text-bright-blue italic">Cleanio | Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Avr 2015 - Mai 2017</div>
-        </div>
-        <p class="mb-4">Architecture d'écosystème complet pour services de pressing. Conception d'architecture microservices, implémentation de tests automatisés et établissement de pipelines CI/CD.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : Meteor.js, Node.js, MongoDB, React</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Développeur Principal & Architecte Web</div>
-            <div class="font-medium text-bright-blue italic">Business & Decision | Tunis/Paris</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2011 - Mar 2015</div>
-        </div>
-        <p class="mb-4">Direction de projets d'entreprise incluant refonte sites Peugeot et Citroën. Management d'équipes jusqu'à 10 développeurs dans plusieurs pays.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : Symfony 2, MongoDB, MySQL</div>
-      </div>
-
-      <div class="mb-8 p-5 border-l-4 border-bright-blue bg-gray-50 rounded-r-lg break-inside-avoid">
-        <div class="flex justify-between items-start mb-4 flex-wrap md:flex-col md:items-start">
-          <div>
-            <div class="text-lg font-semibold text-slate-blue mb-1">Ingénieur Logiciel</div>
-            <div class="font-medium text-bright-blue italic">DigitalMania Studios | Tunis</div>
-          </div>
-          <div class="font-medium text-red-accent text-sm whitespace-nowrap md:mt-1">Nov 2009 - Août 2011</div>
-        </div>
-        <p class="mb-4">Développement de solutions d'entreprise et plugins Unity 3D pour le premier studio indépendant de développement de jeux vidéo de Tunisie.</p>
-        <div class="italic text-gray-400 text-sm mt-2.5">Technologies : Drupal, Unity 3D, PHP</div>
-      </div>
-    </section>
-
-    <!-- Formation et Langues -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-5">
-      <div class="bg-gray-50 p-5 rounded-lg">
-        <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Formation</h2>
-        <h3 class="text-lg font-semibold text-slate-blue mt-6 mb-2.5">Génie Logiciel</h3>
-        <p><strong>ESPRIT</strong> | Jan 2010<br>
-        <em>Diplômé avec Mention Très Bien</em></p>
-      </div>
-
-      <div class="bg-gray-50 p-5 rounded-lg">
-        <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Langues</h2>
-        <p><strong>Français</strong> - Natif<br>
-        <strong>Anglais</strong> - Courant<br>
-        <strong>Arabe</strong> - Natif</p>
-      </div>
-    </div>
-
-    <!-- Loisirs & Réalisations Clés -->
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Loisirs & Centres d'Intérêt</h2>
-      <p>Impression 3D • Batterie & Claviers • Cyclotourisme • Peinture de Figurines</p>
-    </section>
-
-    <section>
-      <h2 class="text-xl font-semibold text-slate-blue mt-9 mb-5 pb-2 border-b-2 border-gray-200 uppercase tracking-wide">Réalisations Clés</h2>
-      <ul class="pl-5 space-y-2">
-        <li class="text-gray-text leading-6"><strong>15+ années</strong> d'expérience en développement logiciel</li>
-        <li class="text-gray-text leading-6"><strong>Direction d'équipes</strong> jusqu'à 10 développeurs dans plusieurs pays</li>
-        <li class="text-gray-text leading-6"><strong>Pionnier de l'adoption d'architecture headless</strong> en environnements d'entreprise</li>
-        <li class="text-gray-text leading-6"><strong>Atteinte de 100% de couverture de tests</strong> sur applications critiques</li>
-        <li class="text-gray-text leading-6"><strong>Modernisation de systèmes legacy</strong> dans plusieurs organisations</li>
-        <li class="text-gray-text leading-6"><strong>Établissement de bonnes pratiques CI/CD</strong> et workflows automatisés</li>
-      </ul>
-    </section>
+      </section>
     </div>
   </div>
   
@@ -453,7 +613,7 @@
     function toggleLanguage() {
       const enSection = document.getElementById('lang-en');
       const frSection = document.getElementById('lang-fr');
-      const button = document.querySelector('.fixed button, .relative button');
+      const button = document.querySelector('button[onclick="toggleLanguage()"]');
       
       if (currentLang === 'en') {
         enSection.classList.remove('active');
@@ -461,14 +621,14 @@
         button.textContent = 'EN';
         currentLang = 'fr';
         document.documentElement.lang = 'fr';
-        document.title = 'Ayoub Hidri - CV';
+        document.title = 'Ayoub Hidri - Ingénieur Full Stack | Expert React/TypeScript';
       } else {
         frSection.classList.remove('active');
         enSection.classList.add('active');
         button.textContent = 'FR';
         currentLang = 'en';
         document.documentElement.lang = 'en';
-        document.title = 'Ayoub Hidri - Resume';
+        document.title = 'Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert';
       }
     }
     
