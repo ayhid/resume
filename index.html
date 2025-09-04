@@ -22,6 +22,15 @@
   
   <link rel="canonical" href="https://ayhid.github.io/resume/">
   
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "t5g9ex0lhd");
+  </script>
+  
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -211,8 +220,8 @@
           <p>Strasbourg, France</p>
           <p>+33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com</p>
           <div class="flex justify-center gap-4 mt-2">
-            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors">LinkedIn</a>
-            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors">Medium Blog</a>
+            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors" rel="noopener" target="_blank">LinkedIn</a>
+            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors" rel="noopener" target="_blank">Medium Blog</a>
           </div>
         </div>
       </header>
@@ -413,8 +422,8 @@
           <p>Strasbourg, France</p>
           <p>+33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com</p>
           <div class="flex justify-center gap-4 mt-2">
-            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors">LinkedIn</a>
-            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors">Blog Medium</a>
+            <a href="https://linkedin.com/in/ayoub-hidri" class="text-primary hover:text-primary/80 transition-colors" rel="noopener" target="_blank">LinkedIn</a>
+            <a href="https://medium.com/@ayhidr" class="text-primary hover:text-primary/80 transition-colors" rel="noopener" target="_blank">Blog Medium</a>
           </div>
         </div>
       </header>
@@ -610,10 +619,41 @@
   <script>
     let currentLang = 'en';
     
+    // Analytics helper function for Clarity
+    function trackEvent(eventName, parameters = {}) {
+      if (typeof clarity !== 'undefined') {
+        // Clarity custom events
+        clarity('event', eventName);
+        
+        // Clarity custom tags for segmentation
+        if (parameters.language) {
+          clarity('set', 'language', parameters.language);
+        }
+        if (parameters.event_category) {
+          clarity('set', 'category', parameters.event_category);
+        }
+      }
+      
+      // Console log for debugging (can be removed in production)
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('🔍 Clarity Event:', eventName, parameters);
+      }
+    }
+    
     function toggleLanguage() {
       const enSection = document.getElementById('lang-en');
       const frSection = document.getElementById('lang-fr');
       const button = document.querySelector('button[onclick="toggleLanguage()"]');
+      
+      const newLang = currentLang === 'en' ? 'fr' : 'en';
+      
+      // Track language switch
+      trackEvent('language_switch', {
+        from_language: currentLang,
+        to_language: newLang,
+        event_category: 'User Interaction',
+        event_label: 'Language Toggle'
+      });
       
       if (currentLang === 'en') {
         enSection.classList.remove('active');
@@ -633,8 +673,193 @@
     }
     
     function downloadPDF() {
+      // Track PDF download attempt
+      trackEvent('pdf_download', {
+        event_category: 'File Download',
+        event_label: 'Resume PDF',
+        language: currentLang
+      });
+      
       window.print();
     }
+    
+    // Track external link clicks
+    function trackLinkClick(linkType, url) {
+      trackEvent('external_link_click', {
+        link_type: linkType,
+        link_url: url,
+        event_category: 'Outbound Link',
+        event_label: linkType,
+        language: currentLang
+      });
+    }
+    
+    // Cool console message for developers
+    function showConsoleMessage() {
+      const ascii = `
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                                                               ║
+    ║    █████╗ ██╗   ██╗ ██████╗ ██╗   ██╗██████╗                ║
+    ║   ██╔══██╗╚██╗ ██╔╝██╔═══██╗██║   ██║██╔══██╗               ║
+    ║   ███████║ ╚████╔╝ ██║   ██║██║   ██║██████╔╝               ║
+    ║   ██╔══██║  ╚██╔╝  ██║   ██║██║   ██║██╔══██╗               ║
+    ║   ██║  ██║   ██║   ╚██████╔╝╚██████╔╝██████╔╝               ║
+    ║   ╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝ ╚═════╝                ║
+    ║                                                               ║
+    ║               🚀 FULL STACK ENGINEER 🚀                      ║
+    ║                                                               ║
+    ║   Hey there, fellow developer! 👨‍💻                           ║
+    ║   Nice to see you checking under the hood!                   ║
+    ║                                                               ║
+    ║   This resume is built with:                                 ║
+    ║   • Semantic HTML5 & Modern CSS                              ║
+    ║   • Tailwind CSS + shadcn/ui (New York theme)               ║
+    ║   • Vanilla JavaScript (no frameworks needed!)               ║
+    ║   • Microsoft Clarity for analytics                          ║
+    ║   • JSON-LD structured data for SEO                          ║
+    ║   • Bilingual support (EN/FR)                                ║
+    ║   • Print-optimized styling                                  ║
+    ║                                                               ║
+    ║   📧 Contact: ayoub.hidri@gmail.com                          ║
+    ║   💼 LinkedIn: linkedin.com/in/ayoub-hidri                   ║
+    ║   📝 Blog: medium.com/@ayhidr                                ║
+    ║                                                               ║
+    ║   Want to collaborate? Let's build something amazing! ✨     ║
+    ║                                                               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+    `;
+      
+      console.log(
+        '%c' + ascii,
+        'color: #3498db; font-family: monospace; font-size: 12px; line-height: 1.2;'
+      );
+      
+      console.log(
+        '%c🎯 Pro Tip: %cThis site tracks user interactions with Microsoft Clarity for UX insights!',
+        'color: #e74c3c; font-weight: bold; font-size: 14px;',
+        'color: #2c3e50; font-size: 12px;'
+      );
+      
+      console.log(
+        '%c💡 Fun Fact: %cI\'ve built this resume to be semantic, accessible, and performant!',
+        'color: #f39c12; font-weight: bold; font-size: 14px;',
+        'color: #2c3e50; font-size: 12px;'
+      );
+      
+      console.log(
+        '%c🔧 Tech Stack: %cVanilla JS + Tailwind + shadcn/ui + Clarity Analytics',
+        'color: #9b59b6; font-weight: bold; font-size: 14px;',
+        'color: #2c3e50; font-size: 12px;'
+      );
+      
+      // Add some interactive console commands
+      window.ayoub = {
+        contact: () => {
+          console.log('%c📧 Let\'s connect! ayoub.hidri@gmail.com', 'color: #27ae60; font-size: 14px; font-weight: bold;');
+          return 'Email copied to console! 📋';
+        },
+        skills: () => {
+          const skills = ['React', 'TypeScript', 'Next.js', 'Node.js', 'GraphQL', 'Docker', 'AWS'];
+          console.table(skills);
+          return 'Check out my core skills above! 💪';
+        },
+        experience: () => {
+          console.log('%c15+ years of building awesome software! 🚀', 'color: #e67e22; font-size: 16px; font-weight: bold;');
+          return 'From Tunisia to France, startup to enterprise! 🌍';
+        },
+        hello: (name = 'Developer') => {
+          console.log(`%cHey ${name}! 👋 Thanks for exploring my resume code!`, 'color: #3498db; font-size: 14px;');
+          return `Nice to meet you, ${name}! 🤝`;
+        }
+      };
+      
+      console.log(
+        '%c🎮 Try these commands: %cayoub.contact() | ayoub.skills() | ayoub.experience() | ayoub.hello("YourName")',
+        'color: #8e44ad; font-weight: bold; font-size: 14px;',
+        'color: #34495e; font-size: 12px; font-family: monospace; background: #ecf0f1; padding: 2px;'
+      );
+    }
+    
+    // Add click tracking to external links when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show the cool console message
+      showConsoleMessage();
+      // Track LinkedIn clicks
+      const linkedinLinks = document.querySelectorAll('a[href*="linkedin.com"]');
+      linkedinLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          trackLinkClick('LinkedIn', this.href);
+        });
+      });
+      
+      // Track Medium blog clicks
+      const mediumLinks = document.querySelectorAll('a[href*="medium.com"]');
+      mediumLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          trackLinkClick('Medium', this.href);
+        });
+      });
+      
+      // Track page view with language
+      trackEvent('page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        language: currentLang,
+        event_category: 'Page View'
+      });
+      
+      // Track time spent on page
+      let startTime = Date.now();
+      let timeTracked = false;
+      
+      // Track engagement after 30 seconds
+      setTimeout(function() {
+        if (!timeTracked) {
+          trackEvent('engaged_user', {
+            engagement_time_msec: 30000,
+            event_category: 'User Engagement',
+            language: currentLang
+          });
+          timeTracked = true;
+        }
+      }, 30000);
+      
+      // Track when user leaves page
+      window.addEventListener('beforeunload', function() {
+        const timeSpent = Date.now() - startTime;
+        trackEvent('session_duration', {
+          session_duration_msec: timeSpent,
+          event_category: 'User Engagement',
+          language: currentLang
+        });
+      });
+      
+      // Track scroll depth
+      let maxScroll = 0;
+      let scrollTracked = {
+        25: false,
+        50: false,
+        75: false,
+        100: false
+      };
+      
+      window.addEventListener('scroll', function() {
+        const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+        maxScroll = Math.max(maxScroll, scrollPercent);
+        
+        // Track scroll milestones
+        [25, 50, 75, 100].forEach(milestone => {
+          if (scrollPercent >= milestone && !scrollTracked[milestone]) {
+            trackEvent('scroll_depth', {
+              scroll_percentage: milestone,
+              event_category: 'User Engagement',
+              language: currentLang
+            });
+            scrollTracked[milestone] = true;
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
