@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayoub Hidri - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section headers */
+        h2 {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 35px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 25px 0 10px 0;
+        }
+
+        h4 {
+            font-size: 1em;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        /* Profile section */
+        .profile {
+            font-size: 1em;
+            line-height: 1.7;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* Skills section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .skill-category p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Experience section */
+        .job {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            background: #fafbfc;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-weight: 500;
+            color: #3498db;
+            font-style: italic;
+        }
+
+        .location {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .date {
+            font-weight: 500;
+            color: #e74c3c;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .job ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .job li {
+            margin-bottom: 8px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .job li strong {
+            color: #2c3e50;
+        }
+
+        .technologies {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        /* Other sections */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .education, .languages {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .achievements ul {
+            padding-left: 20px;
+        }
+
+        .achievements li {
+            margin-bottom: 8px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .achievements li strong {
+            color: #2c3e50;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+
+            .date {
+                margin-top: 5px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 20px;
+            }
+            
+            .job {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Ayoub Hidri</h1>
+            <div class="subtitle">Freelance Full Stack Engineer | React JS/TS Senior Developer</div>
+            <div class="contact-info">
+                Strasbourg, France<br>
+                +33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com<br>
+                <a href="https://linkedin.com/in/ayoub-hidri">LinkedIn</a> | 
+                <a href="https://medium.com/@ayhidr">Medium Blog</a>
+            </div>
+        </div>
+
+        <!-- Profile -->
+        <section>
+            <h2>Profile</h2>
+            <div class="profile">
+                Experienced <strong>Full Stack Engineer</strong> specializing in <strong>React JS/TypeScript</strong> with 15+ years in software development. Expert in creating innovative solutions, modernizing legacy systems, and adapting cutting-edge technologies to meet client needs. Strong background in team leadership, architecture design, and agile methodologies.
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <p>React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <p>Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
+                </div>
+                <div class="skill-category">
+                    <h4>DevOps & Tools</h4>
+                    <p>Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Architecture & Methodologies</h4>
+                    <p>Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section>
+            <h2>Professional Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Frontend Developer & E-commerce Platform Specialist</div>
+                        <div class="company">Salomon | Remote</div>
+                    </div>
+                    <div class="date">Nov 2024 - Present</div>
+                </div>
+                <p>Enhanced <strong>global e-commerce platform</strong> performance and user experience for leading sports equipment brand:</p>
+                <ul>
+                    <li><strong>Optimized platform performance</strong> by migrating to React Server Components and implementing mobile navigation improvements</li>
+                    <li><strong>Built complete wishlist functionality</strong> with event-driven state management using React hooks and TypeScript</li>
+                    <li><strong>Enhanced accessibility standards</strong> implementing WCAG compliance for global customer base inclusivity</li>
+                    <li><strong>Developed feature flag architecture</strong> using Vercel Edge Config and Next.js middleware for controlled rollouts and A/B testing</li>
+                    <li><strong>Unified image handling systems</strong> with Next.js Image optimization and responsive design patterns using Tailwind CSS</li>
+                    <li><strong>Led team mentoring</strong> for 4 junior developers on React/Next.js best practices and modern development patterns</li>
+                    <li><strong>Created comprehensive testing frameworks</strong> with Storybook and documentation improving team productivity</li>
+                </ul>
+                <div class="technologies">Technologies: React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Senior Frontend Consultant</div>
+                        <div class="company">Leboncoin | Paris</div>
+                    </div>
+                    <div class="date">Jun 2022 - Oct 2024</div>
+                </div>
+                <p>Led development of <strong>post-moderation tools</strong> for France's leading classified ads platform:</p>
+                <ul>
+                    <li><strong>Modernized legacy codebase</strong> by integrating React-Query, improving performance and maintainability</li>
+                    <li><strong>Implemented automated dependency management</strong> with Dependabot, enhancing code security</li>
+                    <li><strong>Achieved 100% test coverage</strong> through comprehensive testing strategies</li>
+                    <li><strong>Delivered new features</strong> in Agile environment across multiple teams (tribes/guilds)</li>
+                </ul>
+                <div class="technologies">Technologies: React, TypeScript, React-Query, Cypress, Jest</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">FullStack Expert</div>
+                        <div class="company">Deloitte Digital Factory | La Défense</div>
+                    </div>
+                    <div class="date">Jan 2022 - May 2022</div>
+                </div>
+                <p>Enhanced <strong>risk management processes</strong> through tools and technologies development. Reduced technical debt, established code quality standards, and implemented E2E testing with Cypress.</p>
+                <div class="technologies">Technologies: React, Node.js, TypeScript, Cypress</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">FullStack/JAMstack Expert</div>
+                        <div class="company">Engie Digital | Paris</div>
+                    </div>
+                    <div class="date">Mar 2021 - Dec 2021</div>
+                </div>
+                <p>Developed <strong>mobile operator platform</strong> for security and operational efficiency. Built NFC-enabled applications, automated dependency management with Renovate, and developed serverless microservices.</p>
+                <div class="technologies">Technologies: React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Technical Project Director & Architect</div>
+                        <div class="company">Isobar (Dentsu Group) | Courbevoie</div>
+                    </div>
+                    <div class="date">Jul 2017 - Feb 2021</div>
+                </div>
+                <p>Cross-functional technical leader collaborating with CTO/COO. Led feasibility studies, architected MVPs/POCs, pioneered Headless CMS implementations for major accounts including MMA/COVEA and Technip Energies.</p>
+                <div class="technologies">Technologies: React, Next.js, GraphQL, Node.js, NestJS</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Technical Leader & Architect</div>
+                        <div class="company">Cleanio | Paris</div>
+                    </div>
+                    <div class="date">Apr 2015 - May 2017</div>
+                </div>
+                <p>Architected comprehensive ecosystem for dry cleaning services. Designed microservices architecture, implemented automated testing, and established CI/CD pipelines.</p>
+                <div class="technologies">Technologies: Meteor.js, Node.js, MongoDB, React</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Lead Developer & Web Architect</div>
+                        <div class="company">Business & Decision | Tunis/Paris</div>
+                    </div>
+                    <div class="date">Nov 2011 - Mar 2015</div>
+                </div>
+                <p>Led enterprise projects including Peugeot and Citroën website redesigns. Managed teams of up to 10 developers across multiple countries.</p>
+                <div class="technologies">Technologies: Symfony 2, MongoDB, MySQL</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Software Engineer</div>
+                        <div class="company">DigitalMania Studios | Tunis</div>
+                    </div>
+                    <div class="date">Nov 2009 - Aug 2011</div>
+                </div>
+                <p>Developed enterprise solutions and Unity 3D plugins for Tunisia's first independent video game development studio.</p>
+                <div class="technologies">Technologies: Drupal, Unity 3D, PHP</div>
+            </div>
+        </section>
+
+        <!-- Education and Languages -->
+        <div class="two-column">
+            <div class="education">
+                <h2>Education</h2>
+                <h3>Software Engineering</h3>
+                <p><strong>ESPRIT</strong> | Jan 2010<br>
+                <em>Graduated with Excellent Distinction</em></p>
+            </div>
+
+            <div class="languages">
+                <h2>Languages</h2>
+                <p><strong>French</strong> - Native<br>
+                <strong>English</strong> - Fluent<br>
+                <strong>Arabic</strong> - Native</p>
+            </div>
+        </div>
+
+        <!-- Hobbies & Key Achievements -->
+        <section>
+            <h2>Hobbies & Interests</h2>
+            <p>3D Printing • Drums & Keyboards • Bike Touring • Miniature Painting</p>
+        </section>
+
+        <section class="achievements">
+            <h2>Key Achievements</h2>
+            <ul>
+                <li><strong>15+ years</strong> of software development experience</li>
+                <li><strong>Led teams</strong> of up to 10 developers across multiple countries</li>
+                <li><strong>Pioneered headless architecture</strong> adoption in enterprise environments</li>
+                <li><strong>Achieved 100% test coverage</strong> on critical applications</li>
+                <li><strong>Modernized legacy systems</strong> across multiple organizations</li>
+                <li><strong>Established CI/CD best practices</strong> and automated workflows</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
