@@ -6,6 +6,70 @@
     <title>Ayoub Hidri - Resume</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Language selector and controls */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .language-selector, .pdf-download {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .language-selector:hover, .pdf-download:hover {
+            background: #2980b9;
+        }
+
+        .language-selector {
+            min-width: 60px;
+        }
+
+        .pdf-download {
+            background: #e74c3c;
+        }
+
+        .pdf-download:hover {
+            background: #c0392b;
+        }
+
+        /* Hidden sections for language switching */
+        .lang-section {
+            display: none;
+        }
+
+        .lang-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media print {
+            .controls {
+                display: none !important;
+            }
+        }
         * {
             margin: 0;
             padding: 0;
@@ -261,8 +325,14 @@
     </style>
 </head>
 <body>
+    <div class="controls">
+        <button class="language-selector" onclick="toggleLanguage()">FR</button>
+        <button class="pdf-download" onclick="downloadPDF()">📄 PDF</button>
+    </div>
+    
     <div class="container">
-        <!-- Header -->
+        <!-- Header EN -->
+        <div class="lang-section active" id="lang-en">
         <div class="header">
             <h1>Ayoub Hidri</h1>
             <div class="subtitle">Freelance Full Stack Engineer | React JS/TS Senior Developer</div>
@@ -455,6 +525,233 @@
                 <li><strong>Established CI/CD best practices</strong> and automated workflows</li>
             </ul>
         </section>
+        </div>
+        
+        <!-- Header FR -->
+        <div class="lang-section" id="lang-fr">
+        <div class="header">
+            <h1>Ayoub Hidri</h1>
+            <div class="subtitle">Développeur Full Stack Freelance | Développeur Senior React JS/TS</div>
+            <div class="contact-info">
+                Strasbourg, France<br>
+                +33 (0) 6 05 60 41 05 | ayoub.hidri@gmail.com<br>
+                <a href="https://linkedin.com/in/ayoub-hidri">LinkedIn</a> | 
+                <a href="https://medium.com/@ayhidr">Blog Medium</a>
+            </div>
+        </div>
+
+        <!-- Profil -->
+        <section>
+            <h2>Profil</h2>
+            <div class="profile">
+                <strong>Ingénieur Full Stack</strong> expérimenté spécialisé en <strong>React JS/TypeScript</strong> avec plus de 15 ans d'expérience en développement logiciel. Expert dans la création de solutions innovantes, la modernisation de systèmes legacy et l'adaptation de technologies de pointe aux besoins clients. Solide expérience en leadership d'équipe, conception d'architecture et méthodologies agiles.
+            </div>
+        </section>
+
+        <!-- Compétences Techniques -->
+        <section>
+            <h2>Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <p>React JS • TypeScript • Next.js • HTML/CSS • JavaScript • GraphQL</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <p>Node.js • Express.js • NestJS • PostgreSQL • MongoDB • MySQL</p>
+                </div>
+                <div class="skill-category">
+                    <h4>DevOps & Outils</h4>
+                    <p>Docker • Git • AWS Lambda • CircleCI • Ansible • Cypress • Jest</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Architecture & Méthodologies</h4>
+                    <p>Microservices • Headless CMS • JAMstack • Agile • TDD • CI/CD</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expérience Professionnelle -->
+        <section>
+            <h2>Expérience Professionnelle</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Développeur Frontend & Spécialiste Plateforme E-commerce</div>
+                        <div class="company">Salomon | Télétravail</div>
+                    </div>
+                    <div class="date">Nov 2024 - Présent</div>
+                </div>
+                <p>Amélioration des performances et de l'expérience utilisateur de la <strong>plateforme e-commerce mondiale</strong> pour une marque leader d'équipements sportifs :</p>
+                <ul>
+                    <li><strong>Optimisation des performances</strong> en migrant vers React Server Components et améliorations de la navigation mobile</li>
+                    <li><strong>Développement complet de la fonctionnalité wishlist</strong> avec gestion d'état événementielle utilisant React hooks et TypeScript</li>
+                    <li><strong>Amélioration des standards d'accessibilité</strong> en implémentant la conformité WCAG pour l'inclusivité de la clientèle mondiale</li>
+                    <li><strong>Développement d'architecture de feature flags</strong> utilisant Vercel Edge Config et middleware Next.js pour déploiements contrôlés et tests A/B</li>
+                    <li><strong>Unification des systèmes de gestion d'images</strong> avec optimisation Next.js Image et patterns responsive design utilisant Tailwind CSS</li>
+                    <li><strong>Mentorat d'équipe</strong> pour 4 développeurs juniors sur les bonnes pratiques React/Next.js et patterns de développement modernes</li>
+                    <li><strong>Création de frameworks de test complets</strong> avec Storybook et documentation améliorant la productivité d'équipe</li>
+                </ul>
+                <div class="technologies">Technologies : React, Next.js, TypeScript, Tailwind CSS, Vercel, Storybook, Contentful CMS</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Consultant Frontend Senior</div>
+                        <div class="company">Leboncoin | Paris</div>
+                    </div>
+                    <div class="date">Jun 2022 - Oct 2024</div>
+                </div>
+                <p>Direction du développement d'<strong>outils de post-modération</strong> pour la principale plateforme de petites annonces de France :</p>
+                <ul>
+                    <li><strong>Modernisation du code legacy</strong> en intégrant React-Query, améliorant performances et maintenabilité</li>
+                    <li><strong>Implémentation de la gestion automatisée des dépendances</strong> avec Dependabot, renforçant la sécurité du code</li>
+                    <li><strong>Atteinte de 100% de couverture de tests</strong> grâce à des stratégies de test complètes</li>
+                    <li><strong>Livraison de nouvelles fonctionnalités</strong> en environnement Agile à travers plusieurs équipes (tribes/guilds)</li>
+                </ul>
+                <div class="technologies">Technologies : React, TypeScript, React-Query, Cypress, Jest</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Expert FullStack</div>
+                        <div class="company">Deloitte Digital Factory | La Défense</div>
+                    </div>
+                    <div class="date">Jan 2022 - Mai 2022</div>
+                </div>
+                <p>Amélioration des <strong>processus de gestion des risques</strong> par le développement d'outils et technologies. Réduction de la dette technique, établissement de standards de qualité code et implémentation de tests E2E avec Cypress.</p>
+                <div class="technologies">Technologies : React, Node.js, TypeScript, Cypress</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Expert FullStack/JAMstack</div>
+                        <div class="company">Engie Digital | Paris</div>
+                    </div>
+                    <div class="date">Mar 2021 - Déc 2021</div>
+                </div>
+                <p>Développement de <strong>plateforme opérateur mobile</strong> pour sécurité et efficacité opérationnelle. Construction d'applications NFC, automatisation de gestion des dépendances avec Renovate, et développement de microservices serverless.</p>
+                <div class="technologies">Technologies : React, Node.js/Express, MySQL, PostgreSQL, AWS Lambda</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Directeur Technique de Projet & Architecte</div>
+                        <div class="company">Isobar (Groupe Dentsu) | Courbevoie</div>
+                    </div>
+                    <div class="date">Jul 2017 - Fév 2021</div>
+                </div>
+                <p>Leader technique transversal collaborant avec CTO/COO. Direction d'études de faisabilité, architecture MVPs/POCs, pionnier dans l'implémentation Headless CMS pour grands comptes incluant MMA/COVEA et Technip Energies.</p>
+                <div class="technologies">Technologies : React, Next.js, GraphQL, Node.js, NestJS</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Leader Technique & Architecte</div>
+                        <div class="company">Cleanio | Paris</div>
+                    </div>
+                    <div class="date">Avr 2015 - Mai 2017</div>
+                </div>
+                <p>Architecture d'écosystème complet pour services de pressing. Conception d'architecture microservices, implémentation de tests automatisés et établissement de pipelines CI/CD.</p>
+                <div class="technologies">Technologies : Meteor.js, Node.js, MongoDB, React</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Développeur Principal & Architecte Web</div>
+                        <div class="company">Business & Decision | Tunis/Paris</div>
+                    </div>
+                    <div class="date">Nov 2011 - Mar 2015</div>
+                </div>
+                <p>Direction de projets d'entreprise incluant refonte sites Peugeot et Citroën. Management d'équipes jusqu'à 10 développeurs dans plusieurs pays.</p>
+                <div class="technologies">Technologies : Symfony 2, MongoDB, MySQL</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Ingénieur Logiciel</div>
+                        <div class="company">DigitalMania Studios | Tunis</div>
+                    </div>
+                    <div class="date">Nov 2009 - Aoû 2011</div>
+                </div>
+                <p>Développement de solutions d'entreprise et plugins Unity 3D pour le premier studio indépendant de développement de jeux vidéo de Tunisie.</p>
+                <div class="technologies">Technologies : Drupal, Unity 3D, PHP</div>
+            </div>
+        </section>
+
+        <!-- Formation et Langues -->
+        <div class="two-column">
+            <div class="education">
+                <h2>Formation</h2>
+                <h3>Génie Logiciel</h3>
+                <p><strong>ESPRIT</strong> | Jan 2010<br>
+                <em>Diplômé avec Mention Très Bien</em></p>
+            </div>
+
+            <div class="languages">
+                <h2>Langues</h2>
+                <p><strong>Français</strong> - Natif<br>
+                <strong>Anglais</strong> - Courant<br>
+                <strong>Arabe</strong> - Natif</p>
+            </div>
+        </div>
+
+        <!-- Loisirs & Réalisations Clés -->
+        <section>
+            <h2>Loisirs & Centres d'Intérêt</h2>
+            <p>Impression 3D • Batterie & Claviers • Cyclotourisme • Peinture de Figurines</p>
+        </section>
+
+        <section class="achievements">
+            <h2>Réalisations Clés</h2>
+            <ul>
+                <li><strong>15+ années</strong> d'expérience en développement logiciel</li>
+                <li><strong>Direction d'équipes</strong> jusqu'à 10 développeurs dans plusieurs pays</li>
+                <li><strong>Pionnier de l'adoption d'architecture headless</strong> en environnements d'entreprise</li>
+                <li><strong>Atteinte de 100% de couverture de tests</strong> sur applications critiques</li>
+                <li><strong>Modernisation de systèmes legacy</strong> dans plusieurs organisations</li>
+                <li><strong>Établissement de bonnes pratiques CI/CD</strong> et workflows automatisés</li>
+            </ul>
+        </section>
+        </div>
     </div>
+    
+    <script>
+        let currentLang = 'en';
+        
+        function toggleLanguage() {
+            const enSection = document.getElementById('lang-en');
+            const frSection = document.getElementById('lang-fr');
+            const button = document.querySelector('.language-selector');
+            
+            if (currentLang === 'en') {
+                enSection.classList.remove('active');
+                frSection.classList.add('active');
+                button.textContent = 'EN';
+                currentLang = 'fr';
+                document.documentElement.lang = 'fr';
+                document.title = 'Ayoub Hidri - CV';
+            } else {
+                frSection.classList.remove('active');
+                enSection.classList.add('active');
+                button.textContent = 'FR';
+                currentLang = 'en';
+                document.documentElement.lang = 'en';
+                document.title = 'Ayoub Hidri - Resume';
+            }
+        }
+        
+        function downloadPDF() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
