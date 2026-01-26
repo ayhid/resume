@@ -29,13 +29,17 @@
 
   <link rel="canonical" href="https://ayoub-hidri.dev/">
 
-  <!-- Microsoft Clarity -->
+  <!-- Mixpanel Analytics -->
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "t5g9ex0lhd");
+    (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+    for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
+    e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+    mixpanel.init('e18d4025de10d5e7f01f6bfc7fdd17b4', {
+      autocapture: true,
+      record_sessions_percent: 100,
+      api_host: 'https://api-eu.mixpanel.com',
+    })
   </script>
 
   <!-- JSON-LD Structured Data -->
@@ -1405,10 +1409,8 @@
     let currentLang = 'en';
 
     function trackEvent(eventName, parameters = {}) {
-      if (typeof clarity !== 'undefined') {
-        clarity('event', eventName);
-        if (parameters.language) clarity('set', 'language', parameters.language);
-        if (parameters.event_category) clarity('set', 'category', parameters.event_category);
+      if (typeof mixpanel !== 'undefined') {
+        mixpanel.track(eventName, parameters);
       }
     }
 
@@ -1417,7 +1419,10 @@
       const frSection = document.getElementById('lang-fr');
       const toggleText = document.getElementById('lang-toggle-text');
 
-      trackEvent('language_switch', { from_language: currentLang, to_language: currentLang === 'en' ? 'fr' : 'en' });
+      trackEvent('Language Switch', {
+        from_language: currentLang,
+        to_language: currentLang === 'en' ? 'fr' : 'en'
+      });
 
       if (currentLang === 'en') {
         enSection.classList.remove('active');
@@ -1436,7 +1441,9 @@
     }
 
     function downloadPDF() {
-      trackEvent('pdf_download', { event_category: 'File Download', language: currentLang });
+      trackEvent('PDF Download', {
+        language: currentLang
+      });
       window.print();
     }
 
@@ -1448,18 +1455,44 @@
         });
       }, 300);
 
-      // Track events
-      document.querySelectorAll('a[href*="linkedin.com"], a[href*="medium.com"], a[href*="github.com"]').forEach(link => {
+      // Track external link clicks
+      document.querySelectorAll('a[href*="linkedin.com"], a[href*="medium.com"], a[href*="github.com"], a[href*="calendly.com"]').forEach(link => {
         link.addEventListener('click', function() {
           let linkType = 'Other';
           if (this.href.includes('linkedin')) linkType = 'LinkedIn';
           else if (this.href.includes('medium')) linkType = 'Medium';
           else if (this.href.includes('github')) linkType = 'GitHub';
-          trackEvent('external_link_click', { link_type: linkType });
+          else if (this.href.includes('calendly')) linkType = 'Calendly';
+          trackEvent('External Link Click', {
+            link_type: linkType,
+            link_url: this.href,
+            language: currentLang
+          });
         });
       });
 
-      trackEvent('page_view', { page_title: document.title, language: currentLang });
+      // Track email clicks
+      document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+        link.addEventListener('click', function() {
+          trackEvent('Email Click', {
+            language: currentLang
+          });
+        });
+      });
+
+      // Set super properties for all events
+      if (typeof mixpanel !== 'undefined') {
+        mixpanel.register({
+          'page_language': currentLang,
+          'referrer': document.referrer || 'direct'
+        });
+      }
+
+      trackEvent('Page View', {
+        page_title: document.title,
+        language: currentLang,
+        referrer: document.referrer || 'direct'
+      });
 
       console.log(`
 %c    ╔═══════════════════════════════════════════════════════════╗
