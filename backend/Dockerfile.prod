@@ -1,0 +1,25 @@
+FROM node:22-alpine AS build
+
+RUN apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev
+
+WORKDIR /srv/app
+
+COPY package.json package-lock.json* ./
+RUN npm ci --production=false
+
+COPY . .
+RUN npm run build
+
+FROM node:22-alpine
+
+RUN apk add --no-cache vips-dev
+
+WORKDIR /srv/app
+
+COPY --from=build /srv/app/dist ./dist
+COPY --from=build /srv/app/node_modules ./node_modules
+COPY --from=build /srv/app/package.json ./
+
+EXPOSE 1337
+
+CMD ["npm", "run", "start"]

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_resume_tech_badges",
+  "info": {
+    "displayName": "Tech Badge",
+    "icon": "code",
+    "description": "Technology badge with name and icon"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

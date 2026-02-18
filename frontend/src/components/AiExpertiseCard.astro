@@ -1,0 +1,26 @@
+---
+import type { AiExpertise, Locale } from '../lib/types';
+
+interface Props {
+  items: AiExpertise[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+const heading = locale === 'fr' ? 'IA & Agents' : 'AI & Agents';
+---
+
+<div class="sidebar-card">
+  <h2 class="section-heading">{heading}</h2>
+  <div class="space-y-3">
+    {items.map((item) => (
+      <div class="flex items-start gap-2">
+        <span class="text-purple-500 mt-0.5">●</span>
+        <div>
+          <p class="text-sm font-medium text-slate-700">{item.title}</p>
+          <p class="text-xs text-slate-500">{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

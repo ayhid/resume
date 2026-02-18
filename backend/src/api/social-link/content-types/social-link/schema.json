@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social_links",
+  "info": {
+    "singularName": "social-link",
+    "pluralName": "social-links",
+    "displayName": "Social Link",
+    "description": "Social media and professional links"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "platform": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconType": {
+      "type": "enumeration",
+      "enum": ["devicon", "svg", "none"],
+      "default": "devicon"
+    },
+    "label": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

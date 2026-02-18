@@ -1,0 +1,25 @@
+{
+  "name": "resume-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi CMS backend for ayoub-hidri.dev resume",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "seed": "tsx ../scripts/seed-strapi.ts"
+  },
+  "dependencies": {
+    "@strapi/strapi": "^5.36.0",
+    "pg": "^8.13.0",
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=24.x.x",
+    "npm": ">=6.0.0"
+  }
+}

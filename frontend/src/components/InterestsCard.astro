@@ -1,0 +1,22 @@
+---
+import type { Interest, Locale } from '../lib/types';
+
+interface Props {
+  interests: Interest[];
+  locale: Locale;
+}
+
+const { interests, locale } = Astro.props;
+const heading = locale === 'fr' ? "Centres d'intérêt" : 'Interests';
+---
+
+<div class="sidebar-card">
+  <h2 class="section-heading">{heading}</h2>
+  <div class="flex flex-wrap gap-2">
+    {interests.map((interest) => (
+      <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">
+        {interest.name}
+      </span>
+    ))}
+  </div>
+</div>

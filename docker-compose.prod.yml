@@ -1,0 +1,99 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  strapi:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      EMAIL_FROM: ${EMAIL_FROM}
+      EMAIL_REPLY_TO: ${EMAIL_REPLY_TO}
+    networks:
+      - internal
+    expose:
+      - "1337"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        STRAPI_URL: http://strapi:1337
+        STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
+    restart: always
+    depends_on:
+      - strapi
+    networks:
+      - internal
+    volumes:
+      - frontend_dist:/srv/app/dist
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    depends_on:
+      - strapi
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - frontend_dist:/usr/share/nginx/html
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    networks:
+      - internal
+
+  rebuild-webhook:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile.webhook
+    restart: always
+    environment:
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9000:9000"
+    networks:
+      - internal
+
+volumes:
+  pgdata:
+  frontend_dist:
+  certbot_conf:
+  certbot_www:
+
+networks:
+  internal:
+    driver: bridge

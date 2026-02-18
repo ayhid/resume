@@ -1,0 +1,22 @@
+---
+interface Props {
+  name: string;
+  icon: string;
+  proficiency: number;
+  yearsLabel: string;
+}
+
+const { name, icon, proficiency, yearsLabel } = Astro.props;
+---
+
+<div>
+  <div class="flex justify-between items-center mb-1.5">
+    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
+      <i class={icon}></i> {name}
+    </span>
+    <span class="text-xs text-slate-500">{yearsLabel}</span>
+  </div>
+  <div class="skill-gauge">
+    <div class="skill-gauge-fill" style={`width: ${proficiency}%`}></div>
+  </div>
+</div>

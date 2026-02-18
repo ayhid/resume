@@ -1,0 +1,19 @@
+---
+import ExperienceCard from './ExperienceCard.astro';
+import type { Experience, Locale } from '../lib/types';
+
+interface Props {
+  experiences: Experience[];
+  locale: Locale;
+}
+
+const { experiences, locale } = Astro.props;
+const heading = locale === 'fr' ? 'Expérience' : 'Experience';
+---
+
+<section class="animate-in delay-1">
+  <h2 class="section-heading">{heading}</h2>
+  {experiences.map((exp) => (
+    <ExperienceCard experience={exp} />
+  ))}
+</section>

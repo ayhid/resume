@@ -1,0 +1,13 @@
+---
+interface Props {
+  name: string;
+  icon?: string;
+}
+
+const { name, icon } = Astro.props;
+---
+
+<span class="tech-badge">
+  {icon && <i class={icon}></i>}
+  {name}
+</span>

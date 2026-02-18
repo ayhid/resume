@@ -1,0 +1,42 @@
+{
+  "kind": "singleType",
+  "collectionName": "cta_sections",
+  "info": {
+    "singularName": "cta-section",
+    "pluralName": "cta-sections",
+    "displayName": "CTA Section",
+    "description": "Call to action section content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "resume.cta-button"
+    }
+  }
+}

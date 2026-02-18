@@ -1,0 +1,38 @@
+---
+import TechBadge from './TechBadge.astro';
+import type { Experience } from '../lib/types';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+---
+
+<div class="experience-card">
+  <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900">{experience.jobTitle}</h3>
+      <p class="text-purple-600 font-medium">{experience.company} · {experience.location}</p>
+    </div>
+    <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">
+      {experience.dateRange}
+    </span>
+  </div>
+
+  {experience.description && (
+    <p class="text-sm text-slate-600 mb-3 leading-relaxed">{experience.description}</p>
+  )}
+
+  {experience.achievements && (
+    <div class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400 achievements-list" set:html={experience.achievements} />
+  )}
+
+  {experience.techStack && experience.techStack.length > 0 && (
+    <div class="flex flex-wrap gap-2">
+      {experience.techStack.map((tech) => (
+        <TechBadge name={tech.name} icon={tech.icon} />
+      ))}
+    </div>
+  )}
+</div>

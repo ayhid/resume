@@ -1,0 +1,26 @@
+---
+import type { Education, Locale } from '../lib/types';
+
+interface Props {
+  items: Education[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+const heading = locale === 'fr' ? 'Formation' : 'Education';
+---
+
+<div class="sidebar-card">
+  <h2 class="section-heading">{heading}</h2>
+  {items.map((edu) => (
+    <div>
+      <h3 class="font-semibold text-slate-900">{edu.degree}</h3>
+      <p class="text-sm text-slate-600">
+        <a href="https://www.esprit.tn/" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">{edu.school}</a> · {edu.year}
+      </p>
+      {edu.distinction && (
+        <p class="text-sm text-slate-500 italic">{edu.distinction}</p>
+      )}
+    </div>
+  ))}
+</div>

@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skills",
+  "info": {
+    "singularName": "skill",
+    "pluralName": "skills",
+    "displayName": "Skill",
+    "description": "Technical skills with proficiency levels"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string"
+    },
+    "proficiency": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "required": true
+    },
+    "yearsLabel": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "category": {
+      "type": "string",
+      "default": "technical"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

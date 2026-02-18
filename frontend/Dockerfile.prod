@@ -1,0 +1,22 @@
+FROM node:22-alpine AS build
+
+WORKDIR /srv/app
+
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+COPY . .
+
+ARG STRAPI_URL
+ARG STRAPI_API_TOKEN
+ENV STRAPI_URL=${STRAPI_URL}
+ENV STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+
+RUN npm run build
+
+FROM alpine:3.19
+
+COPY --from=build /srv/app/dist /srv/app/dist
+
+VOLUME /srv/app/dist
+CMD ["echo", "Frontend built. Static files available at /srv/app/dist"]

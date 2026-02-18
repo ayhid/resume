@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "language_entries",
+  "info": {
+    "singularName": "language-entry",
+    "pluralName": "language-entries",
+    "displayName": "Language Entry",
+    "description": "Spoken language proficiency"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "proficiency": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

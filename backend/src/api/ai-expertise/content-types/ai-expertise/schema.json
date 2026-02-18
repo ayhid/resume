@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ai_expertises",
+  "info": {
+    "singularName": "ai-expertise",
+    "pluralName": "ai-expertises",
+    "displayName": "AI Expertise",
+    "description": "AI and agent capabilities"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

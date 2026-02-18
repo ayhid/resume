@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: resume_strapi
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  strapi:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: resume_strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      APP_KEYS: dev-key-1,dev-key-2,dev-key-3,dev-key-4
+      API_TOKEN_SALT: dev-api-token-salt
+      ADMIN_JWT_SECRET: dev-admin-jwt-secret
+      TRANSFER_TOKEN_SALT: dev-transfer-token-salt
+      JWT_SECRET: dev-jwt-secret
+    volumes:
+      - ./backend:/srv/app
+      - backend_node_modules:/srv/app/node_modules
+    ports:
+      - "1337:1337"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - strapi
+    environment:
+      STRAPI_URL: http://strapi:1337
+    volumes:
+      - ./frontend:/srv/app
+      - frontend_node_modules:/srv/app/node_modules
+    ports:
+      - "4321:4321"
+
+volumes:
+  pgdata:
+  backend_node_modules:
+  frontend_node_modules:

@@ -1,0 +1,55 @@
+---
+import type { ResumeProfile, SiteSetting } from '../lib/types';
+
+interface Props {
+  profile: ResumeProfile;
+  settings: SiteSetting;
+}
+
+const { profile, settings } = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": profile.fullName,
+  "jobTitle": profile.jobTitle,
+  "description": settings.siteDescription,
+  "url": settings.siteUrl + "/",
+  "sameAs": [
+    "https://linkedin.com/in/ayoub-hidri",
+    "https://medium.com/@ayhidr",
+    "https://github.com/ayhid",
+    "https://github.com/opkod-france"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Strasbourg",
+    "addressCountry": "France"
+  },
+  "email": profile.email,
+  "telephone": profile.phone,
+  "knowsAbout": [
+    "React.js", "TypeScript", "JavaScript", "Next.js", "Node.js",
+    "Full Stack Development", "Frontend Development", "Backend Development",
+    "Software Architecture", "Team Leadership"
+  ],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "ESPRIT",
+    "description": "Software Engineering"
+  },
+  "worksFor": [{
+    "@type": "Organization",
+    "name": "Salomon",
+    "description": "Frontend Developer & E-commerce Platform Specialist"
+  }],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": profile.jobTitle,
+    "description": `Specializing in React JS/TypeScript development`,
+    "skills": ["React.js", "TypeScript", "Next.js", "Node.js", "GraphQL", "Docker", "AWS", "Microservices"]
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

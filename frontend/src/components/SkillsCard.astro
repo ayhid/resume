@@ -1,0 +1,26 @@
+---
+import SkillGauge from './SkillGauge.astro';
+import type { Skill, Locale } from '../lib/types';
+
+interface Props {
+  skills: Skill[];
+  locale: Locale;
+}
+
+const { skills, locale } = Astro.props;
+const heading = locale === 'fr' ? 'Compétences' : 'Skills & Experience';
+---
+
+<div class="sidebar-card">
+  <h2 class="section-heading">{heading}</h2>
+  <div class="space-y-4">
+    {skills.map((skill) => (
+      <SkillGauge
+        name={skill.name}
+        icon={skill.icon}
+        proficiency={skill.proficiency}
+        yearsLabel={skill.yearsLabel}
+      />
+    ))}
+  </div>
+</div>

@@ -1,0 +1,81 @@
+---
+import ResumeLayout from '../../layouts/ResumeLayout.astro';
+import Header from '../../components/Header.astro';
+import ExperienceSection from '../../components/ExperienceSection.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import SkillsCard from '../../components/SkillsCard.astro';
+import AiExpertiseCard from '../../components/AiExpertiseCard.astro';
+import EducationCard from '../../components/EducationCard.astro';
+import LanguagesCard from '../../components/LanguagesCard.astro';
+import InterestsCard from '../../components/InterestsCard.astro';
+import MixpanelScript from '../../components/MixpanelScript.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import ConsoleEasterEgg from '../../components/ConsoleEasterEgg.astro';
+
+import {
+  getProfile,
+  getSocialLinks,
+  getSkills,
+  getExperiences,
+  getEducation,
+  getLanguages,
+  getInterests,
+  getAiExpertise,
+  getCtaSection,
+  getSiteSettings,
+} from '../../lib/strapi';
+
+import type { Locale } from '../../lib/types';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang as Locale;
+const alternateLocale: Locale = locale === 'en' ? 'fr' : 'en';
+
+const [profile, socialLinks, skills, experiences, education, languages, interests, aiExpertise, ctaSection, settings] = await Promise.all([
+  getProfile(locale),
+  getSocialLinks(),
+  getSkills(locale),
+  getExperiences(locale),
+  getEducation(locale),
+  getLanguages(locale),
+  getInterests(locale),
+  getAiExpertise(locale),
+  getCtaSection(locale),
+  getSiteSettings(locale),
+]);
+---
+
+<ResumeLayout locale={locale} settings={settings} alternateLocale={alternateLocale}>
+  <Fragment slot="head">
+    <JsonLd profile={profile} settings={settings} />
+    <MixpanelScript token={settings.mixpanelToken} locale={locale} />
+    <ConsoleEasterEgg />
+  </Fragment>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Main Content -->
+    <div class="lg:col-span-2">
+      <Header profile={profile} socialLinks={socialLinks} locale={locale} />
+      <ExperienceSection experiences={experiences} locale={locale} />
+      <CtaSection cta={ctaSection} locale={locale} />
+    </div>
+
+    <!-- Sidebar -->
+    <div class="lg:col-span-1">
+      <div class="lg:sticky lg:top-8 space-y-6 animate-in delay-2">
+        <SkillsCard skills={skills} locale={locale} />
+        <AiExpertiseCard items={aiExpertise} locale={locale} />
+        <EducationCard items={education} locale={locale} />
+        <LanguagesCard languages={languages} locale={locale} />
+        <InterestsCard interests={interests} locale={locale} />
+      </div>
+    </div>
+  </div>
+</ResumeLayout>

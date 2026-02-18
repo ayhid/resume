@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_resume_cta_buttons",
+  "info": {
+    "displayName": "CTA Button",
+    "icon": "cursor",
+    "description": "Call to action button"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": ["primary", "outline"],
+      "default": "primary"
+    },
+    "iconType": {
+      "type": "enumeration",
+      "enum": ["email", "calendar", "none"],
+      "default": "none"
+    }
+  }
+}

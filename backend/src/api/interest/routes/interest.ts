@@ -1,0 +1,44 @@
+export default {
+  routes: [
+    {
+      method: 'GET',
+      path: '/interests',
+      handler: 'interest.find',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/interests/:id',
+      handler: 'interest.findOne',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'POST',
+      path: '/interests',
+      handler: 'interest.create',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'PUT',
+      path: '/interests/:id',
+      handler: 'interest.update',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'DELETE',
+      path: '/interests/:id',
+      handler: 'interest.delete',
+      config: {
+        policies: [],
+      },
+    },
+  ],
+};

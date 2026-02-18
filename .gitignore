@@ -13,10 +13,33 @@ Thumbs.db
 *.swp
 *.swo
 
-# Node modules (if using any build tools)
+# Node modules
 node_modules/
 npm-debug.log*
 
 # Temporary files
 *.tmp
 *.temp
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Strapi
+backend/.tmp/
+backend/.cache/
+backend/build/
+backend/dist/
+backend/data/
+backend/exports/
+
+# Astro
+frontend/dist/
+frontend/.astro/
+
+# Docker
+pgdata/
+
+# Playwright
+.playwright-mcp/

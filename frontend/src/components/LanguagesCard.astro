@@ -1,0 +1,23 @@
+---
+import type { LanguageEntry, Locale } from '../lib/types';
+
+interface Props {
+  languages: LanguageEntry[];
+  locale: Locale;
+}
+
+const { languages, locale } = Astro.props;
+const heading = locale === 'fr' ? 'Langues' : 'Languages';
+---
+
+<div class="sidebar-card">
+  <h2 class="section-heading">{heading}</h2>
+  <div class="space-y-2">
+    {languages.map((lang) => (
+      <div class="flex justify-between">
+        <span class="text-sm font-medium text-slate-700">{lang.name}</span>
+        <span class="text-sm text-slate-500">{lang.proficiency}</span>
+      </div>
+    ))}
+  </div>
+</div>

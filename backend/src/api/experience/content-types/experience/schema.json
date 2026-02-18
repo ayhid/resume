@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "experiences",
+  "info": {
+    "singularName": "experience",
+    "pluralName": "experiences",
+    "displayName": "Experience",
+    "description": "Work experience entries"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "jobTitle": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "dateRange": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "achievements": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "techStack": {
+      "type": "component",
+      "repeatable": true,
+      "component": "resume.tech-badge"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

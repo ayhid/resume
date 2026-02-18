@@ -1,0 +1,62 @@
+---
+import type { Locale, SiteSetting } from '../lib/types';
+import '../styles/global.css';
+
+interface Props {
+  locale: Locale;
+  settings: SiteSetting;
+  alternateLocale: Locale;
+}
+
+const { locale, settings, alternateLocale } = Astro.props;
+const altUrl = `${settings.siteUrl}/${alternateLocale}/`;
+const currentUrl = `${settings.siteUrl}/${locale}/`;
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{settings.siteTitle}</title>
+  <meta name="description" content={settings.siteDescription}>
+  <meta name="keywords" content={settings.keywords}>
+  <meta name="author" content="Ayoub Hidri">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content={settings.siteTitle}>
+  <meta property="og:description" content={settings.siteDescription}>
+  <meta property="og:url" content={currentUrl}>
+  <meta property="og:site_name" content="Ayoub Hidri Resume">
+  <meta property="og:image" content={`${settings.siteUrl}/og-image.png`}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'fr_FR'}>
+  <meta property="og:locale:alternate" content={locale === 'en' ? 'fr_FR' : 'en_US'}>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content={settings.siteTitle}>
+  <meta property="twitter:description" content={settings.siteDescription}>
+  <meta property="twitter:image" content={`${settings.siteUrl}/og-image.png`}>
+  <meta name="twitter:creator" content="@ayhidr">
+
+  <link rel="canonical" href={currentUrl}>
+  <link rel="alternate" hreflang={locale} href={currentUrl}>
+  <link rel="alternate" hreflang={alternateLocale} href={altUrl}>
+  <link rel="alternate" hreflang="x-default" href={`${settings.siteUrl}/en/`}>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Devicon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+  <slot name="head" />
+</head>
+<body class="font-sans text-slate-700">
+  <main class="max-w-6xl mx-auto px-6 py-8 print:py-4">
+    <slot />
+  </main>
+</body>
+</html>
