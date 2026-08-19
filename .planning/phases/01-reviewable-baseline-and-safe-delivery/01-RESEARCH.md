@@ -349,7 +349,7 @@ This phase changes deployment configuration and git history, so runtime state ma
 | OS-registered state | None — no scheduled task, no daemon, no pm2, no launchd entry. | none |
 | Secrets / env vars | None used by the workflow (`${{ github.token }}` only). Two deployment-time placeholders live as literal text inside an HTML comment: `[UMAMI_HOST]` and `[UMAMI_WEBSITE_ID]` at `index.html:74` — Phase 2 wires them, this phase commits them verbatim. Local `gh` token scopes: `gist, read:org, repo, workflow`, repo `admin: true`. | none in this phase |
 | Build artifacts | `.playwright-mcp/og-image.png` (untracked, D-11 leaves it). `_site/` will exist locally after any local run of the staging script. No egg-info, no `node_modules`, no compiled output. | Add `_site/` and `.playwright-mcp/` to `.gitignore` |
-| Unpushed history | **`main` is 8 commits ahead of `origin/main`** — `9a8d0ba, ef66b50, be96494, dad0757, cb82acc, 32ec445, 669ab11, 52ac455` — including `669ab11 docs: initialize project`, which added `specs/`. [VERIFIED: `git rev-list --left-right --count origin/main...main` → `0  8`; `git log --oneline origin/main..main`] | These ride along on the first push. They are the reason the Pages source must be fixed first. |
+| Unpushed history | **`main` was 8 commits ahead of `origin/main` at research time** — `9a8d0ba, ef66b50, be96494, dad0757, cb82acc, 32ec445, 669ab11, 52ac455` — including `669ab11 docs: initialize project`, which added `specs/`. [VERIFIED: `git rev-list --left-right --count origin/main...main` → `0  8`; `git log --oneline origin/main..main`] **This count is stale by design and must never be quoted:** every planning-artifact commit since (research, validation, the plan set, each revision pass) adds one, and it read `0  11` at the last plan revision. `01-01-PLAN.md` Task 1 re-measures it and Task 2 states the measured value at the blocking gate. | These ride along on the first push. They are the reason the Pages source must be fixed first. |
 
 **The canonical question — after every file in the repo is updated, what runtime systems still have the old behaviour?** Exactly one: the GitHub Pages control plane, which will keep running the legacy branch builder on every push regardless of what `deploy.yml` says.
 
@@ -777,31 +777,40 @@ Measured 2026-08-19: `/` 200, `/README.md` **200**, `/og-image.html` **200**, `/
 | A7 | The legacy `pages build and deployment` runs stop entirely once `build_type` is `workflow` | Pitfall 1 | A second publisher keeps racing. Directly observable in `gh run list` after the first push. |
 | A8 | Committing the staging script with a non-executable mode is the likely default | Code Example 1 | `Permission denied` in CI. Trivially avoided with `bash <script>` in the `run:` line. |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+All five were open at research time and every one was closed during planning. Each recommendation
+below was adopted; the `RESOLVED:` line names the executable plan content that carries it, so a
+verifier can check the resolution rather than re-litigate the question.
 
 1. **Should the `deploy` job depend on `verify` (`needs: verify`)?**
    - What we know: D-08 specifies a split by trigger, not a chain. Chaining costs ~20 s per deploy and means a manifest regression can never publish.
    - What's unclear: whether the user wants a failing verify to block an urgent production push.
    - Recommendation: chain it. The check runs in seconds, and "the artifact was verified before it shipped" is the whole point of OPS-01/OPS-02. Surface it in the plan as an explicit choice.
+   - **RESOLVED: chained.** `01-01-PLAN.md` §research_decision adopts `needs: verify` and records the expected consequence (the deploy job reports *skipped*, not failed, on a pull request). Enforced by the `01-01` Task 3 criterion `grep -c 'needs: verify'` → `1` and re-asserted in `01-02` Task 1.
 
 2. **How strict should the HTML check be in Phase 1?**
    - What we know: tag balance and duplicate `id` are cheap, meaningful, and future-proof.
    - What's unclear: whether the v2 markup passes them today (A5). Phase 11 owns A11Y-01 (`one <h1>`).
    - Recommendation: run the script against the staged v2 during planning; ship the checks that pass, log the rest as Phase 11 input. Do not weaken the manifest check under any circumstances.
+   - **RESOLVED: tag balance and duplicate `id` ship as hard failures; the heading rule ships as a warning.** `01-02-PLAN.md` §research_decision records the measurement that decided it — assumption A5 is false, both the committed page and the rewrite carry two `<h1>` elements (one per `[data-lang-block]`), while both carry zero duplicate ids and zero tag-balance errors. Phase 11 (A11Y-01) inherits the decision to make the heading rule fail. The manifest check was not weakened.
 
 3. **Does the Pages source switch belong to Phase 1 at all, or is it a prerequisite?**
    - What we know: OPS-02 and OPS-04 are unachievable without it, and it is not in CONTEXT.md's decisions — it was not known at discuss time.
    - What's unclear: whether the user wants to perform the settings change themselves.
    - Recommendation: make it task 1 of the phase with a `checkpoint:human-verify` gate — it is an out-of-git, hard-to-reverse-by-agent change to a live public site, and every later criterion depends on it.
+   - **RESOLVED: in Phase 1, as its first action, behind a blocking gate.** `01-01-PLAN.md` Task 1 performs the `gh api -X PUT ... build_type=workflow` switch and asserts the custom domain and TLS survived; Task 2 is the `checkpoint:human-verify gate="blocking"` before the first push. The ordering deviation from D-04 is recorded openly in `01-01-PLAN.md` §deviation_from_context — D-04's commit ordering is preserved, the settings change simply precedes the first commit.
 
 4. **Should `.claude/CLAUDE.md` be corrected in this phase?**
    - What we know: two of its architectural constraints ("whole-repo deploy", "deleting `CNAME` breaks the domain") become false when this phase lands.
    - What's unclear: whether documentation drift is in scope for a delivery phase.
    - Recommendation: yes — one small commit at the end of the series. Leaving a stale constraint in the file that every future agent reads is a defect with a long tail.
+   - **RESOLVED: yes, one commit at the end of the series.** `01-04-PLAN.md` Task 1 rewrites both claims and commits them alone as `docs(claude): correct the deployment scope and custom domain constraints` — the eleventh and last commit of the phase.
 
 5. **What happens to the `gh-pages` branch policy entry?**
    - What we know: the `github-pages` environment allows deployments from `gh-pages` and `main`; no `gh-pages` branch is in active use.
    - Recommendation: leave it. Removing it is unrelated cleanup with a nonzero chance of breaking something unobserved.
+   - **RESOLVED: left untouched, and removing it is prohibited.** `01-05-PLAN.md` §prohibitions forbids removing or weakening the policy as redundant — it is the independent backstop behind the trigger gate — and the `01-05` Task 2 criterion asserts the policy still lists exactly `gh-pages,main`.
 
 ## Sources
 

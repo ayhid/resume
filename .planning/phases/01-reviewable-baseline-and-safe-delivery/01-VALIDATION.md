@@ -4,9 +4,10 @@ slug: reviewable-baseline-and-safe-delivery
 # status lifecycle: draft (seeded by plan-phase) → validated (set by validate-phase §6)
 # audit-milestone §5.5 distinguishes NOT-VALIDATED (draft) from PARTIAL (validated + nyquist_compliant: false) (#2117)
 status: draft
-nyquist_compliant: false
+nyquist_compliant: true
 wave_0_complete: false
 created: 2026-08-19
+reconciled_with_plans: 2026-08-19
 ---
 
 # Phase 1 — Validation Strategy
@@ -39,23 +40,32 @@ created: 2026-08-19
 
 ## Per-Task Verification Map
 
-Task IDs are assigned by `01-*-PLAN.md`; this table binds each requirement to its
-automated command. The executor fills the Task ID column as plans are written.
+Task IDs and waves below are the ones the finished plan set actually uses, read back from
+`01-01-PLAN.md` through `01-05-PLAN.md`. The `Plan · Task` column names the task whose
+`<verify><automated>` or `<acceptance_criteria>` carries the command, and the `Introduced By`
+column names the task that creates the file the command needs.
 
-| Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| TBD | 01 | 0 | OPS-02 | — | Staged artifact contains only allowlisted production assets | unit | `python3 .github/scripts/verify_site.py _site` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 0 | OPS-01 | — | `index.html` parses; single `<h1>` per language block; no duplicate `id` | unit | `python3 .github/scripts/verify_site.py _site` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | OPS-03 | — | Rewrite lands as scoped commits; tree clean | structural | `git status --porcelain` empty; `git diff --quiet wip/v2-snapshot -- index.html README.md` | ✅ git | ⬜ pending |
-| TBD | 01 | 1 | OPS-03 | — | Each commit is scoped to one concern | manual | `git show --stat <sha>` per commit — reviewer reads the diff | ✅ git | ⬜ pending |
-| TBD | 01 | 2 | OPS-01 | — | A pull request runs verification | integration | `gh pr checks <n>` shows `verify` completed | ✅ gh | ⬜ pending |
-| TBD | 01 | 2 | OPS-01 | T-01 | A pull request publishes nothing | integration | `gh api repos/ayhid/resume/deployments --jq 'length'` unchanged across the PR; `gh run list --event pull_request --json jobs` shows `deploy` skipped | ✅ gh | ⬜ pending |
-| TBD | 01 | 2 | OPS-04 | — | Push/merge to `main` publishes | integration | `gh run list --event push --limit 1` conclusion `success`; `gh api repos/ayhid/resume/pages --jq .status` → `built` | ✅ gh | ⬜ pending |
-| TBD | 01 | 2 | OPS-04 | T-02 | Only the Actions workflow publishes | regression | `gh run list --limit 10 --json event,name` contains no `pages build and deployment` / event `dynamic` run after the source switch | ✅ gh | ⬜ pending |
-| TBD | 01 | 2 | OPS-02 | T-01 | The **published** site exposes nothing but production assets | smoke | live `curl` matrix below | ❌ W0 | ⬜ pending |
-| TBD | 01 | 2 | criterion 4 | — | The live page is v2, not the v1 CV | smoke | `curl -s https://ayoub-hidri.dev/ \| grep -c 'data-lang-block'` ≥ 1 **and** `grep -c 'cdn.tailwindcss.com'` = 0 | ❌ W0 | ⬜ pending |
+| Plan · Task | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | Introduced By | Status |
+|-------------|------|-------------|------------|-----------------|-----------|-------------------|---------------|--------|
+| `01-02` T1 | 2 | OPS-02 | T-01-09 | Staged artifact contains only allowlisted production assets | unit | `python3 .github/scripts/verify_site.py _site` | `01-02` T1 creates `verify_site.py`; `01-01` T3 creates `stage-site.sh` | ⬜ pending |
+| `01-02` T1 | 2 | OPS-01 | — | `index.html` parses; no duplicate `id`; heading count reported as a warning (see `01-02` §research_decision) | unit | `python3 .github/scripts/verify_site.py _site` | `01-02` T1 creates `verify_site.py` | ⬜ pending |
+| `01-03` T3 | 3 | OPS-03 | T-01-13 | Rewrite lands as scoped commits; tree clean; series byte-identical to the rewrite | structural | `git status --porcelain` empty; `git diff --quiet wip/v2-snapshot -- index.html README.md` | ✅ git | ⬜ pending |
+| `01-05` T3 | 5 | OPS-03 | — | Each commit is scoped to one concern | manual | `git show --stat <sha>` per slice commit — reviewer reads the diff (`<human-check>` item 1) | ✅ git | ⬜ pending |
+| `01-05` T2 | 5 | OPS-01 | — | A pull request runs verification | integration | `gh pr checks <n>` shows `verify` completed; `gh run list --event pull_request --limit 1 --json conclusion` → `success` | ✅ gh | ⬜ pending |
+| `01-05` T2 | 5 | OPS-01 | T-01-02 | A pull request publishes nothing | integration | `gh api repos/ayhid/resume/deployments --jq '.[0].id'` identical across the PR's open window (newest-id watermark, not `length` — that endpoint paginates); jobs payload shows `Deploy to production` skipped or absent | ✅ gh | ⬜ pending |
+| `01-04` T2, `01-05` T2 | 4, 5 | OPS-04 | — | Push to `main` publishes, and merge to `main` publishes | integration | `gh run list --event push --limit 1` conclusion `success`; `gh api repos/ayhid/resume/pages --jq .status` → `built`; after the merge a *new* deployment id appears | ✅ gh | ⬜ pending |
+| `01-01` T3, re-asserted `01-04` T2 and `01-05` T3 | 1, 4, 5 | OPS-04 | T-01-18 | Only the Actions workflow publishes | regression | `gh run list --event dynamic --limit 1 --json createdAt` identical to the timestamp recorded in `01-01` T1, before and after every push of the phase | ✅ gh | ⬜ pending |
+| `01-01` T3, re-asserted `01-04` T2 | 1, 4 | OPS-02 | T-01-01 | The **published** site exposes nothing but production assets | smoke | live `curl` matrix below | `01-01` T3 creates `stage-site.sh` and performs the first publish | ⬜ pending |
+| `01-04` T2 | 4 | criterion 4 | — | The live page is v2, not the v1 CV | smoke | `curl -s https://ayoub-hidri.dev/ \| grep -c 'data-lang-block'` = 4 **and** `grep -c 'cdn.tailwindcss.com'` = 0 | `01-03` T3 commits the rewrite; `01-04` T2 publishes it | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+
+**Sampling continuity (checks 8a–8d), verified against the finished plans.** Every task in all five
+plans carries a `<verify><automated>` block, including the two checkpoint-adjacent ones; no task
+uses a watch-mode flag; there is no run of three consecutive tasks without an automated verify; and
+both files the map depends on are created by named tasks (`stage-site.sh` by `01-01` T3,
+`verify_site.py` by `01-02` T1) rather than left as unresolved Wave 0 references. Hence
+`nyquist_compliant: true`.
 
 ---
 
@@ -104,10 +114,15 @@ so the allowlist must be in place before it.
 
 ## Wave 0 Requirements
 
-- [ ] `.github/scripts/stage-site.sh` — the D-06 allowlist manifest copy into `_site/` (OPS-02); executable, locally runnable, tolerates a missing `en/` (D-07)
-- [ ] `.github/scripts/verify_site.py` — manifest presence/absence + `index.html` HTML parse (OPS-01/OPS-02); Python 3 stdlib only (`html.parser`) — `xmllint` and `tidy` are **not** on `ubuntu-latest`
-- [ ] Post-deploy smoke check — the live `curl` matrix above (criteria 3 and 4); may live in phase verification notes rather than the repo, since `.github/scripts/` does not ship
-- [ ] No test framework install required — stdlib only
+The plan set has no separate Wave 0: both missing files are created by named tasks inside the
+normal wave order, each with its own automated verify. `wave_0_complete` stays `false` because
+neither file exists on disk until execution runs; the requirement it tracks is nonetheless
+discharged by assignment.
+
+- [ ] `.github/scripts/stage-site.sh` — the D-06 allowlist manifest copy into `_site/` (OPS-02); executable, locally runnable, tolerates a missing `en/` (D-07). **Created by `01-01` Task 3** (wave 1), verified by `bash .github/scripts/stage-site.sh _site` plus the exact-manifest `ls -A _site` criterion.
+- [ ] `.github/scripts/verify_site.py` — manifest presence/absence + `index.html` HTML parse (OPS-01/OPS-02); Python 3 stdlib only (`html.parser`) — `xmllint` and `tidy` are **not** on `ubuntu-latest`. **Created by `01-02` Task 1** (wave 2), verified by a clean run plus seven demonstrated negative cases.
+- [ ] Post-deploy smoke check — the live `curl` matrix above (criteria 3 and 4); may live in phase verification notes rather than the repo, since `.github/scripts/` does not ship. **Run by `01-01` Task 3 (baseline and first after-matrix), `01-04` Task 2 (full after-matrix) and `01-05` Task 3 (phase close).**
+- [ ] No test framework install required — stdlib only. **Asserted by the `01-02` Task 1 import-allowlist and no-lockfile criteria.**
 
 ---
 
@@ -115,7 +130,7 @@ so the allowlist must be in place before it.
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| Each commit in the series is independently readable and scoped to one concern | OPS-03 | "Readable" is a human judgement; no assertion can stand in for it | `git log --oneline origin/main..main`, then `git show --stat <sha>` for each; confirm one concern per commit and a message that describes it |
+| Each commit in the series is independently readable and scoped to one concern | OPS-03 | "Readable" is a human judgement; no assertion can stand in for it | `git log --oneline <PHASE_BASE>..origin/main`, then `git show --stat <sha>` for each of the six slice commits; confirm one concern per commit and a message that describes it. `<PHASE_BASE>` is the pre-phase `origin/main` SHA recorded in `01-01-SUMMARY.md`; by the time this review runs, local and remote `main` are level, so `origin/main..main` would be empty |
 | GitHub Pages publishing source switched from "Deploy from a branch" to "GitHub Actions" | OPS-04 | A repo-settings change; `actions/configure-pages` cannot update `build_type` (verified in its `src/api-client.js`) | Repo → Settings → Pages → Build and deployment → Source → **GitHub Actions**. Confirm with `gh api repos/ayhid/resume/pages --jq .build_type` → `workflow` |
 | The v2 page renders correctly in a browser after deploy | criterion 4 | Visual correctness is not assertable without a rendering budget this phase does not have (Phase 11) | Load https://ayoub-hidri.dev/ , confirm the bilingual v2 page, toggle FR/EN, expand a CV panel |
 
@@ -123,11 +138,13 @@ so the allowlist must be in place before it.
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references (`stage-site.sh`, `verify_site.py`)
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 60 s
-- [ ] `nyquist_compliant: true` set in frontmatter
+Checked against the finished plan set, not against intent.
 
-**Approval:** pending
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies — all 14 tasks across the five plans carry `<verify><automated>`
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references (`stage-site.sh` → `01-01` T3, `verify_site.py` → `01-02` T1)
+- [x] No watch-mode flags
+- [x] Feedback latency < 60 s — ~2 s local, ~30 s for the CI `verify` job
+- [x] `nyquist_compliant: true` set in frontmatter
+
+**Approval:** pending — `status` stays `draft`; `validate-phase` owns the transition to `validated`.
