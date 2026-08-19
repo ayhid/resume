@@ -60,12 +60,19 @@ column names the task that creates the file the command needs.
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
-**Sampling continuity (checks 8a–8d), verified against the finished plans.** Every task in all five
-plans carries a `<verify><automated>` block, including the two checkpoint-adjacent ones; no task
-uses a watch-mode flag; there is no run of three consecutive tasks without an automated verify; and
-both files the map depends on are created by named tasks (`stage-site.sh` by `01-01` T3,
-`verify_site.py` by `01-02` T1) rather than left as unresolved Wave 0 references. Hence
-`nyquist_compliant: true`.
+**Sampling continuity (checks 8a–8d), verified against the finished plans.** The five plans hold 14
+tasks. All 13 non-checkpoint tasks carry a `<verify><automated>` block; the fourteenth, `01-01`
+Task 2, is a `checkpoint:human-verify` and carries no `<verify>` block, which is the correct shape
+for a checkpoint and is exempt from 8a. No task uses a watch-mode flag; there is no run of three
+consecutive tasks without an automated verify; and both files the map depends on are created by
+named tasks (`stage-site.sh` by `01-01` T3, `verify_site.py` by `01-02` T1) rather than left as
+unresolved Wave 0 references. Hence `nyquist_compliant: true`.
+
+`01-01` Task 3's `<automated>` block stops at the local staging assertions. Its live `curl` matrix
+sits in `<acceptance_criteria>` instead, because Pages edge propagation lags a successful
+`deploy-pages` by seconds to minutes and a single immediate reading can return the pre-deploy
+status. The criteria instruct the executor to poll for up to 3 minutes, which is retry latency
+rather than unbounded verify latency.
 
 ---
 
@@ -130,7 +137,7 @@ discharged by assignment.
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| Each commit in the series is independently readable and scoped to one concern | OPS-03 | "Readable" is a human judgement; no assertion can stand in for it | `git log --oneline <PHASE_BASE>..origin/main`, then `git show --stat <sha>` for each of the six slice commits; confirm one concern per commit and a message that describes it. `<PHASE_BASE>` is the pre-phase `origin/main` SHA recorded in `01-01-SUMMARY.md`; by the time this review runs, local and remote `main` are level, so `origin/main..main` would be empty |
+| Each commit in the series is independently readable and scoped to one concern | OPS-03 | "Readable" is a human judgement; no assertion can stand in for it | `git log --oneline <PHASE_BASE>..origin/main`, filtered through the bookkeeping expression `^docs\((state\|phase-[0-9.]+\|[0-9]{2}(\.[0-9]+)?(-[0-9]{2})?)\): ` so GSD's own SUMMARY and wave-tracking commits do not pad the reading list; then `git show --stat <sha>` for each of the six slice commits; confirm one concern per commit and a message that describes it. `<PHASE_BASE>` is the **local** pre-phase tip (`git rev-parse main`) recorded in `01-01-SUMMARY.md`, not `origin/main` — local `main` was ~12 commits ahead of the origin with pre-existing planning history that `01-01`'s push carried, and anchoring on `origin/main` would place all of it inside the phase's range. By the time this review runs, local and remote `main` are level, so `origin/main..main` would be empty |
 | GitHub Pages publishing source switched from "Deploy from a branch" to "GitHub Actions" | OPS-04 | A repo-settings change; `actions/configure-pages` cannot update `build_type` (verified in its `src/api-client.js`) | Repo → Settings → Pages → Build and deployment → Source → **GitHub Actions**. Confirm with `gh api repos/ayhid/resume/pages --jq .build_type` → `workflow` |
 | The v2 page renders correctly in a browser after deploy | criterion 4 | Visual correctness is not assertable without a rendering budget this phase does not have (Phase 11) | Load https://ayoub-hidri.dev/ , confirm the bilingual v2 page, toggle FR/EN, expand a CV panel |
 
@@ -140,11 +147,11 @@ discharged by assignment.
 
 Checked against the finished plan set, not against intent.
 
-- [x] All tasks have `<automated>` verify or Wave 0 dependencies — all 14 tasks across the five plans carry `<verify><automated>`
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies — all 13 non-checkpoint tasks across the five plans carry `<verify><automated>`. The fourteenth task, `01-01` T2, is a `checkpoint:human-verify` and is exempt
 - [x] Sampling continuity: no 3 consecutive tasks without automated verify
 - [x] Wave 0 covers all MISSING references (`stage-site.sh` → `01-01` T3, `verify_site.py` → `01-02` T1)
 - [x] No watch-mode flags
-- [x] Feedback latency < 60 s — ~2 s local, ~30 s for the CI `verify` job
+- [x] Feedback latency < 60 s — ~2 s local, ~30 s for the CI `verify` job. `01-01` T3's live status matrix is the one unbounded check and was moved out of `<automated>` into `<acceptance_criteria>` with a bounded 3-minute poll
 - [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending — `status` stays `draft`; `validate-phase` owns the transition to `validated`.
