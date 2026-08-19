@@ -143,9 +143,9 @@ Populated during roadmap creation.
 | (pending roadmap) | — | Pending |
 
 **Coverage:**
-- v1 requirements: 51 total
+- v1 requirements: 57 total
 - Mapped to phases: 0
-- Unmapped: 51 ⚠️
+- Unmapped: 57 ⚠️
 
 ---
 *Requirements defined: 2026-08-19*
