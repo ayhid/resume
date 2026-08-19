@@ -38,7 +38,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Opening a pull request runs verification and reports pass or fail without publishing anything to the live site.
   3. Merging to `main` publishes the site, and what is served contains only production assets — `specs/`, `README.md`, `.planning/` and tool directories are absent.
   4. A visitor loading https://ayoub-hidri.dev/ sees the v2 page rather than the v1 online CV.
-**Plans**: TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Switch the Pages publishing source to Actions and prove the delivery path end-to-end with an allowlisted artifact
+- [ ] 01-02-PLAN.md — Add the stdlib-only artifact checker to both jobs and fix repo hygiene
+- [ ] 01-03-PLAN.md — Slice the v2 rewrite into six scoped commits, provably byte-identical to the working tree
+- [ ] 01-04-PLAN.md — Correct the stale architectural constraints, then push once and land v2 in production
+- [ ] 01-05-PLAN.md — Prove the pull-request gate verifies and publishes nothing, then close the phase
 
 ### Phase 2: Live Conversion Measurement
 **Goal**: The visits→Calendly ratio — the only number that validates the repositioning — is readable on a dashboard without hand computation
@@ -181,7 +188,7 @@ Phases 7, 8 and 9 may run in parallel once Phase 6 is complete.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Reviewable Baseline and Safe Delivery | 0/TBD | Not started | - |
+| 1. Reviewable Baseline and Safe Delivery | 0/5 | Not started | - |
 | 2. Live Conversion Measurement | 0/TBD | Not started | - |
 | 3. Colour Discipline and the Prohibitions | 0/TBD | Not started | - |
 | 4. Type, Rhythm, Signature and Motion | 0/TBD | Not started | - |

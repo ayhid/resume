@@ -81,8 +81,19 @@ done
 | `/og-image.html` | **200** | **404** |
 | `/specs/design.md` | 404 (not yet pushed) | 404 |
 | `/.planning/STATE.md` | 404 (not yet pushed) | 404 |
-| `/CNAME` | 404 | 404 |
+| `/CNAME` | 404 | **200** — corrected at plan time |
 | `/en/` | 404 | 404 (Phase 10) |
+
+**`/CNAME` correction (made during planning, see `01-01-PLAN.md` §measured_baseline).** This row
+originally predicted 404. That is wrong: D-06 locks `CNAME` into the production manifest, so the
+staging script copies it into the artifact and the file becomes fetchable — it returns **200**
+after the phase. Harmless (its only content is the public domain name), and D-06 is a locked
+decision so the entry stays. Under a workflow publishing source the file no longer binds the
+domain in any case; the Pages settings hold `cname: ayoub-hidri.dev`.
+
+Baseline re-measured at plan time (2026-08-19): `/` 200, `/README.md` **200**, `/og-image.html`
+**200**, `/robots.txt` 200, `/sitemap.xml` 200, `/og-image.png` 200, `/specs/design.md` 404,
+`/CNAME` 404, `/en/` 404, `/.planning/STATE.md` 404.
 
 Baseline measured 2026-08-19 [VERIFIED: curl, research session]. `/specs/design.md` and
 `/.planning/STATE.md` 404 today only because `main` is ahead of `origin/main` and the
