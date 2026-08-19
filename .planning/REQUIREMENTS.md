@@ -136,17 +136,87 @@ Deferred. Tracked but not in the current roadmap.
 
 ## Traceability
 
-Populated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (pending roadmap) | — | Pending |
+| STRUCT-01 | Phase 6 | Pending |
+| STRUCT-02 | Phase 6 | Pending |
+| STRUCT-03 | Phase 6 | Pending |
+| STRUCT-04 | Phase 6 | Pending |
+| STRUCT-05 | Phase 6 | Pending |
+| STRUCT-06 | Phase 6 | Pending |
+| IA-01 | Phase 7 | Pending |
+| IA-02 | Phase 7 | Pending |
+| IA-03 | Phase 7 | Pending |
+| IA-04 | Phase 7 | Pending |
+| IA-05 | Phase 7 | Pending |
+| PROOF-01 | Phase 8 | Pending |
+| PROOF-02 | Phase 8 | Pending |
+| PROOF-03 | Phase 8 | Pending |
+| PROOF-04 | Phase 8 | Pending |
+| PROOF-05 | Phase 8 | Pending |
+| TECH-01 | Phase 9 | Pending |
+| TECH-02 | Phase 9 | Pending |
+| TECH-03 | Phase 9 | Pending |
+| TECH-04 | Phase 9 | Pending |
+| TECH-05 | Phase 9 | Pending |
+| CV-01 | Phase 5 | Pending |
+| CV-02 | Phase 5 | Pending |
+| CV-03 | Phase 5 | Pending |
+| CV-04 | Phase 5 | Pending |
+| CONV-01 | Phase 2 | Pending |
+| CONV-02 | Phase 2 | Pending |
+| CONV-03 | Phase 2 | Pending |
+| CONV-04 | Phase 5 | Pending |
+| CONV-05 | Phase 3 | Pending |
+| I18N-01 | Phase 10 | Pending |
+| I18N-02 | Phase 10 | Pending |
+| I18N-03 | Phase 10 | Pending |
+| I18N-04 | Phase 10 | Pending |
+| DESIGN-01 | Phase 3 | Pending |
+| DESIGN-02 | Phase 3 | Pending |
+| DESIGN-03 | Phase 3 | Pending |
+| DESIGN-04 | Phase 4 | Pending |
+| DESIGN-05 | Phase 4 | Pending |
+| DESIGN-06 | Phase 4 | Pending |
+| DESIGN-07 | Phase 3 | Pending |
+| DESIGN-08 | Phase 4 | Pending |
+| A11Y-01 | Phase 11 | Pending |
+| A11Y-02 | Phase 11 | Pending |
+| A11Y-03 | Phase 11 | Pending |
+| A11Y-04 | Phase 11 | Pending |
+| PERF-01 | Phase 4 | Pending |
+| PERF-02 | Phase 11 | Pending |
+| PERF-03 | Phase 11 | Pending |
+| SEO-01 | Phase 10 | Pending |
+| SEO-02 | Phase 10 | Pending |
+| SEO-03 | Phase 10 | Pending |
+| SEO-04 | Phase 10 | Pending |
+| OPS-01 | Phase 1 | Pending |
+| OPS-02 | Phase 1 | Pending |
+| OPS-03 | Phase 1 | Pending |
+| OPS-04 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 57 total
-- Mapped to phases: 0
-- Unmapped: 57 ⚠️
+- Mapped to phases: 57
+- Unmapped: 0 ✓
+
+**Per-phase counts:**
+
+| Phase | Requirements |
+|-------|--------------|
+| 1. Reviewable Baseline and Safe Delivery | 4 |
+| 2. Live Conversion Measurement | 3 |
+| 3. Colour Discipline and the Prohibitions | 5 |
+| 4. Type, Rhythm, Signature and Motion | 5 |
+| 5. CV Depth and the Bilingual PDF | 5 |
+| 6. Hero Routing and Page Skeleton | 6 |
+| 7. PME Track (Parcours IA) | 5 |
+| 8. Proof and Verified Case Studies | 5 |
+| 9. Tech Track (Parcours Tech) | 5 |
+| 10. Bilingual URLs and Discoverability | 8 |
+| 11. Accessibility and Performance Bars | 6 |
 
 ---
 *Requirements defined: 2026-08-19*
-*Last updated: 2026-08-19 after initialization*
+*Last updated: 2026-08-19 after roadmap creation*
