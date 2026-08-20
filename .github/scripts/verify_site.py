@@ -22,8 +22,27 @@ import xml.etree.ElementTree as ET
 # the staging script decides what is copied, this script asserts what arrived.
 REQUIRED = ["index.html", "CNAME", "robots.txt", "sitemap.xml", "og-image.png"]
 
-# Default-deny backstop. None of these may ever reach the published artifact,
-# even if a future edit to the staging script lets one through.
+# The optional half of that same manifest, mirroring the OPTIONAL array of
+# stage-site.sh: `en/` is copied when present and tolerated when absent (D-07).
+OPTIONAL = ["en"]
+
+# Three rules run over the staged tree, and they are deliberately different at
+# different depths.
+#
+# At the top level the rule is a positive allowlist: every entry directly under
+# the staged root must appear in REQUIRED or OPTIONAL, so an unlisted file fails
+# the run instead of shipping.
+#
+# At every depth the rule is the denylist of basenames below, plus a blanket
+# refusal of symlinks. Symlinks are rejected by name rather than resolved
+# because upload-pages-artifact tars with --dereference: a link inside en/
+# pointing at ../../.planning would publish its target's contents while a
+# name-only comparison saw nothing wrong.
+#
+# The contents of `en/` are deliberately not enumerated against an allowlist.
+# Phase 10 authors them and they do not exist yet, so inside an allowed
+# directory the rule is the basename-and-symlink check rather than a full
+# allowlist -- the strongest assertion available without knowing the contents.
 FORBIDDEN = ["README.md", "og-image.html", "specs", ".planning",
              ".github", ".claude", ".playwright-mcp", "_site"]
 
@@ -105,15 +124,59 @@ def check_headings(checker):
             % (checker.h1, len(checker.lang_blocks), checker.lang_blocks or "[]"))
 
 
-def main(dest):
-    root = pathlib.Path(dest)
+def check_manifest(root):
+    """Assert the required assets are present and that nothing else arrived.
 
+    The second half is the positive assertion: stage-site.sh decides what is
+    copied, and this decides that anything it did not copy is a failure rather
+    than a silent publish. Sorted so annotation order is stable across runs.
+    """
     for name in REQUIRED:
         if not (root / name).exists():
             errors.append("missing required asset: %s" % name)
-    for name in FORBIDDEN:
-        if (root / name).exists():
-            errors.append("forbidden entry present in artifact: %s" % name)
+    if not root.is_dir():
+        return
+    allowed = set(REQUIRED) | set(OPTIONAL)
+    for entry in sorted(root.iterdir()):
+        if entry.name not in allowed:
+            errors.append("unlisted entry in artifact: %s" % entry.name)
+
+
+def check_tree(root):
+    """Reject every symlink, and every forbidden basename at any depth.
+
+    rglob yields a dangling symlink as an entry and does not descend into a
+    symlinked directory, so rejecting the link itself is sufficient: the tree
+    behind it is never walked and the link never reaches the artifact. This is
+    also why is_symlink() is the test and exists() is not -- exists() follows
+    the link and answers False for a dangling one.
+
+    The two rules are independent on purpose. A top-level dangling README.md
+    symlink trips both of them and check_manifest as well, producing three
+    annotations; each must be able to fail the run on its own, so neither is
+    gated behind the other.
+    """
+    if not root.is_dir():
+        return
+    for path in sorted(root.rglob("*")):
+        relative = path.relative_to(root)
+        if path.is_symlink():
+            errors.append("symlink in artifact: %s -> %s"
+                          % (relative, path.readlink()))
+        if path.name in FORBIDDEN:
+            errors.append("forbidden entry present in artifact: %s" % relative)
+
+
+def main(dest):
+    root = pathlib.Path(dest)
+
+    # Guard both walks. An absent directory has to stay a report rather than
+    # become a traceback: a checker that crashes instead of reporting is a
+    # checker whose exit code stops meaning anything.
+    if not root.is_dir():
+        errors.append("staged directory not found: %s" % dest)
+    check_manifest(root)
+    check_tree(root)
 
     index = root / "index.html"
     if index.exists():
