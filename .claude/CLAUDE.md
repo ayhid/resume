@@ -48,7 +48,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 
 - None. Vanilla HTML/CSS/JS by design — `README.md` states "One HTML file, no build step, no runtime dependency".
 - None. No test runner, no test files, no assertions.
-- No build step. The repository root is published verbatim.
+- No build step. The workflow stages an allowlisted set of files into `_site/` via `.github/scripts/stage-site.sh` and uploads that directory; the files it copies are published verbatim.
 - Playwright MCP appears to have been used ad hoc to screenshot `og-image.html` → `.playwright-mcp/og-image.png`; it is not wired into any script or workflow.
 
 ## Key Dependencies
@@ -63,7 +63,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 - No `.env` file, no runtime configuration, no secrets. Everything is static and public.
 - Two deployment-time placeholders exist as literal text inside the commented analytics block at `index.html:74`: `[UMAMI_HOST]` and `[UMAMI_WEBSITE_ID]`.
 - `.github/workflows/deploy.yml` — the only build/deploy config.
-- `CNAME` — contains `ayoub-hidri.dev`, binds the custom domain to GitHub Pages.
+- `CNAME` — contains `ayoub-hidri.dev`. Under the Actions publishing source the domain is bound in repository settings (Settings → Pages), not by this file; the file is kept in the production manifest per D-06 as belt-and-braces, which also makes it fetchable at `/CNAME`.
 - `robots.txt` — allows all crawlers, points at the sitemap.
 - `sitemap.xml` — single URL entry, `lastmod` 2026-01-26.
 - `.claude/settings.local.json` — local agent tool permissions, not part of the site.
@@ -74,7 +74,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 - A text editor and a browser. Opening `index.html` from disk is a complete dev loop.
 - Modern browser APIs relied on: `Element.closest`, `URLSearchParams`, `NodeList.forEach`, `hidden` attribute, `beforeprint` event, CSS `clamp()`, CSS custom properties, `text-wrap: pretty`. This rules out IE and very old mobile browsers.
 - GitHub Pages, custom domain `ayoub-hidri.dev` over HTTPS.
-- Deploys on push and pull request to `main`; concurrency group `pages` with `cancel-in-progress: false`; the whole repo root (`path: '.'`) is uploaded as the artifact, so `og-image.html` and `README.md` ship to production too.
+- Runs on push and pull request to `main` as two jobs: `verify` runs on both events, while `deploy` is gated on `github.event_name == 'push' && github.ref == 'refs/heads/main'`, so a pull request reaches only the verify job and never publishes. `concurrency` is declared per job — `verify-…` with `cancel-in-progress: true`, `"pages"` with `cancel-in-progress: false` — not workflow-wide. The artifact is not the repo root: `.github/scripts/stage-site.sh` copies an allowlist into `_site/` and that directory is uploaded, so only `index.html`, `CNAME`, `robots.txt`, `sitemap.xml`, `og-image.png` and, when it exists, `en/` are published — `og-image.html`, `README.md`, `specs/` and `.planning/` are not. A new production asset is not published until it is added to the manifest in `stage-site.sh`.
 
 <!-- GSD:stack-end -->
 
@@ -198,8 +198,8 @@ The split between the two offers is not a compromise to be resolved — the spli
 | FR content tree | Full French page: header, main, footer | `index.html` L121-552 (`[data-lang-block="fr"]`) |
 | EN content tree | Full English mirror of the FR tree | `index.html` L553-980 (`[data-lang-block="en"]`) |
 | Behaviour controller | Language switch, accordions, analytics events, print hook | `index.html` L982-1052 |
-| OG card generator | Standalone 1200×630 artboard rendered to `og-image.png` | `og-image.html` |
-| Deploy pipeline | Uploads repo root as a Pages artifact on push to `main` | `.github/workflows/deploy.yml` |
+| OG card generator | Standalone 1200×630 artboard rendered to `og-image.png`; excluded from the published artifact | `og-image.html` |
+| Deploy pipeline | Stages the allowlist into `_site/` and uploads that directory as a Pages artifact on push to `main` | `.github/workflows/deploy.yml`, `.github/scripts/stage-site.sh` |
 
 ## Pattern Overview
 
@@ -260,18 +260,18 @@ The split between the two offers is not a compromise to be resolved — the spli
 - Responsibilities: Everything the visitor sees.
 - Location: repo root.
 - Triggers: Manual screenshot at 1200×630 (a Playwright capture lives in `.playwright-mcp/og-image.png`).
-- Responsibilities: Produces `og-image.png`; not linked from the site and not part of the visitor path.
+- Responsibilities: Produces `og-image.png`; not linked from the site, not part of the visitor path, and excluded from the production manifest, so it is not reachable at `/og-image.html`.
 - Location: `.github/workflows/deploy.yml`
-- Triggers: `push` and `pull_request` on `main`.
-- Responsibilities: `configure-pages` → `upload-pages-artifact` with `path: '.'` → `deploy-pages`.
+- Triggers: `push` and `pull_request` on `main`; only a push to `main` reaches the deploy job.
+- Responsibilities: `verify` stages the allowlist with `.github/scripts/stage-site.sh` and checks it with `.github/scripts/verify_site.py`; `deploy` then runs `configure-pages` → `stage-site.sh` → `verify_site.py` → `upload-pages-artifact` on `_site` → `deploy-pages`.
 
 ## Architectural Constraints
 
 - **No build step:** The committed file is the deployed file. Anything requiring compilation, bundling or templating is out of scope.
 - **Content duplication:** Every copy edit must be applied twice, once per `[data-lang-block]`. Ids, `aria-controls` and `aria-labelledby` must stay locale-suffixed and unique across the whole document.
 - **Single script scope:** All JS lives in one IIFE at `index.html:982`. Nothing is exported; there is no module system.
-- **Whole-repo deploy:** `upload-pages-artifact` uses `path: '.'`, so every committed file at the root is published — including `og-image.html`. Do not commit anything that should stay private.
-- **Custom domain:** `CNAME` contains `ayoub-hidri.dev` and must survive every deploy; deleting it breaks the domain.
+- **Allowlisted deploy:** `upload-pages-artifact` uploads `_site/`, staged by `.github/scripts/stage-site.sh` from a named manifest, so nothing is published by default. `og-image.html`, `README.md`, `specs/` and `.planning/` are all committed and all excluded from the artifact. A new production asset does not ship until it is added to that manifest.
+- **Custom domain:** The domain is bound in repository settings (Settings → Pages), which hold `ayoub-hidri.dev` with HTTPS enforced; under the Actions publishing source GitHub creates no `CNAME` file and ignores any committed one. The `CNAME` file is retained in the manifest per D-06 as belt-and-braces rather than as the binding, and is therefore fetchable at `/CNAME` — a harmless consequence of shipping it.
 - **Absolute URLs are hardcoded:** Canonical, hreflang, OG and JSON-LD all hardcode `https://ayoub-hidri.dev/`; a domain change is a multi-site-wide find/replace.
 - **`/en/` route does not exist:** `hreflang` and the header link point at `/en/`, but Pages serves no such path; only the `?lang=en` query and the client-side toggle actually work.
 
