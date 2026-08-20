@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Merging to `main` publishes the site, and what is served contains only production assets — `specs/`, `README.md`, `.planning/` and tool directories are absent.
   4. A visitor loading https://ayoub-hidri.dev/ sees the v2 page rather than the v1 online CV.
 
-**Plans:** 5/5 plans executed
+**Plans:** 6 plans (5 executed, 1 gap-closure pending)
 
 Plans:
 **Wave 1**
@@ -64,6 +64,10 @@ Plans:
 **Wave 5** *(blocked on Wave 4 completion)*
 
 - [x] 01-05-PLAN.md — Prove the pull-request gate verifies and publishes nothing, then close the phase
+
+**Wave 6** *(gap closure — blocked on Wave 5 completion)*
+
+- [ ] 01-06-PLAN.md — Close gap G-01: make the artifact checker default-deny at the top level and reject forbidden basenames and symlinks at every depth
 
 ### Phase 2: Live Conversion Measurement
 
