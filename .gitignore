@@ -20,3 +20,16 @@ npm-debug.log*
 # Temporary files
 *.tmp
 *.temp
+
+# Local agent and tool state
+# Machine-local and regenerable. Only the settings file is ignored under
+# .claude/ -- CLAUDE.md is tracked. Only the response cache is ignored under
+# .planning/ -- the planning documents themselves are tracked.
+.claude/settings.local.json
+.gsd/
+.planning/research/.cache/
+.playwright-mcp/
+
+# CI staging output
+# Created by every local rehearsal of .github/scripts/stage-site.sh.
+_site/
