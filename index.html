@@ -114,1081 +114,439 @@ button{font-family:inherit}
 .btn-invert:hover{background:var(--ink) !important;color:var(--paper) !important}
 </style>
 </head>
-<body class="font-sans text-slate-700">
-  <main class="max-w-6xl mx-auto px-6 py-8 print:py-4">
-    <!-- English Version -->
-    <div class="lang-section active" id="lang-en">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Main Content -->
-        <div class="lg:col-span-2">
-          <!-- Sticky Header -->
-          <header class="sticky-header mb-8 animate-in print:static print:bg-transparent print:backdrop-blur-none">
-            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-              <div>
-                <h1 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
-                  Ayoub Hidri
-                </h1>
-                <p class="text-xl text-purple-600 font-medium">Full Stack Engineer</p>
-              </div>
-              <div class="flex gap-2 print:hidden">
-                <button class="btn btn-ghost" onclick="toggleLanguage()">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                  <span id="lang-toggle-text">FR</span>
-                </button>
-                <button class="btn btn-primary" onclick="downloadPDF()">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                  PDF
-                </button>
-              </div>
-            </div>
+<body>
+<div style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.08;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:24px 24px" data-grid hidden></div>
 
-            <p class="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
-              15+ years building innovative solutions with React & TypeScript. I modernize legacy systems, lead technical teams, and deliver complex projects for enterprise clients.
-            </p>
+<div data-lang-block="fr">
+<a href="#main-fr" style="position:absolute;left:-9999px;top:0;z-index:100;padding:14px 24px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:13px;letter-spacing:0.04em;text-transform:uppercase" class="skip-link">Aller au contenu</a>
 
-            <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-              <a href="mailto:ayoub.hidri@gmail.com" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                ayoub.hidri@gmail.com
-              </a>
-              <span class="flex items-center gap-2 text-slate-600">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Strasbourg, France
-              </span>
-              <a href="https://linkedin.com/in/ayoub-hidri" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-linkedin-plain"></i>
-                LinkedIn
-              </a>
-              <a href="https://github.com/ayhid" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-github-original"></i>
-                GitHub
-              </a>
-              <a href="https://github.com/opkod-france" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-github-original"></i>
-                Opkod
-              </a>
-              <a href="https://medium.com/@ayhidr" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-                Medium
-              </a>
-            </div>
-          </header>
+<header data-noprint="true" style="position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:0 clamp(24px,3.5vw,48px);height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#main-fr" style="font-family:var(--sans);font-weight:800;font-stretch:125%;font-size:18px;letter-spacing:0.02em;color:var(--ink)">AH</a>
+    <nav aria-label="Sections" style="display:flex;align-items:center;gap:clamp(12px,1.6vw,24px)">
+      <a href="#ia" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">IA</a>
+      <a href="#tech" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Tech</a>
+      <a href="#cv" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">CV</a>
+      <a href="#contact" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Contact</a>
+      <span aria-hidden="true" style="width:1px;height:16px;background:var(--line)"></span>
+      <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em">
+        <span aria-current="true" style="color:var(--ink);border-bottom:1px solid var(--ink)">FR</span>
+        <span aria-hidden="true" style="color:var(--line)">/</span>
+        <a href="/en/" hreflang="en" data-act="setEn" style="color:var(--ink-60);transition:color 150ms ease-out" class="link-blue">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
 
-          <!-- Experience -->
-          <section class="animate-in delay-1">
-            <h2 class="section-heading">Experience</h2>
+<main id="main-fr">
 
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Frontend Developer & E-commerce Specialist</h3>
-                  <p class="text-purple-600 font-medium">Salomon · Remote</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2024 — Present</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Contributing to the global e-commerce platform transformation at Salomon, driving performance optimizations and user experience improvements for millions of customers worldwide.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Led migration to React Server Components, significantly improving Core Web Vitals and page load times</li>
-                <li>Architected wishlist functionality with event-driven state management for seamless cross-session sync</li>
-                <li>Spearheaded WCAG accessibility compliance implementation across the platform</li>
-                <li>Developed feature flag architecture using Vercel Edge Config for controlled rollouts and A/B testing</li>
-                <li>Mentoring 4 junior developers on React/Next.js best practices through code reviews and knowledge sessions</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                <span class="tech-badge"><i class="devicon-tailwindcss-plain colored"></i> Tailwind</span>
-                <span class="tech-badge"><i class="devicon-storybook-plain colored"></i> Storybook</span>
-              </div>
-            </div>
+<section aria-labelledby="hero-title-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(48px,6vw,104px) clamp(24px,3.5vw,48px) clamp(40px,4vw,64px)">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,40px)">
+      <p style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+        <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+        Ayoub Hidri / Ingénieur &amp; consultant IA / Strasbourg
+      </p>
+      <figure style="flex:none;width:96px">
+        <div role="img" aria-label="Portrait pixelisé d'Ayoub Hidri" style="width:96px;height:96px;border:1px solid var(--ink);image-rendering:pixelated;background-image:linear-gradient(135deg,var(--line) 25%,transparent 25%,transparent 50%,var(--line) 50%,var(--line) 75%,transparent 75%);background-size:6px 6px"></div>
+        <figcaption style="margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Portrait 32×32</figcaption>
+      </figure>
+    </div>
+    <h1 id="hero-title-fr" style="font-family:var(--sans);font-weight:800;font-stretch:125%;font-size:clamp(40px,7.2vw,96px);line-height:0.98;letter-spacing:-0.02em">
+      <span style="display:block;animation:heroLine 300ms ease-out both">Je fabrique</span>
+      <span style="display:block;animation:heroLine 300ms ease-out 80ms both">des systèmes</span>
+      <span style="display:block;animation:heroLine 300ms ease-out 160ms both">qui font gagner</span>
+      <span style="display:block;animation:heroLine 300ms ease-out 240ms both">du temps.</span>
+    </h1>
+    <p style="margin-top:clamp(24px,3vw,40px);max-width:68ch;font-size:clamp(16px,1.2vw,18px)">15 ans d'ingénierie logicielle pour Leboncoin, Salomon ou Deloitte. Aujourd'hui, j'aide aussi les PME à mettre l'IA et l'automatisation au service de leur productivité.</p>
+    <div style="margin-top:clamp(40px,4vw,64px);display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
+      <a href="#ia" data-act="trackCardIa" style="flex:1 1 300px;min-width:0;display:block;padding:clamp(16px,2vw,24px);border:1px solid var(--ink);background:var(--paper);color:var(--ink);--title-color:var(--ink);transition:box-shadow 150ms ease-out" class="card-hover">
+        <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Parcours IA</p>
+        <h2 style="margin-top:16px;font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px);color:var(--title-color);transition:color 150ms ease-out">Vous dirigez une PME</h2>
+        <p style="margin-top:8px;font-size:clamp(16px,1.1vw,17px);color:var(--ink-60)">Audit de vos process, automatisations concrètes, formation de vos équipes.</p>
+        <p style="margin-top:24px;font-family:var(--mono);font-size:13px;letter-spacing:0.04em;text-transform:uppercase;color:var(--work-blue)">Voir le parcours IA</p>
+      </a>
+      <a href="#tech" data-act="trackCardTech" style="flex:1 1 300px;min-width:0;display:block;padding:clamp(16px,2vw,24px);border:1px solid var(--ink);background:var(--paper);color:var(--ink);--title-color:var(--ink);transition:box-shadow 150ms ease-out" class="card-hover">
+        <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Parcours tech</p>
+        <h2 style="margin-top:16px;font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px);color:var(--title-color);transition:color 150ms ease-out">Vous cherchez un ingénieur senior</h2>
+        <p style="margin-top:8px;font-size:clamp(16px,1.1vw,17px);color:var(--ink-60)">React, TypeScript, Next.js, Strapi, NestJS. Missions freelance et leadership technique.</p>
+        <p style="margin-top:24px;font-family:var(--mono);font-size:13px;letter-spacing:0.04em;text-transform:uppercase;color:var(--work-blue)">Voir le parcours tech</p>
+      </a>
+    </div>
+  </div>
+</section>
 
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Senior Frontend Consultant</h3>
-                  <p class="text-purple-600 font-medium">Leboncoin · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jun 2022 — Oct 2024</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Technical lead for post-moderation tooling at France's largest classifieds platform, handling millions of daily listings with a focus on modernization and developer experience.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Orchestrated legacy codebase modernization with React-Query, implementing optimistic updates for improved UX</li>
-                <li>Achieved 100% test coverage combining Jest, React Testing Library, and Cypress E2E tests</li>
-                <li>Established automated dependency management with Dependabot, reducing security vulnerabilities</li>
-                <li>Built internal developer tooling that reduced onboarding time and standardized practices across squads</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                <span class="tech-badge"><i class="devicon-jest-plain colored"></i> Jest</span>
-                <span class="tech-badge"><i class="devicon-cypressio-plain"></i> Cypress</span>
-                <span class="tech-badge"><i class="devicon-storybook-plain colored"></i> Storybook</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-              </div>
-            </div>
+<section aria-labelledby="proof-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,4vw,64px) clamp(24px,3.5vw,48px)">
+    <h2 id="proof-fr" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+      <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+      Ils m'ont fait confiance
+    </h2>
+    <ul style="margin-top:24px;padding:0;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:0">
+      <li style="font-weight:600;font-size:clamp(18px,2.2vw,28px);padding:4px 20px 4px 0">Leboncoin</li>
+      <li style="font-weight:600;font-size:clamp(18px,2.2vw,28px);padding:4px 20px;border-left:1px solid var(--line)">Salomon</li>
+      <li style="font-weight:600;font-size:clamp(18px,2.2vw,28px);padding:4px 20px;border-left:1px solid var(--line)">Deloitte</li>
+      <li style="font-weight:600;font-size:clamp(18px,2.2vw,28px);padding:4px 20px;border-left:1px solid var(--line)">Engie Digital</li>
+      <li style="font-weight:600;font-size:clamp(18px,2.2vw,28px);padding:4px 20px;border-left:1px solid var(--line)">Memo Bank</li>
+    </ul>
+    <p style="margin-top:24px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">15 ans / 8 secteurs / missions de 3 mois à 2 ans</p>
+  </div>
+</section>
 
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">FullStack Expert</h3>
-                  <p class="text-purple-600 font-medium">Deloitte Digital Factory · La Défense</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jan — May 2022</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Joined the Digital Factory team to enhance risk management processes within the Deloitte consulting ecosystem, focusing on technical debt reduction and code quality.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Led critical technical debt initiative, updating and securing dependencies accumulated over years</li>
-                <li>Established code quality standards with automated ESLint, Prettier, and Husky pre-commit workflows</li>
-                <li>Contributed to microservices decomposition and legacy-to-cloud integration patterns</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-cypressio-plain"></i> Cypress</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">FullStack/JAMstack Expert</h3>
-                  <p class="text-purple-600 font-medium">Engie Digital · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Mar — Dec 2021</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Developed a comprehensive mobile operator platform enabling field technicians to perform complex operations on energy infrastructure with offline-first capabilities.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Built NFC-enabled PWAs for field technicians with offline mode and automatic sync on reconnection</li>
-                <li>Pioneered company-wide Renovate adoption, creating custom presets deployed across dozens of repos</li>
-                <li>Architected serverless microservices on AWS Lambda with SNS/SQS event-driven patterns</li>
-                <li>Designed PostgreSQL schema with PostGIS for efficient geospatial operations</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                <span class="tech-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge">Okta</span>
-                <span class="tech-badge">Lambda</span>
-                <span class="tech-badge"><i class="devicon-terraform-plain colored"></i> Terraform</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Technical Director & Architect</h3>
-                  <p class="text-purple-600 font-medium">Isobar (Dentsu Group) · Courbevoie</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jul 2017 — Feb 2021</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Cross-functional technical leadership role working directly with the CTO and COO on strategic initiatives, pioneering modern architectures and mentoring senior developers across the agency.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Pioneered Headless CMS adoption across 3 major accounts, improving content delivery and editorial flexibility</li>
-                <li>Collaborated with creative teams to architect MVPs/POCs translating concepts into production solutions</li>
-                <li><strong>MMA/COVEA:</strong> Built OCR insurance document processing system automating claims handling</li>
-                <li><strong>Technip Energies:</strong> Delivered headless platform unifying content across digital touchpoints</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-graphql-plain colored"></i> GraphQL</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge"><i class="devicon-strapi-plain colored"></i> Strapi</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                <span class="tech-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-azure-plain colored"></i> Azure</span>
-                <span class="tech-badge">Lambda</span>
-                <span class="tech-badge"><i class="devicon-tensorflow-original colored"></i> TensorFlow</span>
-                <span class="tech-badge"><i class="devicon-ansible-plain"></i> Ansible</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Technical Leader & Architect</h3>
-                  <p class="text-purple-600 font-medium">Cleanio · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Apr 2015 — May 2017</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Architected the complete technical ecosystem for an innovative dry cleaning startup, from customer-facing apps to backend infrastructure and delivery operations.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Designed microservices architecture replacing the monolith, enabling independent scaling of services</li>
-                <li>Established CI/CD pipelines with CircleCI and AWS, implementing blue-green zero-downtime deployments</li>
-                <li>Built real-time tracking systems and driver mobile app optimizing route planning and workflows</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-circleci-plain"></i> CircleCI</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-digitalocean-plain colored"></i> DigitalOcean</span>
-                <span class="tech-badge">Microservices</span>
-                <span class="tech-badge">Routific</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Lead Developer & Web Architect</h3>
-                  <p class="text-purple-600 font-medium">Business & Decision · Tunis/Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2011 — Mar 2015</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Enterprise consulting and systems integration for major automotive and e-commerce clients, leading distributed teams and delivering complex technical solutions.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li><strong>Peugeot (16 months):</strong> Led 10-person agile team building dealer management systems with SAP integration. Created custom personalization engine using MongoDB for dynamic website experiences</li>
-                <li><strong>Citroën (13 months):</strong> Developed content personalization engine adapting UX based on user behavior and location</li>
-                <li><strong>Kayoo.com:</strong> Managed distributed teams across 3 countries, ensuring quality standards across deliverables</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-symfony-original"></i> Symfony</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-redis-plain colored"></i> Redis</span>
-                <span class="tech-badge">Zend Framework</span>
-                <span class="tech-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                <span class="tech-badge"><i class="devicon-doctrine-plain colored"></i> Doctrine</span>
-                <span class="tech-badge">Clean Architecture</span>
-                <span class="tech-badge"><i class="devicon-grunt-plain colored"></i> Grunt</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Software Engineer</h3>
-                  <p class="text-purple-600 font-medium">DigitalMania Studios · Tunis</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2009 — Aug 2011</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Joined Tunisia's first independent game development studio, working on diverse projects spanning web development and game engineering in a creative startup environment.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Developed complete Peugeot intranet and document management system with complex approval workflows</li>
-                <li>Created custom Drupal modules extending CMS capabilities for client-specific requirements</li>
-                <li>Built Unity 3D plugins enabling unique gameplay mechanics for the studio's game projects</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-drupal-plain colored"></i> Drupal</span>
-                <span class="tech-badge"><i class="devicon-unity-original"></i> Unity 3D</span>
-                <span class="tech-badge"><i class="devicon-php-plain colored"></i> PHP</span>
-                <span class="tech-badge"><i class="devicon-facebook-plain colored"></i> Facebook API</span>
-                <span class="tech-badge"><i class="devicon-symfony-original"></i> Symfony 1</span>
-                <span class="tech-badge"><i class="devicon-cakephp-plain colored"></i> CakePHP</span>
-                <span class="tech-badge"><i class="devicon-csharp-plain colored"></i> C#</span>
-              </div>
-            </div>
-          </section>
-
-          <!-- Contact CTA Section -->
-          <section class="mt-12 animate-in delay-3 print:hidden">
-            <div class="cta-section">
-              <div class="text-center">
-                <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Let's Build Something Great</h2>
-                <p class="text-purple-100 mb-6 max-w-lg mx-auto">
-                  Looking for an experienced Full Stack Engineer? I'm available for consulting, freelance projects, and technical leadership roles.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                  <a href="mailto:ayoub.hidri@gmail.com" class="btn btn-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    Get in Touch
-                  </a>
-                  <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" class="btn btn-outline-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    Schedule a Call
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
+<section id="ia" aria-labelledby="ia-title-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,64px)">
+    <div style="flex:1 1 240px;min-width:0">
+      <p style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+        <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+        Accompagnement IA &amp; automatisation
+      </p>
+      <h2 id="ia-title-fr" style="margin-top:24px;font-family:var(--sans);font-weight:700;font-stretch:110%;font-size:clamp(28px,3.4vw,40px);line-height:1.05;letter-spacing:-0.01em">L'IA utile, pas l'IA gadget.</h2>
+    </div>
+    <div style="flex:2.4 1 420px;min-width:0">
+      <p style="max-width:68ch">La plupart des PME perdent des heures chaque semaine sur des tâches que la machine fait mieux : saisie, relances, rapprochements, reporting. Je viens de l'ingénierie, pas du conseil en slides. Chaque recommandation que je fais, je sais la construire.</p>
+      <div style="margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
+        <div style="flex:1 1 280px;min-width:0;padding:clamp(16px,2vw,24px);border:1px solid var(--ink)">
+          <h3 style="font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px)">Audit flash</h3>
+          <p style="margin-top:16px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">2 à 3 jours dans vos équipes. Je cartographie vos process, j'identifie 5 à 10 automatisations chiffrées en heures gagnées par mois, et je vous livre une feuille de route priorisée. Vous savez quoi faire, dans quel ordre, et ce que ça rapporte.</p>
+          <p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">2-3 jours / livrable : feuille de route</p>
         </div>
-
-        <!-- Sidebar -->
-        <div class="lg:col-span-1">
-          <div class="lg:sticky lg:top-8 space-y-6 animate-in delay-2">
-            <!-- Skills with gauges -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Skills & Experience</h2>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-react-original colored"></i> React
-                    </span>
-                    <span class="text-xs text-slate-500">10+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 95%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-typescript-plain colored"></i> TypeScript
-                    </span>
-                    <span class="text-xs text-slate-500">8+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 90%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nextjs-original"></i> Next.js
-                    </span>
-                    <span class="text-xs text-slate-500">10+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 92%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nodejs-plain colored"></i> Node.js
-                    </span>
-                    <span class="text-xs text-slate-500">12+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 92%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nestjs-plain colored"></i> NestJS
-                    </span>
-                    <span class="text-xs text-slate-500">6+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 85%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-graphql-plain colored"></i> GraphQL
-                    </span>
-                    <span class="text-xs text-slate-500">5+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 75%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-docker-plain colored"></i> Docker
-                    </span>
-                    <span class="text-xs text-slate-500">7+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 80%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-amazonwebservices-original colored"></i> AWS
-                    </span>
-                    <span class="text-xs text-slate-500">8+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 82%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-postgresql-plain colored"></i> PostgreSQL
-                    </span>
-                    <span class="text-xs text-slate-500">10+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 88%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-strapi-plain colored"></i> Strapi
-                    </span>
-                    <span class="text-xs text-slate-500">4+ years</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 80%"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- AI & Agents -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">AI & Agents</h2>
-              <div class="space-y-3">
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">AI Agent Development</p>
-                    <p class="text-xs text-slate-500">Claude SDK, custom skills & plugins</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">AI-Assisted Development</p>
-                    <p class="text-xs text-slate-500">Orchestrating AI workflows & tooling</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">LLM Integration</p>
-                    <p class="text-xs text-slate-500">Building AI-powered applications</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Education -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Education</h2>
-              <h3 class="font-semibold text-slate-900">Software Engineering</h3>
-              <p class="text-sm text-slate-600"><a href="https://www.esprit.tn/" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">ESPRIT</a> · 2010</p>
-              <p class="text-sm text-slate-500 italic">Graduated with Excellent Distinction</p>
-            </div>
-
-            <!-- Languages -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Languages</h2>
-              <div class="space-y-2">
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">French</span>
-                  <span class="text-sm text-slate-500">Native</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">English</span>
-                  <span class="text-sm text-slate-500">Fluent</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">Arabic</span>
-                  <span class="text-sm text-slate-500">Native</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Interests -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Interests</h2>
-              <div class="flex flex-wrap gap-2">
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">3D Printing</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Drums</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Bike Touring</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Miniatures</span>
-              </div>
-            </div>
-          </div>
+        <div style="flex:1 1 280px;min-width:0;padding:clamp(16px,2vw,24px);border:1px solid var(--ink)">
+          <h3 style="font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px)">Formation équipes</h3>
+          <p style="margin-top:16px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">1 à 2 jours pour rendre vos équipes autonomes : usage professionnel de l'IA générative, prompts métier, et un premier workflow d'automatisation construit en direct sur votre cas réel.</p>
+          <p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">1-2 jours / intra-entreprise</p>
         </div>
       </div>
-    </div>
-
-    <!-- French Version -->
-    <div class="lang-section" id="lang-fr">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Main Content -->
-        <div class="lg:col-span-2">
-          <!-- Sticky Header -->
-          <header class="sticky-header mb-8 animate-in print:static print:bg-transparent print:backdrop-blur-none">
-            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-              <div>
-                <h1 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
-                  Ayoub Hidri
-                </h1>
-                <p class="text-xl text-purple-600 font-medium">Ingénieur Full Stack</p>
-              </div>
-              <div class="flex gap-2 print:hidden">
-                <button class="btn btn-ghost" onclick="toggleLanguage()">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                  <span>EN</span>
-                </button>
-                <button class="btn btn-primary" onclick="downloadPDF()">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                  PDF
-                </button>
-              </div>
-            </div>
-
-            <p class="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
-              15+ ans d'expérience en React & TypeScript. Je modernise les systèmes legacy, dirige des équipes techniques et livre des projets complexes pour des clients entreprise.
-            </p>
-
-            <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-              <a href="mailto:ayoub.hidri@gmail.com" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                ayoub.hidri@gmail.com
-              </a>
-              <span class="flex items-center gap-2 text-slate-600">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Strasbourg, France
-              </span>
-              <a href="https://linkedin.com/in/ayoub-hidri" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-linkedin-plain"></i>
-                LinkedIn
-              </a>
-              <a href="https://github.com/ayhid" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-github-original"></i>
-                GitHub
-              </a>
-              <a href="https://github.com/opkod-france" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
-                <i class="devicon-github-original"></i>
-                Opkod
-              </a>
-            </div>
-          </header>
-
-          <!-- Experience -->
-          <section class="animate-in delay-1">
-            <h2 class="section-heading">Expérience</h2>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Développeur Frontend & Spécialiste E-commerce</h3>
-                  <p class="text-purple-600 font-medium">Salomon · Télétravail</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2024 — Présent</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Contribution à la transformation de la plateforme e-commerce mondiale de Salomon, optimisations de performance et améliorations UX pour des millions de clients.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Migration vers React Server Components, amélioration significative des Core Web Vitals</li>
-                <li>Architecture wishlist avec gestion d'état event-driven pour synchronisation cross-session</li>
-                <li>Implémentation conformité WCAG pour l'accessibilité de la plateforme</li>
-                <li>Architecture feature flags avec Vercel Edge Config pour déploiements contrôlés et tests A/B</li>
-                <li>Mentorat de 4 développeurs juniors sur les bonnes pratiques React/Next.js</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                <span class="tech-badge"><i class="devicon-tailwindcss-plain colored"></i> Tailwind</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Consultant Frontend Senior</h3>
-                  <p class="text-purple-600 font-medium">Leboncoin · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jun 2022 — Oct 2024</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Lead technique pour les outils de post-modération de la plus grande plateforme de petites annonces française, traitant des millions d'annonces quotidiennes.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Modernisation du code legacy avec React-Query, mises à jour optimistes pour UX améliorée</li>
-                <li>100% de couverture de tests avec Jest, React Testing Library et Cypress E2E</li>
-                <li>Gestion automatisée des dépendances avec Dependabot, réduction des vulnérabilités</li>
-                <li>Outils internes réduisant le temps d'onboarding et standardisant les pratiques</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                <span class="tech-badge"><i class="devicon-jest-plain colored"></i> Jest</span>
-                <span class="tech-badge"><i class="devicon-storybook-plain colored"></i> Storybook</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Expert FullStack</h3>
-                  <p class="text-purple-600 font-medium">Deloitte Digital Factory · La Défense</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jan — Mai 2022</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Intégration de l'équipe Digital Factory pour améliorer les processus de gestion des risques, focus sur la réduction de dette technique et la qualité du code.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Initiative critique de réduction de dette technique, mise à jour des dépendances critiques</li>
-                <li>Standards de qualité avec workflows automatisés ESLint, Prettier et hooks Husky</li>
-                <li>Contribution à la décomposition microservices et patterns d'intégration legacy-cloud</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-cypressio-plain"></i> Cypress</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Expert FullStack/JAMstack</h3>
-                  <p class="text-purple-600 font-medium">Engie Digital · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Mar — Déc 2021</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Développement d'une plateforme opérateur mobile permettant aux techniciens terrain d'effectuer des opérations complexes sur l'infrastructure énergétique avec capacités offline-first.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>PWAs NFC pour techniciens terrain avec mode hors ligne et synchronisation automatique</li>
-                <li>Adoption entreprise de Renovate, presets personnalisés déployés sur des dizaines de repos</li>
-                <li>Microservices serverless AWS Lambda avec patterns event-driven SNS/SQS</li>
-                <li>Schéma PostgreSQL avec PostGIS pour opérations géospatiales</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge">Okta</span>
-                <span class="tech-badge">Lambda</span>
-                <span class="tech-badge"><i class="devicon-terraform-plain colored"></i> Terraform</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Directeur Technique & Architecte</h3>
-                  <p class="text-purple-600 font-medium">Isobar (Groupe Dentsu) · Courbevoie</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Jul 2017 — Fév 2021</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Leadership technique transversal travaillant directement avec CTO et COO sur initiatives stratégiques, pionnier des architectures modernes et mentorat des développeurs seniors.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Adoption Headless CMS sur 3 grands comptes, amélioration livraison contenu et flexibilité éditoriale</li>
-                <li>Collaboration équipes créatives pour MVPs/POCs traduisant concepts en solutions production</li>
-                <li><strong>MMA/COVEA :</strong> Système OCR traitement documents assurance automatisant les sinistres</li>
-                <li><strong>Technip Energies :</strong> Plateforme headless unifiant le contenu multi-touchpoints</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-react-original colored"></i> React</span>
-                <span class="tech-badge"><i class="devicon-nextjs-original"></i> Next.js</span>
-                <span class="tech-badge"><i class="devicon-graphql-plain colored"></i> GraphQL</span>
-                <span class="tech-badge"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
-                <span class="tech-badge"><i class="devicon-strapi-plain colored"></i> Strapi</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                <span class="tech-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-azure-plain colored"></i> Azure</span>
-                <span class="tech-badge">Lambda</span>
-                <span class="tech-badge"><i class="devicon-tensorflow-original colored"></i> TensorFlow</span>
-                <span class="tech-badge"><i class="devicon-ansible-plain"></i> Ansible</span>
-                <span class="tech-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Leader Technique & Architecte</h3>
-                  <p class="text-purple-600 font-medium">Cleanio · Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Avr 2015 — Mai 2017</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Architecture de l'écosystème technique complet pour une startup innovante de pressing, des applications client à l'infrastructure backend et opérations de livraison.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Architecture microservices remplaçant le monolithe, scaling indépendant des services</li>
-                <li>Pipelines CI/CD avec CircleCI et AWS, déploiements blue-green sans interruption</li>
-                <li>Systèmes de tracking temps réel et app mobile chauffeur optimisant les workflows</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge"><i class="devicon-circleci-plain"></i> CircleCI</span>
-                <span class="tech-badge"><i class="devicon-amazonwebservices-original colored"></i> AWS</span>
-                <span class="tech-badge"><i class="devicon-digitalocean-plain colored"></i> DigitalOcean</span>
-                <span class="tech-badge">Microservices</span>
-                <span class="tech-badge">Routific</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Développeur Principal & Architecte Web</h3>
-                  <p class="text-purple-600 font-medium">Business & Decision · Tunis/Paris</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2011 — Mar 2015</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Conseil entreprise et intégration de systèmes pour clients majeurs automobile et e-commerce, direction d'équipes distribuées et livraison de solutions techniques complexes.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li><strong>Peugeot (16 mois) :</strong> Direction équipe agile de 10 personnes, systèmes gestion concessionnaires avec SAP</li>
-                <li><strong>Citroën (13 mois) :</strong> Moteur de personnalisation contenu adaptant UX selon comportement et localisation</li>
-                <li><strong>Kayoo.com :</strong> Gestion équipes distribuées sur 3 pays, standards qualité sur tous les livrables</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-symfony-original"></i> Symfony</span>
-                <span class="tech-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                <span class="tech-badge">Zend Framework</span>
-                <span class="tech-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                <span class="tech-badge"><i class="devicon-doctrine-plain colored"></i> Doctrine</span>
-                <span class="tech-badge">Clean Architecture</span>
-                <span class="tech-badge"><i class="devicon-grunt-plain colored"></i> Grunt</span>
-              </div>
-            </div>
-
-            <div class="experience-card">
-              <div class="flex justify-between items-start mb-3 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-lg font-semibold text-slate-900">Ingénieur Logiciel</h3>
-                  <p class="text-purple-600 font-medium">DigitalMania Studios · Tunis</p>
-                </div>
-                <span class="text-sm text-slate-500 bg-purple-50 px-3 py-1 rounded-full whitespace-nowrap">Nov 2009 — Août 2011</span>
-              </div>
-              <p class="text-sm text-slate-600 mb-3 leading-relaxed">
-                Premier studio de jeux indépendant de Tunisie, projets diversifiés couvrant développement web et ingénierie de jeux dans un environnement startup créatif.
-              </p>
-              <ul class="text-sm text-slate-600 space-y-1.5 mb-4 ml-4 list-disc marker:text-purple-400">
-                <li>Intranet Peugeot complet et système de gestion documentaire avec workflows d'approbation</li>
-                <li>Modules Drupal personnalisés étendant les capacités CMS pour besoins clients</li>
-                <li>Plugins Unity 3D permettant des mécaniques de gameplay uniques</li>
-              </ul>
-              <div class="flex flex-wrap gap-2">
-                <span class="tech-badge"><i class="devicon-drupal-plain colored"></i> Drupal</span>
-                <span class="tech-badge"><i class="devicon-unity-original"></i> Unity 3D</span>
-                <span class="tech-badge"><i class="devicon-facebook-plain colored"></i> Facebook API</span>
-                <span class="tech-badge"><i class="devicon-symfony-original"></i> Symfony 1</span>
-                <span class="tech-badge"><i class="devicon-cakephp-plain colored"></i> CakePHP</span>
-                <span class="tech-badge"><i class="devicon-csharp-plain colored"></i> C#</span>
-              </div>
-            </div>
-          </section>
-
-          <!-- Contact CTA Section -->
-          <section class="mt-12 animate-in delay-3 print:hidden">
-            <div class="cta-section">
-              <div class="text-center">
-                <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Construisons Quelque Chose de Grand</h2>
-                <p class="text-purple-100 mb-6 max-w-lg mx-auto">
-                  Vous cherchez un Ingénieur Full Stack expérimenté ? Je suis disponible pour du conseil, des projets freelance et des rôles de leadership technique.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                  <a href="mailto:ayoub.hidri@gmail.com" class="btn btn-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    Me Contacter
-                  </a>
-                  <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" class="btn btn-outline-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    Planifier un Appel
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="lg:col-span-1">
-          <div class="lg:sticky lg:top-8 space-y-6 animate-in delay-2">
-            <!-- Skills with gauges -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Compétences</h2>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-react-original colored"></i> React
-                    </span>
-                    <span class="text-xs text-slate-500">10+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 95%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-typescript-plain colored"></i> TypeScript
-                    </span>
-                    <span class="text-xs text-slate-500">8+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 90%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nextjs-original"></i> Next.js
-                    </span>
-                    <span class="text-xs text-slate-500">10+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 92%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nodejs-plain colored"></i> Node.js
-                    </span>
-                    <span class="text-xs text-slate-500">12+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 92%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-nestjs-plain colored"></i> NestJS
-                    </span>
-                    <span class="text-xs text-slate-500">6+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 85%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-graphql-plain colored"></i> GraphQL
-                    </span>
-                    <span class="text-xs text-slate-500">5+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 75%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-docker-plain colored"></i> Docker
-                    </span>
-                    <span class="text-xs text-slate-500">7+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 80%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-amazonwebservices-original colored"></i> AWS
-                    </span>
-                    <span class="text-xs text-slate-500">8+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 82%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-postgresql-plain colored"></i> PostgreSQL
-                    </span>
-                    <span class="text-xs text-slate-500">10+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 88%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between items-center mb-1.5">
-                    <span class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                      <i class="devicon-strapi-plain colored"></i> Strapi
-                    </span>
-                    <span class="text-xs text-slate-500">4+ ans</span>
-                  </div>
-                  <div class="skill-gauge"><div class="skill-gauge-fill" style="width: 80%"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- AI & Agents -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">IA & Agents</h2>
-              <div class="space-y-3">
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">Développement d'Agents IA</p>
-                    <p class="text-xs text-slate-500">Claude SDK, skills & plugins custom</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">Développement Assisté par IA</p>
-                    <p class="text-xs text-slate-500">Orchestration workflows & outils IA</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-0.5">●</span>
-                  <div>
-                    <p class="text-sm font-medium text-slate-700">Intégration LLM</p>
-                    <p class="text-xs text-slate-500">Applications alimentées par l'IA</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Education -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Formation</h2>
-              <h3 class="font-semibold text-slate-900">Génie Logiciel</h3>
-              <p class="text-sm text-slate-600"><a href="https://www.esprit.tn/" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">ESPRIT</a> · 2010</p>
-              <p class="text-sm text-slate-500 italic">Mention Très Bien</p>
-            </div>
-
-            <!-- Languages -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Langues</h2>
-              <div class="space-y-2">
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">Français</span>
-                  <span class="text-sm text-slate-500">Natif</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">Anglais</span>
-                  <span class="text-sm text-slate-500">Courant</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-sm font-medium text-slate-700">Arabe</span>
-                  <span class="text-sm text-slate-500">Natif</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Interests -->
-            <div class="sidebar-card">
-              <h2 class="section-heading">Centres d'intérêt</h2>
-              <div class="flex flex-wrap gap-2">
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Impression 3D</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Batterie</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Cyclotourisme</span>
-                <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Figurines</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <p style="margin-top:24px;color:var(--ink-60);font-size:16px">[MENTION_FINANCEMENT_A_VALIDER]</p>
+      <div style="margin-top:clamp(24px,3vw,40px)">
+        <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" data-act="trackCalendly" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--work-blue);background:var(--work-blue);color:var(--paper);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,border-color 150ms ease-out" class="btn-ink">Réserver un échange de 30 min</a>
       </div>
     </div>
-  </main>
+  </div>
+</section>
 
-  <script>
-    let currentLang = 'en';
+<section aria-labelledby="cases-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px)">
+    <h2 id="cases-fr" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+      <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+      Cas concrets
+    </h2>
+    <div style="margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
 
-    function trackEvent(eventName, parameters = {}) {
-      if (typeof mixpanel !== 'undefined') {
-        mixpanel.track(eventName, parameters);
-      }
-    }
+      <article style="flex:1 1 300px;min-width:0;border:1px solid var(--ink);padding:clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:16px">
+        <p style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Système interne OPKOD</p>
+        <div>
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Problème</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Chaque mois, une chasse manuelle aux justificatifs manquants sur le compte pro.</p>
+        </div>
+        <div style="padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Système</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Un agent rapproche transactions et reçus, puis relance ce qui manque.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">de temps récupéré sur la clôture mensuelle.</p>
+        </div>
+        <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">n8n</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Claude</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">PostgreSQL</li>
+        </ul>
+      </article>
 
-    function toggleLanguage() {
-      const enSection = document.getElementById('lang-en');
-      const frSection = document.getElementById('lang-fr');
-      const toggleText = document.getElementById('lang-toggle-text');
+      <article style="flex:1 1 300px;min-width:0;border:1px solid var(--ink);padding:clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:16px">
+        <p style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Système interne OPKOD</p>
+        <div>
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Problème</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Une boîte mail où factures, prospects et administratif arrivent en vrac.</p>
+        </div>
+        <div style="padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Système</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Classification automatique des entrants, avec une action associée à chaque catégorie.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">d'emails triés sans intervention humaine.</p>
+        </div>
+        <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Claude</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Gmail API</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">n8n</li>
+        </ul>
+      </article>
 
-      trackEvent('Language Switch', {
-        from_language: currentLang,
-        to_language: currentLang === 'en' ? 'fr' : 'en'
-      });
+      <article style="flex:1 1 300px;min-width:0;border:1px solid var(--ink);padding:clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:16px">
+        <p style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60)">Mission client / MMA-COVEA</p>
+        <div>
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Problème</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Des dossiers de sinistres traités document par document, à la main.</p>
+        </div>
+        <div style="padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Système</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Une chaîne OCR lit les documents d'assurance et alimente le traitement des sinistres.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
+          <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">de délai gagné sur le traitement d'un dossier.</p>
+        </div>
+        <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">OCR</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">TensorFlow</li>
+          <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Node.js</li>
+        </ul>
+      </article>
 
-      if (currentLang === 'en') {
-        enSection.classList.remove('active');
-        frSection.classList.add('active');
-        currentLang = 'fr';
-        document.documentElement.lang = 'fr';
-        document.title = 'Ayoub Hidri - Ingénieur Full Stack | Expert React/TypeScript';
-      } else {
-        frSection.classList.remove('active');
-        enSection.classList.add('active');
-        toggleText.textContent = 'FR';
-        currentLang = 'en';
-        document.documentElement.lang = 'en';
-        document.title = 'Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert';
-      }
-    }
+    </div>
+  </div>
+</section>
 
-    function downloadPDF() {
-      trackEvent('PDF Download', {
-        language: currentLang
-      });
-      window.print();
-    }
+<section id="tech" aria-labelledby="tech-title-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,64px)">
+    <div style="flex:1 1 240px;min-width:0">
+      <p style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+        <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+        Missions &amp; expertise technique
+      </p>
+      <h2 id="tech-title-fr" style="margin-top:24px;font-family:var(--sans);font-weight:700;font-stretch:110%;font-size:clamp(28px,3.4vw,40px);line-height:1.05;letter-spacing:-0.01em">Ingénieur full stack senior, orienté produit.</h2>
+      <p style="margin-top:24px;color:var(--ink-60)">Disponible pour des missions freelance longues : leadership technique, modernisation de legacy, mise en production. Remote-first depuis Strasbourg.</p>
+    </div>
+    <div style="flex:2.4 1 420px;min-width:0">
+      <table>
+        <caption style="text-align:left;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-60);padding-bottom:8px">Stack et années de pratique</caption>
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:left;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:8px 0;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase">Technologie</th>
+            <th scope="col" style="text-align:right;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:8px 0;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase">Années</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">React</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">10+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">TypeScript</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">8+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">Next.js</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">10+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">Node.js</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">12+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">NestJS</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">6+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">Strapi</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">4+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">PostgreSQL</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">10+</td></tr>
+          <tr><td style="padding:8px 0;border-bottom:1px solid var(--line);font-weight:600">AWS</td><td style="padding:8px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:13px">8+</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
+        <div style="flex:1 1 260px;min-width:0;border:1px solid var(--ink);padding:clamp(16px,2vw,24px)">
+          <h3 style="font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px)">IA &amp; agents</h3>
+          <p style="margin-top:16px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Développement d'agents (Claude SDK, skills, plugins), orchestration de workflows IA, intégration de LLM en production. C'est le pont entre les deux parcours.</p>
+        </div>
+        <div style="flex:1 1 260px;min-width:0;border:1px solid var(--ink);padding:clamp(16px,2vw,24px)">
+          <h3 style="font-family:var(--sans);font-weight:700;font-size:clamp(20px,1.8vw,24px)">Open source</h3>
+          <p style="margin-top:16px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Contributeur Strapi Stars, plugins publiés sous l'organisation opkod-france.</p>
+          <p style="margin-top:16px;display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:13px;letter-spacing:0.04em">
+            <a href="https://github.com/ayhid" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">github.com/ayhid</a>
+            <a href="https://github.com/opkod-france" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">github.com/opkod-france</a>
+          </p>
+        </div>
+      </div>
+      <div style="margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;gap:16px">
+        <a href="mailto:ayoub.hidri@gmail.com" data-act="trackMailto" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,border-color 150ms ease-out" class="btn-blue">Me contacter</a>
+        <button type="button" data-act="downloadPdf" data-noprint="true" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:background 150ms ease-out,color 150ms ease-out" class="btn-invert">Télécharger le CV</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Animate skill gauges on load
-      setTimeout(() => {
-        document.querySelectorAll('.skill-gauge-fill').forEach(el => {
-          el.style.width = el.style.width;
-        });
-      }, 300);
+<section id="cv" aria-labelledby="cv-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px)">
+    <h2 id="cv-fr" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+      <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+      Parcours
+    </h2>
+    <div style="margin-top:clamp(24px,3vw,40px);border-bottom:1px solid var(--line)">
 
-      // Track external link clicks
-      document.querySelectorAll('a[href*="linkedin.com"], a[href*="medium.com"], a[href*="github.com"], a[href*="calendly.com"]').forEach(link => {
-        link.addEventListener('click', function() {
-          let linkType = 'Other';
-          if (this.href.includes('linkedin')) linkType = 'LinkedIn';
-          else if (this.href.includes('medium')) linkType = 'Medium';
-          else if (this.href.includes('github')) linkType = 'GitHub';
-          else if (this.href.includes('calendly')) linkType = 'Calendly';
-          trackEvent('External Link Click', {
-            link_type: linkType,
-            link_url: this.href,
-            language: currentLang
-          });
-        });
-      });
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="salomon" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-salomon" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Développeur frontend et spécialiste e-commerce, Salomon</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">NOV 2024 - PRÉSENT</span>
+        </button>
+        <div id="cv-fr-salomon" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Migration vers React Server Components, Core Web Vitals nettement améliorés.</li>
+            <li>Architecture de la wishlist avec un état event-driven synchronisé entre sessions.</li>
+            <li>Feature flags via Vercel Edge Config pour déploiements contrôlés et tests A/B.</li>
+          </ul>
+        </div>
+      </div>
 
-      // Track email clicks
-      document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-        link.addEventListener('click', function() {
-          trackEvent('Email Click', {
-            language: currentLang
-          });
-        });
-      });
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="leboncoin" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-leboncoin" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Consultant frontend senior, Leboncoin</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">JUIN 2022 - OCT 2024</span>
+        </button>
+        <div id="cv-fr-leboncoin" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Lead technique des outils de post-modération, sur des millions d'annonces par jour.</li>
+            <li>Modernisation du code legacy avec React Query et mises à jour optimistes.</li>
+            <li>Couverture de tests complète : Jest, React Testing Library, Cypress.</li>
+          </ul>
+        </div>
+      </div>
 
-      // Set super properties for all events
-      if (typeof mixpanel !== 'undefined') {
-        mixpanel.register({
-          'page_language': currentLang,
-          'referrer': document.referrer || 'direct'
-        });
-      }
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="deloitte" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-deloitte" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Expert full stack, Deloitte Digital Factory</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">JAN - MAI 2022</span>
+        </button>
+        <div id="cv-fr-deloitte" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Réduction de la dette technique sur les processus de gestion des risques.</li>
+            <li>Standards de qualité automatisés : ESLint, Prettier, hooks Husky.</li>
+            <li>Décomposition en microservices et intégration legacy vers cloud.</li>
+          </ul>
+        </div>
+      </div>
 
-      trackEvent('Page View', {
-        page_title: document.title,
-        language: currentLang,
-        referrer: document.referrer || 'direct'
-      });
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="engie" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-engie" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Expert full stack et JAMstack, Engie Digital</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">MARS - DÉC 2021</span>
+        </button>
+        <div id="cv-fr-engie" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>PWA NFC pour techniciens terrain, mode hors ligne et synchronisation automatique.</li>
+            <li>Adoption de Renovate à l'échelle de l'entreprise, presets déployés sur des dizaines de repos.</li>
+            <li>Microservices serverless AWS Lambda, événements SNS et SQS, PostgreSQL avec PostGIS.</li>
+          </ul>
+        </div>
+      </div>
 
-      console.log('%c\n' +
-        '  *=================================================*\n' +
-        '  =                                                 =\n' +
-        '  =     ***   *   *  ***  *   * ****                =\n' +
-        '  =    *   *  *   * *   * *   * *   *               =\n' +
-        '  =    *****   * *  *   * *   * ****                =\n' +
-        '  =    *   *    *   *   * *   * *   *               =\n' +
-        '  =    *   *    *    ***   ***  ****                =\n' +
-        '  =                                                 =\n' +
-        '  =    *   * * ****  ****  *                        =\n' +
-        '  =    *   * * *   * *   * *                        =\n' +
-        '  =    ***** * *   * ****  *                        =\n' +
-        '  =    *   * * *   * *   * *                        =\n' +
-        '  =    *   * * ****  *   * *                        =\n' +
-        '  =                                                 =\n' +
-        '  *=================================================*\n',
-        'color: #a855f7; font-family: monospace;');
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="isobar" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-isobar" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Directeur technique et architecte, Isobar (groupe Dentsu)</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">JUIL 2017 - FÉV 2021</span>
+        </button>
+        <div id="cv-fr-isobar" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Leadership technique transversal avec le CTO et le COO, adoption du Headless CMS sur 3 grands comptes.</li>
+            <li>MMA et COVEA : système OCR de traitement des documents d'assurance, automatisation des sinistres.</li>
+            <li>Technip Energies : plateforme headless unifiant le contenu sur tous les points de contact.</li>
+          </ul>
+        </div>
+      </div>
 
-      console.log('%c  ⚡ Full Stack Engineer | React & TypeScript Expert', 'font-size: 14px; color: #7c3aed; font-weight: bold;');
-      console.log('%c  📍 Strasbourg, France', 'font-size: 12px; color: #64748b;');
-      console.log('%c  ✉️  ayoub.hidri@gmail.com', 'font-size: 12px; color: #64748b;');
-      console.log('%c  🔗 github.com/ayhid', 'font-size: 12px; color: #64748b;');
-      console.log('');
-      console.log('%c  👀 Nice! You found the easter egg.', 'font-size: 11px; color: #a855f7; font-style: italic;');
-      console.log("%c  💬 Let's build something great together!", 'font-size: 11px; color: #a855f7; font-style: italic;');
-    });
-  </script>
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="cleanio" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-cleanio" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Leader technique et architecte, Cleanio</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">AVR 2015 - MAI 2017</span>
+        </button>
+        <div id="cv-fr-cleanio" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Architecture microservices en remplacement du monolithe, services scalés indépendamment.</li>
+            <li>Pipelines CI/CD CircleCI et AWS, déploiements blue-green sans interruption.</li>
+            <li>Tracking temps réel et application mobile chauffeur pour les opérations de livraison.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="bd" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-bd" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Développeur principal et architecte web, Business &amp; Decision</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">NOV 2011 - MARS 2015</span>
+        </button>
+        <div id="cv-fr-bd" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Peugeot, 16 mois : direction d'une équipe agile de 10 personnes, gestion des concessionnaires avec SAP.</li>
+            <li>Citroën, 13 mois : moteur de personnalisation de contenu selon comportement et localisation.</li>
+            <li>Kayoo.com : pilotage d'équipes distribuées sur 3 pays.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--line)">
+        <button type="button" data-i="dm" data-act="toggle" aria-expanded="false" aria-controls="cv-fr-dm" style="width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:var(--ink);transition:color 150ms ease-out" class="link-blue">
+          <span style="display:flex;align-items:baseline;gap:12px;min-width:0">
+            <span aria-hidden="true" style="flex:none;width:12px;font-family:var(--mono);font-size:13px">+</span>
+            <span style="font-weight:600;font-size:clamp(16px,1.3vw,18px)">Ingénieur logiciel, DigitalMania Studios</span>
+          </span>
+          <span style="flex:none;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">NOV 2009 - AOÛT 2011</span>
+        </button>
+        <div id="cv-fr-dm" data-cv-panel="true" hidden style="padding:0 0 24px 24px">
+          <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">
+            <li>Intranet Peugeot et gestion documentaire avec workflows d'approbation.</li>
+            <li>Modules Drupal sur mesure pour étendre le CMS aux besoins clients.</li>
+            <li>Plugins Unity 3D pour des mécaniques de jeu spécifiques.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em;color:var(--ink-60)">
+      <p>ESPRIT, génie logiciel, 2010, mention très bien / Français, anglais, arabe</p>
+      <p><button type="button" data-act="downloadPdf" data-noprint="true" style="background:none;border:0;padding:0;font-family:var(--mono);font-size:inherit;letter-spacing:0.04em;color:var(--ink);cursor:pointer;border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">CV complet en PDF</button></p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="atelier-fr" style="border-bottom:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,64px)">
+    <div style="flex:1 1 240px;min-width:0">
+      <p id="atelier-fr" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
+        <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
+        À côté du clavier
+      </p>
+    </div>
+    <div style="flex:2.4 1 420px;min-width:0">
+      <h3 style="font-family:var(--sans);font-weight:700;font-stretch:110%;font-size:clamp(24px,2.4vw,32px);line-height:1.1">Je fabrique aussi des choses qu'on peut toucher.</h3>
+      <p style="margin-top:24px;max-width:68ch;color:var(--ink-60)">Broderie machine et pixel art sur une Brother PR680W. Impression 3D sur Bambu Lab X1C. Découpe laser, meubles en bois, et un trieur de LEGO qui fonctionne.</p>
+      <p style="margin-top:16px;max-width:68ch">Même logique qu'en logiciel : comprendre le système, puis le construire.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="contact-fr">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px)">
+    <h2 id="contact-fr" style="font-family:var(--sans);font-weight:700;font-stretch:110%;font-size:clamp(28px,3.4vw,40px);line-height:1.05;letter-spacing:-0.01em">On en parle ?</h2>
+    <p style="margin-top:24px;max-width:68ch">Un process à fluidifier, une équipe à former, une mission technique : écrivez-moi ou prenez un créneau.</p>
+    <div style="margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;gap:16px">
+      <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" data-act="trackCalendly" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,border-color 150ms ease-out" class="btn-blue">Prendre un créneau</a>
+      <a href="mailto:ayoub.hidri@gmail.com" data-act="trackMailto" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,color 150ms ease-out" class="btn-invert">ayoub.hidri@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer style="border-top:1px solid var(--ink)">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(24px,3vw,40px) clamp(24px,3.5vw,48px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);letter-spacing:0.04em">
+    <nav aria-label="Liens externes" style="display:flex;flex-wrap:wrap;gap:16px">
+      <a href="https://linkedin.com/in/ayoub-hidri" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">LinkedIn</a>
+      <a href="https://github.com/ayhid" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">GitHub</a>
+      <a href="https://github.com/opkod-france" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">opkod-france</a>
+      <a href="https://medium.com/@ayhidr" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Medium</a>
+      <a href="mailto:ayoub.hidri@gmail.com" data-act="trackMailto" style="color:var(--ink);border-bottom:1px dashed var(--ink-60);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Email</a>
+    </nav>
+    <p style="color:var(--ink-60)">OPKOD, Strasbourg / <a href="/en/" hreflang="en" data-act="setEn" style="color:var(--ink-60);border-bottom:1px dashed var(--line);transition:color 150ms ease-out" class="link-blue">English</a></p>
+  </div>
+</footer>
+</div>
 </body>
 </html>
