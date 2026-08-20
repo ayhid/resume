@@ -978,5 +978,77 @@ button{font-family:inherit}
   </div>
 </footer>
 </div>
+
+<script>
+(function () {
+  var TITLES = {
+    fr: "Ayoub Hidri : Consultant IA & automatisation pour PME, ing\u00e9nieur full stack senior",
+    en: 'Ayoub Hidri: AI and automation consultant for SMEs, senior full stack engineer'
+  };
+  var blocks = {};
+  document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+    blocks[el.getAttribute('data-lang-block')] = el;
+  });
+  var lang = 'fr';
+
+  function track(name, data) {
+    var u = window.umami;
+    if (u && typeof u.track === 'function') u.track(name, data);
+  }
+
+  function setLang(next) {
+    if (next === lang) return;
+    lang = next;
+    Object.keys(blocks).forEach(function (key) {
+      blocks[key].hidden = key !== lang;
+    });
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang];
+    if (window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  function toggle(button) {
+    var open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    var panel = document.getElementById(button.getAttribute('aria-controls'));
+    if (panel) panel.hidden = !open;
+    var sign = button.querySelector('[aria-hidden="true"]');
+    if (sign) sign.textContent = open ? '-' : '+';
+  }
+
+  var actions = {
+    setFr: function () { setLang('fr'); },
+    setEn: function () { setLang('en'); },
+    toggle: toggle,
+    trackCalendly: function () { track('cta_calendly', { lang: lang }); },
+    trackMailto: function () { track('cta_mailto', { lang: lang }); },
+    trackCardIa: function () { track('track_card', { track: 'ia', lang: lang }); },
+    trackCardTech: function () { track('track_card', { track: 'tech', lang: lang }); },
+    downloadPdf: function () { track('download_pdf', { lang: lang }); window.print(); }
+  };
+  var PREVENT_DEFAULT = { setFr: 1, setEn: 1 };
+
+  document.addEventListener('click', function (event) {
+    var el = event.target.closest('[data-act]');
+    if (!el) return;
+    var act = el.getAttribute('data-act');
+    var fn = actions[act];
+    if (!fn) return;
+    if (PREVENT_DEFAULT[act]) event.preventDefault();
+    fn(el, event);
+  });
+
+  // Deep links: /en/ or ?lang=en open the English block directly.
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('lang') === 'en' || /^\/en\/?$/.test(window.location.pathname)) setLang('en');
+
+  // Print the language currently on screen, both accordions expanded.
+  window.addEventListener('beforeprint', function () {
+    blocks[lang].querySelectorAll('[data-cv-panel]').forEach(function (panel) {
+      panel.hidden = false;
+    });
+  });
+})();
+</script>
 </body>
 </html>
