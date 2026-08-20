@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 01
 current_phase_name: Reviewable Baseline and Safe Delivery
 status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-08-20T10:14:05.817Z"
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-08-20T10:25:05.966Z"
 last_activity: 2026-08-20
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -28,11 +28,11 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 ## Current Position
 
 Phase: 01 (Reviewable Baseline and Safe Delivery) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-08-20 — Phase 01 execution started
 
-Progress: [██░░░░░░░░] 20%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [██░░░░░░░░] 20%
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
 | Phase 01 P01 | 2min | 3 tasks | 2 files |
+| Phase 01 P02 | 9min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,8 @@ Recent decisions affecting current work:
 - [Phase 1]: Pages publishing source switched legacy -> workflow via the GitHub UI (harness blocked the gh api PUT); verified through the API regardless
 - [Phase 1]: deploy.yml split into verify + deploy chained by needs: verify, with job-scoped permissions and concurrency; pages:write lives on deploy only
 - [Phase 1]: Production artifact is an allowlist staged by .github/scripts/stage-site.sh — one script shared by both jobs, fail-closed on a missing required asset
+- [Phase ?]: Heading rule ships as a ::warning:: in Phase 1, block-aware (one <h1> per [data-lang-block]); Phase 11 / A11Y-01 owns promoting it to a failure
+- [Phase ?]: .gsd/ added to .gitignore beyond D-10's list — without it the zero-untracked-files criterion every later plan depends on is unreachable
 
 ### Pending Todos
 
@@ -97,6 +100,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-08-20T10:13:57.841Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-08-20T10:24:59.272Z
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None
