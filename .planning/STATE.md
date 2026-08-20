@@ -2,18 +2,18 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 1
+current_phase: 01
 current_phase_name: Reviewable Baseline and Safe Delivery
 status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-08-19T21:00:16.715Z"
-last_activity: 2026-08-19
-last_activity_desc: Roadmap created, 57 v1 requirements mapped across 11 phases
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-08-20T10:14:05.817Z"
+last_activity: 2026-08-20
+last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 5
-  completed_plans: 0
+  completed_plans: 1
 ---
 
 # Project State
@@ -23,16 +23,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-19)
 
 **Core value:** A PME leader arrives, understands within five seconds what AI can concretely earn them, and books a flash audit — because the visits→Calendly click ratio is the only number that validates the repositioning.
-**Current focus:** Phase 1 — Reviewable Baseline and Safe Delivery
+**Current focus:** Phase 01 — Reviewable Baseline and Safe Delivery
 
 ## Current Position
 
-Phase: 1 of 11 (Reviewable Baseline and Safe Delivery)
-Plan: 0 of TBD in current phase
+Phase: 01 (Reviewable Baseline and Safe Delivery) — EXECUTING
+Plan: 2 of 5
 Status: Ready to execute
-Last activity: 2026-08-19 — Roadmap created, 57 v1 requirements mapped across 11 phases
+Last activity: 2026-08-20 — Phase 01 execution started
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
@@ -54,6 +54,11 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+**Per-Plan Metrics:**
+
+| Plan | Duration | Tasks | Files |
+|------|----------|-------|-------|
+| Phase 01 P01 | 2min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -66,6 +71,9 @@ Recent decisions affecting current work:
 - [Roadmap]: Delivery pipeline (Phase 1) and analytics (Phase 2) come first — nothing downstream is verifiable until shipping is safe, and the KPI is unmeasurable until Umami is live.
 - [Roadmap]: The design system is consolidated (Phases 3–4) before the section content phases, so section work edits a settled component vocabulary instead of 494 loose inline styles.
 - [Roadmap]: The bilingual PDF (Phase 5) precedes the page skeleton (Phase 6) because STRUCT-05 puts a PDF link in the sticky header and no PDF file exists in the repo today.
+- [Phase 1]: Pages publishing source switched legacy -> workflow via the GitHub UI (harness blocked the gh api PUT); verified through the API regardless
+- [Phase 1]: deploy.yml split into verify + deploy chained by needs: verify, with job-scoped permissions and concurrency; pages:write lives on deploy only
+- [Phase 1]: Production artifact is an allowlist staged by .github/scripts/stage-site.sh — one script shared by both jobs, fail-closed on a missing required asset
 
 ### Pending Todos
 
@@ -77,6 +85,7 @@ None yet.
 - [Phase 8] PROOF-04 needs real, attributable figures for the three case studies; the current ones are placeholders and `experience.md` §04 forbids publishing an unverifiable number.
 - [Phase 2] CONV-01 depends on a self-hosted Umami instance that does not yet exist as an operational dependency.
 - [Repo] A Mixpanel project token remains in public git history (commit `0650811`); rotate or disable the project.
+- .gitignore must absorb .gsd/, .planning/research/ and _site/ on top of D-10's list in plan 01-02, or later clean-tree assertions fail; until then staging by exact path is mandatory (git add -A would commit _site/)
 
 ## Deferred Items
 
@@ -88,6 +97,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-08-19T19:38:10.244Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-reviewable-baseline-and-safe-delivery/01-CONTEXT.md
+Last session: 2026-08-20T10:13:57.841Z
+Stopped at: Completed 01-01-PLAN.md
+Resume file: None
