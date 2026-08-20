@@ -4,16 +4,16 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 01
 current_phase_name: Reviewable Baseline and Safe Delivery
-status: executing
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-08-20T10:38:42.989Z"
+status: verifying
+stopped_at: Completed 01-05-PLAN.md
+last_updated: "2026-08-20T10:47:53.775Z"
 last_activity: 2026-08-20
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -29,10 +29,10 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 
 Phase: 01 (Reviewable Baseline and Safe Delivery) — EXECUTING
 Plan: 5 of 5
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-08-20 — Phase 01 execution started
 
-Progress: [████████░░] 80%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -62,6 +62,7 @@ Progress: [████████░░] 80%
 | Phase 01 P02 | 9min | 3 tasks | 3 files |
 | Phase 01 P03 | 5min | 3 tasks | 2 files |
 | Phase 01 P04 | 6min | 2 tasks | 1 files |
+| Phase 01 P05 | 8min | 3 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,8 @@ Recent decisions affecting current work:
 - [Phase ?]: [Phase 1]: The v2 rewrite was sliced with snapshot-branch + structural reconstruction (git add -p is unavailable to the agent); byte-identity against wip/v2-snapshot is the acceptance test, and wip/v2-snapshot stays until 01-04 verifies the live page
 - [Phase ?]: Renamed the '**Whole-repo deploy:**' constraint label in .claude/CLAUDE.md to '**Allowlisted deploy:**' — the label was itself the false claim
 - [Phase ?]: Live verification strengthened to a sha256 comparison of the served page against the committed index.html, rather than three content-discriminator greps
+- [Phase ?]: 01-05: merged the probe pull request with --merge rather than closing it — the merge commit is itself the OPS-04 merge-path evidence
+- [Phase ?]: 01-05: proved non-publication by deployment-id invariance (6000581541 before and during the PR window), not by reading the deploy job's skipped status
 
 ### Pending Todos
 
@@ -94,6 +97,7 @@ None yet.
 - [Phase 2] CONV-01 depends on a self-hosted Umami instance that does not yet exist as an operational dependency.
 - [Repo] A Mixpanel project token remains in public git history (commit `0650811`); rotate or disable the project.
 - .gitignore must absorb .gsd/, .planning/research/ and _site/ on top of D-10's list in plan 01-02, or later clean-tree assertions fail; until then staging by exact path is mandatory (git add -A would commit _site/)
+- Phase 1 end-of-phase human check is unanswered: read the six slice commits (7272bbf, cc0c41c, 932e461, ad6884b, fd08fcf, 41c11c7) and load https://ayoub-hidri.dev/. Run /gsd-verify-work.
 
 ## Deferred Items
 
@@ -105,6 +109,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-08-20T10:38:36.112Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-08-20T10:47:45.758Z
+Stopped at: Completed 01-05-PLAN.md
 Resume file: None
