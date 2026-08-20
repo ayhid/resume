@@ -18,6 +18,9 @@ https://ayoub-hidri.dev/
 - Vanilla JS for the language toggle, accordions and analytics events
 - GitHub Pages deployment (`.github/workflows/deploy.yml`)
 
+## Local rehearsal
+Stage and check the production artifact exactly as CI does: `bash .github/scripts/stage-site.sh _site && python3 .github/scripts/verify_site.py _site`
+
 ## Analytics
 Umami is wired but commented out in the `<head>`: replace `[UMAMI_HOST]` and
 `[UMAMI_WEBSITE_ID]` to enable it. Events already emitted: `cta_calendly`,
