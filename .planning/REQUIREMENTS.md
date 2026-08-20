@@ -97,7 +97,7 @@ Requirements derive from `specs/experience.md` (structure, intent, reference FR 
 
 - [ ] **OPS-01**: A pull request runs verification without deploying to production
 - [x] **OPS-02**: Only production assets are published — `specs/`, `README.md`, and `.planning/` never ship to the live site
-- [ ] **OPS-03**: The v2 rewrite is committed in reviewable increments rather than one undifferentiated change
+- [x] **OPS-03**: The v2 rewrite is committed in reviewable increments rather than one undifferentiated change
 - [x] **OPS-04**: Deployment to production happens on merge to `main`
 
 ## v2 Requirements
@@ -193,7 +193,7 @@ Deferred. Tracked but not in the current roadmap.
 | SEO-04 | Phase 10 | Pending |
 | OPS-01 | Phase 1 | Pending |
 | OPS-02 | Phase 1 | Complete |
-| OPS-03 | Phase 1 | Pending |
+| OPS-03 | Phase 1 | Complete |
 | OPS-04 | Phase 1 | Complete |
 
 **Coverage:**

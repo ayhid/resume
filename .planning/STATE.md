@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 01
 current_phase_name: Reviewable Baseline and Safe Delivery
 status: executing
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-08-20T10:25:05.966Z"
+stopped_at: Completed 01-03-PLAN.md
+last_updated: "2026-08-20T10:31:03.522Z"
 last_activity: 2026-08-20
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 5
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -28,11 +28,11 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 ## Current Position
 
 Phase: 01 (Reviewable Baseline and Safe Delivery) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
 Last activity: 2026-08-20 — Phase 01 execution started
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [████░░░░░░] 40%
 |------|----------|-------|-------|
 | Phase 01 P01 | 2min | 3 tasks | 2 files |
 | Phase 01 P02 | 9min | 3 tasks | 3 files |
+| Phase 01 P03 | 5min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,7 @@ Recent decisions affecting current work:
 - [Phase 1]: Production artifact is an allowlist staged by .github/scripts/stage-site.sh — one script shared by both jobs, fail-closed on a missing required asset
 - [Phase ?]: Heading rule ships as a ::warning:: in Phase 1, block-aware (one <h1> per [data-lang-block]); Phase 11 / A11Y-01 owns promoting it to a failure
 - [Phase ?]: .gsd/ added to .gitignore beyond D-10's list — without it the zero-untracked-files criterion every later plan depends on is unreachable
+- [Phase ?]: [Phase 1]: The v2 rewrite was sliced with snapshot-branch + structural reconstruction (git add -p is unavailable to the agent); byte-identity against wip/v2-snapshot is the acceptance test, and wip/v2-snapshot stays until 01-04 verifies the live page
 
 ### Pending Todos
 
@@ -100,6 +102,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-08-20T10:24:59.272Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-08-20T10:30:56.696Z
+Stopped at: Completed 01-03-PLAN.md
 Resume file: None

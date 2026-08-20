@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Merging to `main` publishes the site, and what is served contains only production assets — `specs/`, `README.md`, `.planning/` and tool directories are absent.
   4. A visitor loading https://ayoub-hidri.dev/ sees the v2 page rather than the v1 online CV.
 
-**Plans:** 2/5 plans executed
+**Plans:** 3/5 plans executed
 
 Plans:
 **Wave 1**
@@ -55,7 +55,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03-PLAN.md — Slice the v2 rewrite into six scoped commits, provably byte-identical to the working tree
+- [x] 01-03-PLAN.md — Slice the v2 rewrite into six scoped commits, provably byte-identical to the working tree
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -236,7 +236,7 @@ Phases 7, 8 and 9 may run in parallel once Phase 6 is complete.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Reviewable Baseline and Safe Delivery | 2/5 | In Progress|  |
+| 1. Reviewable Baseline and Safe Delivery | 3/5 | In Progress|  |
 | 2. Live Conversion Measurement | 0/TBD | Not started | - |
 | 3. Colour Discipline and the Prohibitions | 0/TBD | Not started | - |
 | 4. Type, Rhythm, Signature and Motion | 0/TBD | Not started | - |
