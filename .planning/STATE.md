@@ -3,17 +3,17 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 01
-current_phase_name: Reviewable Baseline and Safe Delivery
+current_phase_name: reviewable-baseline-and-safe-delivery
 status: executing
-stopped_at: Completed 01-05-PLAN.md
-last_updated: "2026-08-20T14:38:52.299Z"
+stopped_at: Completed 01-06-PLAN.md
+last_updated: "2026-08-20T14:53:50.560Z"
 last_activity: 2026-08-20
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
   completed_phases: 1
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -23,12 +23,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-19)
 
 **Core value:** A PME leader arrives, understands within five seconds what AI can concretely earn them, and books a flash audit — because the visits→Calendly click ratio is the only number that validates the repositioning.
-**Current focus:** Phase 01 — Reviewable Baseline and Safe Delivery
+**Current focus:** Phase 01 — reviewable-baseline-and-safe-delivery
 
 ## Current Position
 
-Phase: 01 (Reviewable Baseline and Safe Delivery) — EXECUTING
-Plan: 5 of 5
+Phase: 01 (reviewable-baseline-and-safe-delivery) — EXECUTING
+Plan: 2 of 6
 Status: Ready to execute
 Last activity: 2026-08-20 — Phase 01 execution started
 
@@ -63,6 +63,7 @@ Progress: [██████████] 100%
 | Phase 01 P03 | 5min | 3 tasks | 2 files |
 | Phase 01 P04 | 6min | 2 tasks | 1 files |
 | Phase 01 P05 | 8min | 3 tasks | 1 files |
+| Phase 01 P06 | 8min | 3 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -85,6 +86,9 @@ Recent decisions affecting current work:
 - [Phase ?]: Live verification strengthened to a sha256 comparison of the served page against the committed index.html, rather than three content-discriminator greps
 - [Phase ?]: 01-05: merged the probe pull request with --merge rather than closing it — the merge commit is itself the OPS-04 merge-path evidence
 - [Phase ?]: 01-05: proved non-publication by deployment-id invariance (6000581541 before and during the PR window), not by reading the deploy job's skipped status
+- [Phase ?]: Phase 1: verify_site.py is default-deny at the top level and rejects forbidden basenames plus symlinks at every depth — the exact-name depth-1 denylist that 01-VERIFICATION.md gaps[0] flagged is gone
+- [Phase ?]: Phase 1: en/ stays OPTIONAL and its contents are not enumerated — a full recursive allowlist would turn Phase 10's first commit red, so inside an allowed directory the rule is basename-plus-symlink
+- [Phase ?]: Phase 1: symlinks are rejected by is_symlink() not exists(), because upload-pages-artifact tars with --dereference and exists() answers False for a dangling link (REVIEW CR-01)
 
 ### Pending Todos
 
@@ -109,6 +113,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-08-20T10:47:45.758Z
-Stopped at: Completed 01-05-PLAN.md
+Last session: 2026-08-20T14:53:41.843Z
+Stopped at: Completed 01-06-PLAN.md
 Resume file: None
