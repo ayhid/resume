@@ -75,6 +75,44 @@
   Les 4 événements sont déjà câblés dans la page :
   cta_calendly, cta_mailto, download_pdf, track_card (données : { track: "ia" | "tech" }).
 -->
+<style>
+:root{
+  --paper:#F7F6F2; --ink:#141414; --ink-60:#5C5C58; --line:#D8D6CF; --work-blue:#2B44D8;
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:40px; --s6:64px; --s7:104px;
+  --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans:'Archivo', Helvetica, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:clamp(16px,1.1vw,18px);line-height:1.6;text-wrap:pretty;-webkit-font-smoothing:antialiased}
+::selection{background:var(--work-blue);color:var(--paper)}
+a{color:var(--work-blue);text-decoration:none}
+a:hover{color:var(--work-blue)}
+:focus-visible{outline:2px solid var(--work-blue);outline-offset:2px}
+section[id]{scroll-margin-top:80px}
+table{border-collapse:collapse;width:100%}
+h1,h2,h3,p,ul,figure{margin:0}
+button{font-family:inherit}
+@keyframes heroLine{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:0ms !important;animation:none !important}
+}
+@media print{
+  [data-noprint]{display:none !important}
+  [data-cv-panel]{display:block !important}
+  body{background:#fff}
+}
+
+/* Interaction states (generated from the design's style-hover / style-focus). */
+.skip-link:focus{left:0 !important}
+.link-stitch:hover{color:var(--work-blue) !important;border-bottom:1px solid var(--work-blue) !important}
+.link-blue:hover{color:var(--work-blue) !important}
+.card-hover:hover{box-shadow:inset 0 0 0 1px var(--ink) !important;--title-color:var(--work-blue) !important}
+.btn-ink:hover{background:var(--ink) !important;border-color:var(--ink) !important;color:var(--paper) !important}
+.btn-blue:hover{background:var(--work-blue) !important;border-color:var(--work-blue) !important}
+.btn-invert:hover{background:var(--ink) !important;color:var(--paper) !important}
+</style>
 </head>
 <body class="font-sans text-slate-700">
   <main class="max-w-6xl mx-auto px-6 py-8 print:py-4">
