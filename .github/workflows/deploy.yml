@@ -6,33 +6,60 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+# No ambient scope; each job asks for exactly what it needs.
+permissions: {}
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  verify:
+    name: Verify production artifact
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: verify-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
+      - name: Stage production artifact
+        run: bash .github/scripts/stage-site.sh _site
+
+  deploy:
+    name: Deploy to production
+    needs: verify
+    # Assert on the event, not only the ref: a pull request's ref is
+    # refs/pull/N/merge, so a ref-only test would silently stop protecting
+    # production the moment a manual or scheduled trigger is added.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
+      # Same script as the verify job — one manifest, so what was checked
+      # is byte-for-byte what is published.
+      - name: Stage production artifact
+        run: bash .github/scripts/stage-site.sh _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-      
+          path: _site
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
