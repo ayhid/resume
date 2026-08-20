@@ -25,6 +25,9 @@ jobs:
       - name: Stage production artifact
         run: bash .github/scripts/stage-site.sh _site
 
+      - name: Verify artifact contents
+        run: python3 .github/scripts/verify_site.py _site
+
   deploy:
     name: Deploy to production
     needs: verify
@@ -54,6 +57,9 @@ jobs:
       # is byte-for-byte what is published.
       - name: Stage production artifact
         run: bash .github/scripts/stage-site.sh _site
+
+      - name: Verify artifact contents
+        run: python3 .github/scripts/verify_site.py _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
