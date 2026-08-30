@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert</title>
-  <meta name="description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development. Expert in modernizing legacy systems and cutting-edge technologies.">
-  <meta name="keywords" content="Full Stack Engineer, React Developer, TypeScript, JavaScript, Node.js, Frontend Developer, Backend Developer, Software Engineer, Freelance Developer">
+  <title>Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript</title>
+  <meta name="description" content="AI Engineer and Full Stack Developer. 15+ years shipping production software with React & TypeScript, now building LLM agents, Claude Code tooling and AI-assisted development workflows.">
+  <meta name="keywords" content="AI Engineer, LLM Agents, AI Agent Development, Claude SDK, Claude Code, AI-Assisted Development, LLM Integration, Full Stack Engineer, React Developer, TypeScript, Node.js, Software Engineer, Freelance Developer">
   <meta name="author" content="Ayoub Hidri">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert">
-  <meta property="og:description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.">
+  <meta property="og:title" content="Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript">
+  <meta property="og:description" content="AI Engineer and Full Stack Developer — LLM agents, Claude Code tooling and 15+ years of React/TypeScript engineering.">
   <meta property="og:url" content="https://ayoub-hidri.dev/">
   <meta property="og:site_name" content="Ayoub Hidri Resume">
   <meta property="og:image" content="https://ayoub-hidri.dev/og-image.png">
@@ -22,8 +22,8 @@
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert">
-  <meta property="twitter:description" content="Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.">
+  <meta property="twitter:title" content="Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript">
+  <meta property="twitter:description" content="AI Engineer and Full Stack Developer — LLM agents, Claude Code tooling and 15+ years of React/TypeScript engineering.">
   <meta property="twitter:image" content="https://ayoub-hidri.dev/og-image.png">
   <meta name="twitter:creator" content="@ayhidr">
 
@@ -50,8 +50,8 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Ayoub Hidri",
-    "jobTitle": "Full Stack Engineer",
-    "description": "Experienced Full Stack Engineer specializing in React JS/TypeScript with 15+ years in software development.",
+    "jobTitle": "AI Engineer & Full Stack Developer",
+    "description": "AI Engineer and Full Stack Developer — LLM agents, Claude Code tooling and 15+ years of React/TypeScript engineering.",
     "url": "https://ayoub-hidri.dev/",
     "sameAs": [
       "https://linkedin.com/in/ayoub-hidri",
@@ -67,6 +67,7 @@
     "email": "ayoub.hidri@gmail.com",
     "telephone": "+33605604105",
     "knowsAbout": [
+      "AI Agent Development", "LLM Integration", "Claude SDK", "AI-Assisted Development",
       "React.js", "TypeScript", "JavaScript", "Next.js", "Node.js",
       "Full Stack Development", "Frontend Development", "Backend Development",
       "Software Architecture", "Team Leadership"
@@ -435,34 +436,33 @@
         display: contents !important;
       }
 
-      /* Skills card - takes 2 columns worth */
-      .lg\:col-span-1 .sidebar-card:first-child {
+      /* Sidebar cards are placed by data-print, not by position: the card
+         order changes as sections are added, and nth-child had already drifted
+         off the cards its comments named. */
+      .lg\:col-span-1 .sidebar-card[data-print="col1"] {
         grid-column: 1 !important;
       }
 
-      /* Education card */
-      .lg\:col-span-1 .sidebar-card:nth-child(2) {
+      .lg\:col-span-1 .sidebar-card[data-print="col2"] {
         grid-column: 2 !important;
       }
 
-      /* Languages card */
-      .lg\:col-span-1 .sidebar-card:nth-child(3) {
+      .lg\:col-span-1 .sidebar-card[data-print="col3"] {
         grid-column: 3 !important;
       }
 
-      /* Hide interests in print */
-      .lg\:col-span-1 .sidebar-card:nth-child(4) {
+      .lg\:col-span-1 .sidebar-card[data-print="hide"] {
         display: none !important;
       }
 
       /* Skills grid layout for print */
-      .lg\:col-span-1 .sidebar-card:first-child .space-y-4 {
+      .lg\:col-span-1 .sidebar-card[data-print="col1"] .space-y-4 {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 0.5rem 1rem !important;
       }
 
-      .lg\:col-span-1 .sidebar-card:first-child .space-y-4 > div {
+      .lg\:col-span-1 .sidebar-card[data-print="col1"] .space-y-4 > div {
         margin: 0 !important;
       }
 
@@ -620,7 +620,7 @@
                 <h1 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
                   Ayoub Hidri
                 </h1>
-                <p class="text-xl text-purple-600 font-medium">Full Stack Engineer</p>
+                <p class="text-xl text-purple-600 font-medium">AI Engineer & Full Stack Developer</p>
               </div>
               <div class="flex gap-2 print:hidden">
                 <button class="btn btn-ghost" onclick="toggleLanguage()">
@@ -635,7 +635,7 @@
             </div>
 
             <p class="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
-              15+ years building innovative solutions with React & TypeScript. I modernize legacy systems, lead technical teams, and deliver complex projects for enterprise clients.
+              15+ years building production software with React & TypeScript, now focused on AI agents and LLM-powered tooling. I modernize legacy systems, lead technical teams, and deliver complex projects for enterprise clients.
             </p>
 
             <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
@@ -925,7 +925,7 @@
         <div class="lg:col-span-1">
           <div class="lg:sticky lg:top-8 space-y-6 animate-in delay-2">
             <!-- Skills with gauges -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col1">
               <h2 class="section-heading">Skills & Experience</h2>
               <div class="space-y-4">
                 <div>
@@ -1022,7 +1022,7 @@
             </div>
 
             <!-- AI & Agents -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col2">
               <h2 class="section-heading">AI & Agents</h2>
               <div class="space-y-3">
                 <div class="flex items-start gap-2">
@@ -1049,8 +1049,83 @@
               </div>
             </div>
 
+            <!-- Open Source -->
+            <div class="sidebar-card" data-print="hide">
+              <h2 class="section-heading">Open Source</h2>
+              <p class="text-xs font-medium text-purple-600 mb-2">AI & agent tooling</p>
+              <div class="space-y-3">
+                <a href="https://github.com/opkod-france/opkod-claude-code-plugins" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">opkod-claude-code-plugins</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 9</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Self-hosted Claude Code plugins marketplace</p>
+                </a>
+                <a href="https://github.com/ayhid/claude-dev-workflow" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">claude-dev-workflow</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 1</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Claude Code skills for ticket-driven development</p>
+                </a>
+                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
+                  </div>
+                  <p class="text-xs text-slate-500">AI-powered file organizer, rules + Claude Haiku</p>
+                </a>
+                <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
+                  </div>
+                  <p class="text-xs text-slate-500">AI agents that build Strapi v5 plugins</p>
+                </a>
+                <a href="https://github.com/ayhid/strapi-plugin-creator" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-creator</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Claude-powered Strapi v5 plugin generator</p>
+                </a>
+              </div>
+              <p class="text-xs font-medium text-purple-600 mt-5 mb-2">Libraries & plugins</p>
+              <div class="space-y-3">
+                <a href="https://github.com/opkod-france/strapi-plugin-email-brevo" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-email-brevo</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 2</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Brevo transactional email provider for Strapi v5</p>
+                </a>
+                <a href="https://github.com/opkod-france/strapi-plugin-opening-hours" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-opening-hours</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 1</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Opening-hours custom field with split shifts</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-auth" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-auth</span>
+                  </div>
+                  <p class="text-xs text-slate-500">JWT access/refresh authentication module</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-rbac" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-rbac</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Roles, permissions and guards for NestJS</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-xstate" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-xstate</span>
+                  </div>
+                  <p class="text-xs text-slate-500">XState v5 workflow engine for NestJS</p>
+                </a>
+              </div>
+            </div>
+
             <!-- Education -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col2">
               <h2 class="section-heading">Education</h2>
               <h3 class="font-semibold text-slate-900">Software Engineering</h3>
               <p class="text-sm text-slate-600"><a href="https://www.esprit.tn/" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">ESPRIT</a> · 2010</p>
@@ -1058,7 +1133,7 @@
             </div>
 
             <!-- Languages -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col3">
               <h2 class="section-heading">Languages</h2>
               <div class="space-y-2">
                 <div class="flex justify-between">
@@ -1077,7 +1152,7 @@
             </div>
 
             <!-- Interests -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="hide">
               <h2 class="section-heading">Interests</h2>
               <div class="flex flex-wrap gap-2">
                 <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">3D Printing</span>
@@ -1103,7 +1178,7 @@
                 <h1 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight">
                   Ayoub Hidri
                 </h1>
-                <p class="text-xl text-purple-600 font-medium">Ingénieur Full Stack</p>
+                <p class="text-xl text-purple-600 font-medium">Ingénieur IA & Full Stack</p>
               </div>
               <div class="flex gap-2 print:hidden">
                 <button class="btn btn-ghost" onclick="toggleLanguage()">
@@ -1118,7 +1193,7 @@
             </div>
 
             <p class="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
-              15+ ans d'expérience en React & TypeScript. Je modernise les systèmes legacy, dirige des équipes techniques et livre des projets complexes pour des clients entreprise.
+              15+ ans d'expérience en React & TypeScript, aujourd'hui tournée vers les agents IA et l'outillage LLM. Je modernise les systèmes legacy, dirige des équipes techniques et livre des projets complexes pour des clients entreprise.
             </p>
 
             <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
@@ -1399,7 +1474,7 @@
         <div class="lg:col-span-1">
           <div class="lg:sticky lg:top-8 space-y-6 animate-in delay-2">
             <!-- Skills with gauges -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col1">
               <h2 class="section-heading">Compétences</h2>
               <div class="space-y-4">
                 <div>
@@ -1496,7 +1571,7 @@
             </div>
 
             <!-- AI & Agents -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col2">
               <h2 class="section-heading">IA & Agents</h2>
               <div class="space-y-3">
                 <div class="flex items-start gap-2">
@@ -1523,8 +1598,83 @@
               </div>
             </div>
 
+            <!-- Open Source -->
+            <div class="sidebar-card" data-print="hide">
+              <h2 class="section-heading">Open Source</h2>
+              <p class="text-xs font-medium text-purple-600 mb-2">Outillage IA & agents</p>
+              <div class="space-y-3">
+                <a href="https://github.com/opkod-france/opkod-claude-code-plugins" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">opkod-claude-code-plugins</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 9</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Marketplace auto-hébergée de plugins Claude Code</p>
+                </a>
+                <a href="https://github.com/ayhid/claude-dev-workflow" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">claude-dev-workflow</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 1</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Skills Claude Code pour le développement piloté par tickets</p>
+                </a>
+                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Rangement de fichiers par IA, règles + Claude Haiku</p>
+                </a>
+                <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Agents IA qui construisent des plugins Strapi v5</p>
+                </a>
+                <a href="https://github.com/ayhid/strapi-plugin-creator" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-creator</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Générateur de plugins Strapi v5 propulsé par Claude</p>
+                </a>
+              </div>
+              <p class="text-xs font-medium text-purple-600 mt-5 mb-2">Bibliothèques & plugins</p>
+              <div class="space-y-3">
+                <a href="https://github.com/opkod-france/strapi-plugin-email-brevo" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-email-brevo</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 2</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Fournisseur d’e-mails transactionnels Brevo pour Strapi v5</p>
+                </a>
+                <a href="https://github.com/opkod-france/strapi-plugin-opening-hours" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">strapi-plugin-opening-hours</span>
+                    <span class="text-xs text-slate-400 whitespace-nowrap">★ 1</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Champ horaires d’ouverture avec services coupés</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-auth" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-auth</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Module d’authentification JWT access/refresh</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-rbac" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-rbac</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Rôles, permissions et guards pour NestJS</p>
+                </a>
+                <a href="https://github.com/opkod-france/nestjs-xstate" target="_blank" rel="noopener" class="block group">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">nestjs-xstate</span>
+                  </div>
+                  <p class="text-xs text-slate-500">Moteur de workflows XState v5 pour NestJS</p>
+                </a>
+              </div>
+            </div>
+
             <!-- Education -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col2">
               <h2 class="section-heading">Formation</h2>
               <h3 class="font-semibold text-slate-900">Génie Logiciel</h3>
               <p class="text-sm text-slate-600"><a href="https://www.esprit.tn/" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">ESPRIT</a> · 2010</p>
@@ -1532,7 +1682,7 @@
             </div>
 
             <!-- Languages -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="col3">
               <h2 class="section-heading">Langues</h2>
               <div class="space-y-2">
                 <div class="flex justify-between">
@@ -1551,7 +1701,7 @@
             </div>
 
             <!-- Interests -->
-            <div class="sidebar-card">
+            <div class="sidebar-card" data-print="hide">
               <h2 class="section-heading">Centres d'intérêt</h2>
               <div class="flex flex-wrap gap-2">
                 <span class="text-sm bg-purple-50 text-purple-700 px-3 py-1 rounded-full">Impression 3D</span>
@@ -1590,14 +1740,14 @@
         frSection.classList.add('active');
         currentLang = 'fr';
         document.documentElement.lang = 'fr';
-        document.title = 'Ayoub Hidri - Ingénieur Full Stack | Expert React/TypeScript';
+        document.title = 'Ayoub Hidri — Ingénieur IA & Full Stack | Agents LLM, React/TypeScript';
       } else {
         frSection.classList.remove('active');
         enSection.classList.add('active');
         toggleText.textContent = 'FR';
         currentLang = 'en';
         document.documentElement.lang = 'en';
-        document.title = 'Ayoub Hidri - Full Stack Engineer | React/TypeScript Expert';
+        document.title = 'Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript';
       }
     }
 
