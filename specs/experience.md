@@ -117,7 +117,7 @@ Intention : garder la profondeur du CV actuel sans qu'elle écrase la page.
 Contenu et comportement :
 
 - Eyebrow : `✕ PARCOURS`
-- Accordéon chronologique reprenant les expériences existantes de la page actuelle (Salomon, Leboncoin, Deloitte, Engie, Isobar, Cleanio, Business & Decision, DigitalMania), fermées par défaut, 3 puces max par poste une fois ouvertes.
+- Accordéon chronologique reprenant les expériences existantes de la page actuelle (Salomon, Leboncoin, Deloitte, Engie, Isobar, Cleanio, Business & Decision, DigitalMania), fermées par défaut, 3 puces max par poste une fois ouvertes — exception assumée pour Leboncoin (5 puces), où l'architecture micro-frontends de l'admin est le sujet technique le plus démonstratif du parcours.
 - Ligne de titre fermée : poste + entreprise à gauche, dates mono à droite.
 - Formation (ESPRIT 2010) et langues (français, anglais, arabe) en une ligne compacte sous l'accordéon.
 - Lien permanent vers le PDF bilingue.
