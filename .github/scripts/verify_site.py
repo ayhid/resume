@@ -48,18 +48,26 @@ FORBIDDEN = ["README.md", "og-image.html", "specs", ".planning",
 
 # Authoring placeholders that must never reach a visitor. Two kinds, one rule.
 #
-# [POSTHOG_KEY] and [POSTHOG_HOST] stand in for a self-hosted PostHog instance
-# that does not exist yet. The page is instrumented and the loader sits
-# commented out in the head; the failure this guards against is not the missing
-# instance but the half-done fix -- uncommenting the block while leaving the
-# placeholders, which sends the loader after "[POSTHOG_HOST]/static/array.js" on
-# every visit and measures nothing at all.
+# [POSTHOG_KEY] and [POSTHOG_HOST] are deliberately NOT in this list right now.
+#
+# They guard the half-done analytics fix: uncommenting the loader block while
+# leaving the brackets in place, which sends every visitor after
+# "[POSTHOG_HOST]/static/array.js" and measures nothing. That is a real failure
+# and this check caught it -- but it also blocks the whole site from shipping
+# while the PostHog instance does not exist yet, and the rest of the page has no
+# reason to wait for analytics.
+#
+# The trade is safe only because the loader is commented out: window.posthog
+# never exists, so track() no-ops and the page makes no analytics request. The
+# moment that block is uncommented, this gate must come back -- put both tokens
+# back in PLACEHOLDERS in the same commit that fills them in.
+# See .planning/RUNBOOK-posthog.md step 2.
 #
 # _A_VALIDER marks copy nobody has verified: an unverifiable case-study figure,
 # or a training-financing claim the current Qualiopi/portage status may not
 # support. specs/experience.md forbids publishing either, and a substring match
 # is a cheap way to make that forbidding real rather than aspirational.
-PLACEHOLDERS = ["[POSTHOG_KEY]", "[POSTHOG_HOST]", "_A_VALIDER"]
+PLACEHOLDERS = ["_A_VALIDER"]
 
 # Void elements never close, so they must not be pushed onto the tag stack.
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",

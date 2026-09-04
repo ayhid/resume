@@ -42,9 +42,14 @@ In `index.html`, inside the analytics comment near the top of `<head>`:
 1. In the `<script>` block, replace `[POSTHOG_KEY]` with the project API key and
    `[POSTHOG_HOST]` with the instance URL (scheme included, no trailing slash).
 2. Uncomment that block.
+3. Put both tokens back into `PLACEHOLDERS` in `.github/scripts/verify_site.py`,
+   in the same commit.
 
-Do it in that order. The brackets are written exactly once, on the lines you
-edit, so that step 1 cannot be half-done — see step 3.
+Step 3 exists because those two tokens were removed from that list on
+2026-09-04, so the site could ship while the instance did not exist. Until they
+go back, nothing catches a block uncommented with the brackets still in it —
+that mistake now breaks the measurement silently instead of breaking the
+deploy. Hence the order: 1 before 2, and 3 alongside them.
 
 `api_host` must point at the instance. The Cloud snippet rewrites that host to
 an assets CDN; the loader used here concatenates `api_host + "/static/array.js"`
@@ -57,10 +62,10 @@ bash .github/scripts/stage-site.sh _site
 python3 .github/scripts/verify_site.py _site   # must print "0 problem(s)"
 ```
 
-`verify_site.py` fails on a surviving bracketed placeholder, so a page that
-still says `[POSTHOG_…]` cannot reach production — the deploy breaks instead of
-the measurement silently breaking. This gate is why the branding page currently
-fails verification: that is the intended state until this runbook is done.
+`verify_site.py` no longer fails on the PostHog brackets — they were taken out
+of `PLACEHOLDERS` so the page could ship without analytics. It still fails on
+`_A_VALIDER`. Once step 3 above is done, the bracket gate is back and a
+half-done replacement breaks the deploy rather than the measurement.
 
 Then check the events themselves, which needs no instance at all:
 

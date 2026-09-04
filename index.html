@@ -71,18 +71,24 @@
 <!--
   Analytics : PostHog auto-hébergé.
 
-  Deux étapes à la mise en ligne, dans cet ordre :
+  Trois étapes à la mise en ligne, dans cet ordre :
     1. dans le bloc <script> ci-dessous, remplacer les deux valeurs entre
        crochets par la clé de projet et l'URL de l'instance ;
-    2. décommenter ce bloc.
-  Les crochets ne sont écrits qu'une fois, sur la ligne à éditer : les nommer
-  ailleurs suffirait à faire échouer le contrôle de déploiement après le
-  remplacement.
+    2. décommenter ce bloc ;
+    3. remettre les deux jetons POSTHOG_KEY et POSTHOG_HOST dans PLACEHOLDERS
+       (.github/scripts/verify_site.py), d'où ils ont été retirés pour que le
+       site puisse être publié sans attendre l'instance.
+  Les crochets ne sont écrits qu'une fois, sur la ligne à éditer — c'est
+  pourquoi l'étape 3 ci-dessus nomme les jetons sans crochets : les écrire
+  ailleurs ferait échouer le déploiement une fois l'étape 3 faite, alors même
+  que le remplacement serait correct.
   Le bloc reste commenté tant que l'instance n'existe pas : le loader va
   chercher /static/array.js sur api_host, donc un hôte inexistant coûte une
-  requête échouée à chaque visite.
-  verify_site.py refuse de publier une page où ces placeholders subsistent, donc
-  l'oubli de l'étape 1 casse le déploiement au lieu de casser la mesure.
+  requête échouée à chaque visite. Tant qu'il est commenté, window.posthog
+  n'existe pas, track() ne fait rien et la page ne pose aucun cookie.
+  Attention : le garde-fou qui rattrapait l'oubli de l'étape 1 est désactivé.
+  Décommenter sans remplacer ne casse plus le déploiement — ça casse la mesure,
+  en silence. D'où l'ordre : 1 avant 2, et 3 dans le même commit.
 
   api_host pointe l'instance auto-hébergée, pas *.i.posthog.com : le loader
   concatène api_host + "/static/array.js" sans passer par le CDN d'assets du

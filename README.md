@@ -23,8 +23,11 @@ Stage and check the production artifact exactly as CI does: `bash .github/script
 
 ## Analytics
 PostHog (self-hosted) is wired but commented out in the `<head>`: replace
-`[POSTHOG_KEY]` and `[POSTHOG_HOST]`, then uncomment the block. `verify_site.py`
-refuses to publish a page where those placeholders survive.
+`[POSTHOG_KEY]` and `[POSTHOG_HOST]`, uncomment the block, and put both tokens
+back into `PLACEHOLDERS` in `.github/scripts/verify_site.py` — they were removed
+so the site could ship before the instance exists. While the block stays
+commented, `window.posthog` never exists, `track()` no-ops, and the page sets no
+cookie and makes no analytics request.
 
 Nine events are emitted, each carrying `lang`: `cta_calendly`, `cta_mailto`,
 `download_pdf`, `track_card`, `nav_click`, `section_view`, `cv_open`,
