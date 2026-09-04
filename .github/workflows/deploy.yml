@@ -1,15 +1,15 @@
 name: Deploy to GitHub Pages
 
-# resume is the production branch: it is what Pages publishes to
+# main is the production branch: it is what Pages publishes to
 # ayoub-hidri.dev. Changing it here is only half the switch -- the
 # github-pages environment enforces a deployment branch policy, so a branch
 # absent from that allowlist fails when the deploy job requests the
 # environment, long after verify has gone green.
 on:
   push:
-    branches: [ resume ]
+    branches: [ main ]
   pull_request:
-    branches: [ resume ]
+    branches: [ main ]
 
 # No ambient scope; each job asks for exactly what it needs.
 permissions: {}
@@ -39,7 +39,7 @@ jobs:
     # Assert on the event, not only the ref: a pull request's ref is
     # refs/pull/N/merge, so a ref-only test would silently stop protecting
     # production the moment a manual or scheduled trigger is added.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/resume'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read
