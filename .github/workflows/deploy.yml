@@ -1,10 +1,15 @@
 name: Deploy to GitHub Pages
 
+# resume is the production branch: it is what Pages publishes to
+# ayoub-hidri.dev. Changing it here is only half the switch -- the
+# github-pages environment enforces a deployment branch policy, so a branch
+# absent from that allowlist fails when the deploy job requests the
+# environment, long after verify has gone green.
 on:
   push:
-    branches: [ main ]
+    branches: [ resume ]
   pull_request:
-    branches: [ main ]
+    branches: [ resume ]
 
 # No ambient scope; each job asks for exactly what it needs.
 permissions: {}
@@ -20,7 +25,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Stage production artifact
         run: bash .github/scripts/stage-site.sh _site
@@ -34,7 +39,7 @@ jobs:
     # Assert on the event, not only the ref: a pull request's ref is
     # refs/pull/N/merge, so a ref-only test would silently stop protecting
     # production the moment a manual or scheduled trigger is added.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/resume'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -48,10 +53,10 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       # Same script as the verify job — one manifest, so what was checked
       # is byte-for-byte what is published.
@@ -62,10 +67,10 @@ jobs:
         run: python3 .github/scripts/verify_site.py _site
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
