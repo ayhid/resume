@@ -142,7 +142,7 @@ There is no error handling and no `try`/`catch` anywhere. The code defends with
 existence checks instead, which is the expected pattern:
 
 ```js
-var u = window.umami;
+var ph = window.posthog;
 if (u && typeof u.track === 'function') u.track(name, data);
 ```
 
@@ -159,13 +159,13 @@ detected (`if (window.scrollTo)`).
 ## Logging
 
 No logging framework, no `console` calls in committed source. Analytics is the
-only outbound signal: a `track(name, data)` wrapper that no-ops when the Umami
+only outbound signal: a `track(name, data)` wrapper that no-ops when the PostHog
 global is absent. Events emitted: `cta_calendly`, `cta_mailto`, `download_pdf`,
 `track_card` (with `{ track: 'ia' | 'tech' }`); every event also carries `lang`.
 
 ## Comments
 
-- French for authoring notes in the `<head>` (the Umami block at `index.html:71-77`),
+- French for authoring notes in the `<head>` (the PostHog block at `index.html:71-77`),
   English for inline code comments in the script
 - Comment the *why*, not the *what*. Existing examples:
   - `// Deep links: /en/ or ?lang=en open the English block directly.`

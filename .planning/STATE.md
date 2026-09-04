@@ -73,7 +73,7 @@ Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
 - [Roadmap]: This is brownfield — the v2 rewrite is already largely implemented but uncommitted, so most phases verify and correct existing markup against `specs/experience.md` and `specs/design.md` rather than build from nothing.
-- [Roadmap]: Delivery pipeline (Phase 1) and analytics (Phase 2) come first — nothing downstream is verifiable until shipping is safe, and the KPI is unmeasurable until Umami is live.
+- [Roadmap]: Delivery pipeline (Phase 1) and analytics (Phase 2) come first — nothing downstream is verifiable until shipping is safe, and the KPI is unmeasurable until PostHog is live.
 - [Roadmap]: The design system is consolidated (Phases 3–4) before the section content phases, so section work edits a settled component vocabulary instead of 494 loose inline styles.
 - [Roadmap]: The bilingual PDF (Phase 5) precedes the page skeleton (Phase 6) because STRUCT-05 puts a PDF link in the sticky header and no PDF file exists in the repo today.
 - [Phase 1]: Pages publishing source switched legacy -> workflow via the GitHub UI (harness blocked the gh api PUT); verified through the API regardless
@@ -89,7 +89,7 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 1: verify_site.py is default-deny at the top level and rejects forbidden basenames plus symlinks at every depth — the exact-name depth-1 denylist that 01-VERIFICATION.md gaps[0] flagged is gone
 - [Phase ?]: Phase 1: en/ stays OPTIONAL and its contents are not enumerated — a full recursive allowlist would turn Phase 10's first commit red, so inside an allowed directory the rule is basename-plus-symlink
 - [Phase ?]: Phase 1: symlinks are rejected by is_symlink() not exists(), because upload-pages-artifact tars with --dereference and exists() answers False for a dangling link (REVIEW CR-01)
-- [Branding]: Analytics backend is self-hosted Umami, not Umami Cloud (2026-08-30) — owning the data was preferred to avoiding the instance
+- [Branding]: Analytics backend is self-hosted PostHog (2026-09-04), superseding the self-hosted Umami decision of 2026-08-30 — owning the data is still the reason to self-host, but PostHog costs a ClickHouse/Kafka/Redis stack where Umami was one container, and its cookie+autocapture configuration now requires a consent banner the page does not have
 - [Branding]: verify_site.py now fails on unresolved authoring placeholders, so the branding page cannot be published with analytics unconfigured or an unverified figure in the copy
 - [Branding]: instrumentation widened from 4 CTA events to 9 behavioural events, and `?debug=analytics` makes them verifiable in the console before any instance exists
 
@@ -101,7 +101,7 @@ None yet.
 
 - [Phase 7] IA-04 closed by removal (2026-08-30): the training-financing line is gone from both locales rather than written on an unanswered Qualiopi/portage status. Re-opening it needs the legal answer first.
 - [Phase 8] PROOF-04 still open: no attributable figure exists for any of the three case studies. The `[CHIFFRE_A_VALIDER]` placeholders were replaced (2026-08-30) with qualitative results, so the page is publishable, but the display slot is deliberately kept so a verified figure can drop straight back in.
-- [Phase 2] CONV-01 still open: the self-hosted Umami instance does not exist. The page is fully instrumented and the loader sits commented in `<head>`; `.planning/RUNBOOK-umami.md` is the remaining work. CONV-03 (ratio readable without arithmetic) is not satisfied by Umami's dashboard alone — see the runbook's open point.
+- [Phase 2] CONV-01 still open: the self-hosted PostHog instance does not exist. The page is fully instrumented and the loader sits commented in `<head>`; `.planning/RUNBOOK-posthog.md` is the remaining work. CONV-03 (ratio readable without arithmetic) is satisfiable in PostHog via a funnel or formula insight, but that insight still has to be built. A consent banner is a new prerequisite, and is unbuilt.
 - [Repo] A Mixpanel project token remains in public git history (commit `0650811`); rotate or disable the project.
 - .gitignore must absorb .gsd/, .planning/research/ and _site/ on top of D-10's list in plan 01-02, or later clean-tree assertions fail; until then staging by exact path is mandatory (git add -A would commit _site/)
 - Phase 1 end-of-phase human check is unanswered: read the six slice commits (7272bbf, cc0c41c, 932e461, ad6884b, fd08fcf, 41c11c7) and load https://ayoub-hidri.dev/. Run /gsd-verify-work.

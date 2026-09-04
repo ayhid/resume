@@ -36,7 +36,7 @@ A PME leader arrives, understands within five seconds what AI can concretely ear
 
 ### Active
 
-- [ ] Enable analytics so the KPI is measurable — Umami is commented out with unreplaced `[UMAMI_HOST]` / `[UMAMI_WEBSITE_ID]` placeholders; without it the one validating metric cannot be read
+- [ ] Enable analytics so the KPI is measurable — PostHog is commented out with unreplaced `[POSTHOG_KEY]` / `[POSTHOG_HOST]` placeholders; without it the one validating metric cannot be read. Blocked on a consent banner, since the chosen config sets a cookie.
 - [ ] Produce the bilingual CV PDF — no `.pdf` exists in the repo, yet §05 and §06 both promise it and `download_pdf` fires against it
 - [ ] Resolve the `/en/` 404 — `hreflang`, `og:locale:alternate`, and both footer links point at `/en/`, which does not exist; language is client-side only
 - [ ] Self-host Archivo and IBM Plex Mono as woff2 — currently loaded from the Google Fonts CDN, against `design.md` §8

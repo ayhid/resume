@@ -55,13 +55,13 @@ The split between the two offers is not a compromise to be resolved — the spli
 
 - Google Fonts (`fonts.googleapis.com`) — the only runtime third-party asset on the live page.
 - `og-image.html:5` loads a different pair — `Sora` (400/600/700/800) and `Plus Jakarta Sans` (400/500/600). This asset generator does not share the site's type system.
-- GitHub Actions (`actions/checkout@v4`, `actions/configure-pages@v4`, `actions/upload-pages-artifact@v3`, `actions/deploy-pages@v4`) — see `.github/workflows/deploy.yml`.
-- No JS libraries or CDN `<script src>` tags load on the live page. The only external `<script src>` in the file is the Umami snippet, which is inside an HTML comment (`index.html:72-77`).
+- GitHub Actions (`actions/checkout@v7`, `actions/configure-pages@v6`, `actions/upload-pages-artifact@v5`, `actions/deploy-pages@v5`) — see `.github/workflows/deploy.yml`.
+- No JS libraries or CDN `<script src>` tags load on the live page. The PostHog snippet is an inline `<script>` that injects its own loader at runtime; it sits inside an HTML comment (`index.html:71-105`) and ships disabled.
 
 ## Configuration
 
 - No `.env` file, no runtime configuration, no secrets. Everything is static and public.
-- Two deployment-time placeholders exist as literal text inside the commented analytics block at `index.html:74`: `[UMAMI_HOST]` and `[UMAMI_WEBSITE_ID]`.
+- Two deployment-time placeholders exist as literal text inside the commented analytics block at `index.html:74`: `[POSTHOG_KEY]` and `[POSTHOG_HOST]`.
 - `.github/workflows/deploy.yml` — the only build/deploy config.
 - `CNAME` — contains `ayoub-hidri.dev`. Under the Actions publishing source the domain is bound in repository settings (Settings → Pages), not by this file; the file is kept in the production manifest per D-06 as belt-and-braces, which also makes it fetchable at `/CNAME`.
 - `robots.txt` — allows all crawlers, points at the sitemap.
@@ -161,7 +161,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 
 ## Comments
 
-- French for authoring notes in the `<head>` (the Umami block at `index.html:71-77`),
+- French for authoring notes in the `<head>` (the PostHog block at `index.html:71-77`),
 - Comment the *why*, not the *what*. Existing examples:
 - No JSDoc/TSDoc anywhere
 
@@ -193,13 +193,13 @@ The split between the two offers is not a compromise to be resolved — the spli
 |-----------|----------------|------|
 | Document head | Title, description, canonical, hreflang, OG/Twitter cards, font preconnects | `index.html` L1-30 |
 | Structured data | `Person` + `ProfessionalService` JSON-LD `@graph` | `index.html` L31-70 |
-| Analytics stub | Commented Umami snippet with `[UMAMI_HOST]` / `[UMAMI_WEBSITE_ID]` placeholders | `index.html` L71-76 |
+| Analytics stub | Commented PostHog snippet with `[POSTHOG_KEY]` / `[POSTHOG_HOST]` placeholders | `index.html` L71-76 |
 | Design tokens + global CSS | `:root` custom properties, resets, print and reduced-motion rules, `.link-*`/`.btn-*`/`.card-hover` interaction states | `index.html` L78-115 |
 | FR content tree | Full French page: header, main, footer | `index.html` L121-552 (`[data-lang-block="fr"]`) |
 | EN content tree | Full English mirror of the FR tree | `index.html` L553-980 (`[data-lang-block="en"]`) |
 | Behaviour controller | Language switch, accordions, analytics events, print hook | `index.html` L982-1052 |
 | OG card generator | Standalone 1200×630 artboard rendered to `og-image.png`; excluded from the published artifact | `og-image.html` |
-| Deploy pipeline | Stages the allowlist into `_site/` and uploads that directory as a Pages artifact on push to `main` | `.github/workflows/deploy.yml`, `.github/scripts/stage-site.sh` |
+| Deploy pipeline | Stages the allowlist into `_site/` and uploads that directory as a Pages artifact on push to `resume` | `.github/workflows/deploy.yml`, `.github/scripts/stage-site.sh` |
 
 ## Pattern Overview
 
@@ -221,7 +221,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 - Used by: Every inline `style` attribute via `var(--…)`.
 - Purpose: Language state, accordion state, analytics dispatch, print preparation.
 - Location: `index.html` L982-1052 (one IIFE, no globals exported).
-- Depends on: `window.umami` if present; degrades silently if absent.
+- Depends on: `window.posthog` if present; degrades silently if absent.
 - Purpose: SEO and social discovery.
 - Location: `index.html` L1-76, `sitemap.xml`, `robots.txt`, `og-image.png`.
 
@@ -289,7 +289,7 @@ The split between the two offers is not a compromise to be resolved — the spli
 
 ## Error Handling
 
-- Analytics is feature-detected: `track()` calls `window.umami.track` only when it exists (`index.html:994-997`).
+- Analytics is feature-detected: `track()` calls `window.posthog.capture` only when it exists (`index.html:994-997`).
 - Unknown `data-act` values return silently (`index.html:1039`).
 - A missing `aria-controls` target is skipped rather than throwing (`index.html:1013`).
 

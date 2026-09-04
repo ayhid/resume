@@ -69,21 +69,40 @@
 }
 </script>
 <!--
-  Analytics : Umami auto-hébergé, sans cookie tiers.
+  Analytics : PostHog auto-hébergé.
 
   Deux étapes à la mise en ligne, dans cet ordre :
-    1. sur la ligne <script> ci-dessous, remplacer les deux valeurs entre
-       crochets par le domaine de l'instance et l'identifiant du site ;
-    2. décommenter cette ligne.
+    1. dans le bloc <script> ci-dessous, remplacer les deux valeurs entre
+       crochets par la clé de projet et l'URL de l'instance ;
+    2. décommenter ce bloc.
   Les crochets ne sont écrits qu'une fois, sur la ligne à éditer : les nommer
   ailleurs suffirait à faire échouer le contrôle de déploiement après le
   remplacement.
-  La balise reste commentée tant que l'instance n'existe pas : un <script src>
-  pointant vers un hôte inexistant coûte une requête échouée à chaque visite.
+  Le bloc reste commenté tant que l'instance n'existe pas : le loader va
+  chercher /static/array.js sur api_host, donc un hôte inexistant coûte une
+  requête échouée à chaque visite.
   verify_site.py refuse de publier une page où ces placeholders subsistent, donc
   l'oubli de l'étape 1 casse le déploiement au lieu de casser la mesure.
 
-  <script defer src="https://[UMAMI_HOST]/script.js" data-website-id="[UMAMI_WEBSITE_ID]"></script>
+  api_host pointe l'instance auto-hébergée, pas *.i.posthog.com : le loader
+  concatène api_host + "/static/array.js" sans passer par le CDN d'assets du
+  Cloud, donc une valeur fausse casse la mesure en silence.
+  defaults fige le jeu de comportements par défaut à une date : sans lui, une
+  future version de PostHog peut changer la sémantique sans qu'on touche à rien.
+  persistence:'cookie' identifie le visiteur récurrent — c'est ce qui rend le
+  ratio visites→clic Calendly lisible, et c'est aussi ce qui rend une bannière de
+  consentement obligatoire. disable_session_recording coupe l'enregistrement de
+  session, actif par défaut côté serveur et hors sujet ici.
+
+  <script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('[POSTHOG_KEY]', {
+    api_host: '[POSTHOG_HOST]',
+    defaults: '2026-05-30',
+    persistence: 'cookie',
+    disable_session_recording: true
+  })
+  </script>
 
   Événements câblés dans la page. Chaque charge utile porte { lang: "fr" | "en" } :
     cta_calendly   clic sur l'unique CTA bleu
@@ -97,7 +116,7 @@
     outbound       lien externe non instrumenté { host: "github.com" | ... }
 
   ?debug=analytics écrit chaque événement dans la console : l'instrumentation se
-  vérifie sans instance Umami, et donc avant la mise en ligne.
+  vérifie sans instance PostHog, et donc avant la mise en ligne.
 -->
 <style>
 :root{
@@ -1025,7 +1044,7 @@ button{font-family:inherit}
   var params = new URLSearchParams(window.location.search);
 
   // ?debug=analytics ecrit chaque evenement dans la console. C'est la seule
-  // facon de verifier l'instrumentation tant qu'aucune instance Umami n'existe.
+  // facon de verifier l'instrumentation tant qu'aucune instance PostHog n'existe.
   var debug = params.get('debug') === 'analytics';
 
   // La langue est ajoutee ici plutot qu'a chaque appel : un evenement sans
@@ -1034,8 +1053,11 @@ button{font-family:inherit}
     var payload = data || {};
     payload.lang = lang;
     if (debug && window.console) console.log('[analytics]', name, payload);
-    var u = window.umami;
-    if (u && typeof u.track === 'function') u.track(name, payload);
+    // Le loader PostHog installe un stub synchrone qui met les appels en file
+    // dans posthog._i, donc capture() repond avant l'arrivee de array.js. Le
+    // test de type reste necessaire : sans le bloc du <head>, rien n'existe.
+    var ph = window.posthog;
+    if (ph && typeof ph.capture === 'function') ph.capture(name, payload);
   }
 
   // Renvoie true seulement si la langue a change, pour que l'appelant sache

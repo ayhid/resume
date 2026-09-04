@@ -23,7 +23,7 @@
 - Fix approach: Add a CI step running an HTML validator, a link checker, and Lighthouse CI before `actions/deploy-pages`.
 
 **Uncommitted rewrite in working tree:**
-- Issue: `index.html` and `README.md` contain a large unpushed rewrite (Mixpanel removed, Umami commented-in placeholder added). The deployed site is still the HEAD version.
+- Issue: `index.html` and `README.md` contain a large unpushed rewrite (Mixpanel removed, PostHog commented-in placeholder added). The deployed site is still the HEAD version.
 - Files: `index.html`, `README.md`
 - Impact: The repo state and the live site disagree; documentation (`README.md`) describes the working-tree analytics setup, not what is deployed.
 - Fix approach: Commit or discard before further work.
@@ -49,7 +49,7 @@
 - Workaround: None in page; use `?lang=en`.
 
 **Analytics is disabled and its events are dead code:**
-- Symptoms: The Umami snippet is inside an HTML comment (`index.html:71-76`), so `window.umami` never exists and `track()` (`index.html:994`) silently no-ops. Every `data-act="track*"` handler is inert.
+- Symptoms: The PostHog snippet is inside an HTML comment (`index.html:71-76`), so `window.posthog` never exists and `track()` (`index.html:994`) silently no-ops. Every `data-act="track*"` handler is inert.
 - Files: `index.html:71`, `index.html:994`
 - Trigger: Any CTA click — no event is recorded.
 - Workaround: Replace the two placeholders and uncomment.
@@ -60,7 +60,7 @@
 - Risk: A Mixpanel project token was committed in plain text and is still reachable in history (commit `0650811`, "Update Mixpanel token", `index.html:39` at that revision). Even though the working tree removed Mixpanel, the value remains in every clone of what is a public repository.
 - Files: git history for `index.html`
 - Current mitigation: Mixpanel removed from the working tree.
-- Recommendations: Rotate/disable the Mixpanel project so the historic token is worthless. Client-side analytics tokens are inherently public, but leaving a live one in history invites event spoofing into the project. Prefer the self-hosted Umami path already documented.
+- Recommendations: Rotate/disable the Mixpanel project so the historic token is worthless. Client-side analytics tokens are inherently public, but leaving a live one in history invites event spoofing into the project. Prefer the self-hosted PostHog path already documented.
 
 **Personal contact data published as structured data:**
 - Risk: The JSON-LD graph exposes a personal email and a mobile phone number in machine-readable form (`index.html:43-44`, `index.html:64`), which scrapers harvest trivially.
@@ -128,8 +128,8 @@
 - Impact: Font outage degrades to the declared fallbacks (`Helvetica`/`ui-monospace`) — visual only, not fatal.
 - Migration plan: Self-host the two families under `assets/fonts/`.
 
-**Umami (planned, unconfigured):**
-- Risk: Placeholders `[UMAMI_HOST]` / `[UMAMI_WEBSITE_ID]` have never been filled; the self-hosted instance is an operational dependency that does not yet exist.
+**PostHog (planned, unconfigured):**
+- Risk: Placeholders `[POSTHOG_KEY]` / `[POSTHOG_HOST]` have never been filled; the self-hosted instance is an operational dependency that does not yet exist.
 - Impact: No analytics at all today.
 - Migration plan: Stand up the instance or delete the commented block and the four dead track handlers.
 

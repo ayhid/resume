@@ -22,6 +22,15 @@ https://ayoub-hidri.dev/
 Stage and check the production artifact exactly as CI does: `bash .github/scripts/stage-site.sh _site && python3 .github/scripts/verify_site.py _site`
 
 ## Analytics
-Umami is wired but commented out in the `<head>`: replace `[UMAMI_HOST]` and
-`[UMAMI_WEBSITE_ID]` to enable it. Events already emitted: `cta_calendly`,
-`cta_mailto`, `download_pdf`, `track_card`.
+PostHog (self-hosted) is wired but commented out in the `<head>`: replace
+`[POSTHOG_KEY]` and `[POSTHOG_HOST]`, then uncomment the block. `verify_site.py`
+refuses to publish a page where those placeholders survive.
+
+Nine events are emitted, each carrying `lang`: `cta_calendly`, `cta_mailto`,
+`download_pdf`, `track_card`, `nav_click`, `section_view`, `cv_open`,
+`lang_switch`, `outbound`. Open any page with `?debug=analytics` to print them
+to the console without an instance.
+
+The block is configured with `persistence: 'cookie'` and autocapture on, which
+requires a consent banner that does not exist yet — see
+`.planning/RUNBOOK-posthog.md`.

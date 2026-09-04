@@ -26,7 +26,7 @@
          ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  Browser runtime: DOM `hidden` toggles, `window.print()`,    │
-│  optional `window.umami.track()` (analytics, commented out)  │
+│  optional `window.posthog.capture()` (analytics, commented out)  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -36,7 +36,7 @@
 |-----------|----------------|------|
 | Document head | Title, description, canonical, hreflang, OG/Twitter cards, font preconnects | `index.html` L1-30 |
 | Structured data | `Person` + `ProfessionalService` JSON-LD `@graph` | `index.html` L31-70 |
-| Analytics stub | Commented Umami snippet with `[UMAMI_HOST]` / `[UMAMI_WEBSITE_ID]` placeholders | `index.html` L71-76 |
+| Analytics stub | Commented PostHog snippet with `[POSTHOG_KEY]` / `[POSTHOG_HOST]` placeholders | `index.html` L71-76 |
 | Design tokens + global CSS | `:root` custom properties, resets, print and reduced-motion rules, `.link-*`/`.btn-*`/`.card-hover` interaction states | `index.html` L78-115 |
 | FR content tree | Full French page: header, main, footer | `index.html` L121-552 (`[data-lang-block="fr"]`) |
 | EN content tree | Full English mirror of the FR tree | `index.html` L553-980 (`[data-lang-block="en"]`) |
@@ -72,7 +72,7 @@
 **Behaviour layer:**
 - Purpose: Language state, accordion state, analytics dispatch, print preparation.
 - Location: `index.html` L982-1052 (one IIFE, no globals exported).
-- Depends on: `window.umami` if present; degrades silently if absent.
+- Depends on: `window.posthog` if present; degrades silently if absent.
 
 **Metadata layer:**
 - Purpose: SEO and social discovery.
@@ -201,7 +201,7 @@
 **Strategy:** Defensive no-ops. There is no error surface and nothing to fail loudly.
 
 **Patterns:**
-- Analytics is feature-detected: `track()` calls `window.umami.track` only when it exists (`index.html:994-997`).
+- Analytics is feature-detected: `track()` calls `window.posthog.capture` only when it exists (`index.html:994-997`).
 - Unknown `data-act` values return silently (`index.html:1039`).
 - A missing `aria-controls` target is skipped rather than throwing (`index.html:1013`).
 
@@ -210,7 +210,7 @@
 **Logging:** None. No `console` output, no error reporting.
 **Validation:** None — there are no forms or user inputs; contact is `mailto:` and Calendly links.
 **Authentication:** Not applicable; fully public static content.
-**Analytics:** Umami, self-hosted, currently commented out in the head (`index.html:71-76`). Events emitted: `cta_calendly`, `cta_mailto`, `download_pdf`, `track_card` (with `{ track: 'ia' | 'tech' }`), all carrying the active `lang`.
+**Analytics:** PostHog, self-hosted, currently commented out in the head (`index.html:71-76`). Events emitted: `cta_calendly`, `cta_mailto`, `download_pdf`, `track_card` (with `{ track: 'ia' | 'tech' }`), all carrying the active `lang`.
 **Accessibility:** Skip link per block, `aria-labelledby` on every section, `aria-expanded`/`aria-controls` on accordions, `:focus-visible` outlines, `prefers-reduced-motion` override (`index.html:102-105`).
 **Internationalisation:** Duplicated markup plus a `TITLES` map; `documentElement.lang` tracks the active locale.
 

@@ -50,13 +50,13 @@
 - GitHub Actions (`actions/checkout@v4`, `actions/configure-pages@v4`, `actions/upload-pages-artifact@v3`, `actions/deploy-pages@v4`) — see `.github/workflows/deploy.yml`.
 
 **Not present:**
-- No JS libraries or CDN `<script src>` tags load on the live page. The only external `<script src>` in the file is the Umami snippet, which is inside an HTML comment (`index.html:72-77`).
+- No JS libraries or CDN `<script src>` tags load on the live page. The only external `<script src>` in the file is the PostHog snippet, which is inside an HTML comment (`index.html:72-77`).
 
 ## Configuration
 
 **Environment:**
 - No `.env` file, no runtime configuration, no secrets. Everything is static and public.
-- Two deployment-time placeholders exist as literal text inside the commented analytics block at `index.html:74`: `[UMAMI_HOST]` and `[UMAMI_WEBSITE_ID]`.
+- Two deployment-time placeholders exist as literal text inside the commented analytics block at `index.html:74`: `[POSTHOG_KEY]` and `[POSTHOG_HOST]`.
 
 **Build:**
 - `.github/workflows/deploy.yml` — the only build/deploy config.

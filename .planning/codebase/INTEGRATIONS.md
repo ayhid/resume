@@ -16,10 +16,10 @@
   - Auth: none.
 
 **Analytics:**
-- Umami (self-hosted, cookieless) — **wired but disabled**. The loader tag lives inside an HTML comment at `index.html:72-77` with unreplaced placeholders `[UMAMI_HOST]` and `[UMAMI_WEBSITE_ID]`.
-  - Client-side call site: the `track()` helper at `index.html:993-996` reads `window.umami` defensively and no-ops when the script is absent, so the page is safe in the disabled state.
+- PostHog (self-hosted) — **wired but disabled**. The loader tag lives inside an HTML comment at `index.html:72-77` with unreplaced placeholders `[POSTHOG_KEY]` and `[POSTHOG_HOST]`.
+  - Client-side call site: the `track()` helper at `index.html:993-996` reads `window.posthog` defensively and no-ops when the script is absent, so the page is safe in the disabled state.
   - Events already instrumented (see the `actions` map, `index.html:1021-1029`): `cta_calendly`, `cta_mailto`, `track_card` (payload `{ track: 'ia' | 'tech' }`), `download_pdf`. Every event also carries `{ lang }`.
-  - The recent commit "Update Mixpanel token" notwithstanding, there is no Mixpanel code anywhere in the tree — Umami is the only analytics integration.
+  - The recent commit "Update Mixpanel token" notwithstanding, there is no Mixpanel code anywhere in the tree — PostHog is the only analytics integration.
 
 **Outbound profile links (no integration, link-only):**
 - LinkedIn `linkedin.com/in/ayoub-hidri`, GitHub `github.com/ayhid` and `github.com/opkod-france`, Medium `medium.com/@ayhidr`. Referenced both as visible anchors and in the JSON-LD `sameAs` arrays (`index.html:46-49`, `index.html:65`).
