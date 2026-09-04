@@ -70,10 +70,34 @@
 </script>
 <!--
   Analytics : Umami auto-hébergé, sans cookie tiers.
-  Décommenter et remplacer les deux placeholders au déploiement.
+
+  Deux étapes à la mise en ligne, dans cet ordre :
+    1. sur la ligne <script> ci-dessous, remplacer les deux valeurs entre
+       crochets par le domaine de l'instance et l'identifiant du site ;
+    2. décommenter cette ligne.
+  Les crochets ne sont écrits qu'une fois, sur la ligne à éditer : les nommer
+  ailleurs suffirait à faire échouer le contrôle de déploiement après le
+  remplacement.
+  La balise reste commentée tant que l'instance n'existe pas : un <script src>
+  pointant vers un hôte inexistant coûte une requête échouée à chaque visite.
+  verify_site.py refuse de publier une page où ces placeholders subsistent, donc
+  l'oubli de l'étape 1 casse le déploiement au lieu de casser la mesure.
+
   <script defer src="https://[UMAMI_HOST]/script.js" data-website-id="[UMAMI_WEBSITE_ID]"></script>
-  Les 4 événements sont déjà câblés dans la page :
-  cta_calendly, cta_mailto, download_pdf, track_card (données : { track: "ia" | "tech" }).
+
+  Événements câblés dans la page. Chaque charge utile porte { lang: "fr" | "en" } :
+    cta_calendly   clic sur l'unique CTA bleu
+    cta_mailto     clic sur une adresse e-mail
+    download_pdf   déclenchement de l'export CV
+    track_card     carte d'aiguillage du hero   { track: "ia" | "tech" }
+    nav_click      lien de la nav collante      { to: "#ia" | "#tech" | ... }
+    section_view   section réellement lue       { section: "hero" | "ia" | ... }
+    cv_open        ouverture d'un poste du CV   { role: "cv-fr-salomon" | ... }
+    lang_switch    bascule FR/EN
+    outbound       lien externe non instrumenté { host: "github.com" | ... }
+
+  ?debug=analytics écrit chaque événement dans la console : l'instrumentation se
+  vérifie sans instance Umami, et donc avant la mise en ligne.
 -->
 <style>
 :root{
@@ -124,10 +148,10 @@ button{font-family:inherit}
   <div style="max-width:1140px;margin:0 auto;padding:0 clamp(24px,3.5vw,48px);height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px">
     <a href="#main-fr" style="font-family:var(--sans);font-weight:800;font-stretch:125%;font-size:18px;letter-spacing:0.02em;color:var(--ink)">AH</a>
     <nav aria-label="Sections" style="display:flex;align-items:center;gap:clamp(12px,1.6vw,24px)">
-      <a href="#ia" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">IA</a>
-      <a href="#tech" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Tech</a>
-      <a href="#cv" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">CV</a>
-      <a href="#contact" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Contact</a>
+      <a href="#ia" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">IA</a>
+      <a href="#tech" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Tech</a>
+      <a href="#cv" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">CV</a>
+      <a href="#contact" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Contact</a>
       <span aria-hidden="true" style="width:1px;height:16px;background:var(--line)"></span>
       <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em">
         <span aria-current="true" style="color:var(--ink);border-bottom:1px solid var(--ink)">FR</span>
@@ -216,7 +240,6 @@ button{font-family:inherit}
           <p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">1-2 jours / intra-entreprise</p>
         </div>
       </div>
-      <p style="margin-top:24px;color:var(--ink-60);font-size:16px">[MENTION_FINANCEMENT_A_VALIDER]</p>
       <div style="margin-top:clamp(24px,3vw,40px)">
         <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" data-act="trackCalendly" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--work-blue);background:var(--work-blue);color:var(--paper);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,border-color 150ms ease-out" class="btn-ink">Réserver un échange de 30 min</a>
       </div>
@@ -226,6 +249,9 @@ button{font-family:inherit}
 
 <section aria-labelledby="cases-fr" style="border-bottom:1px solid var(--ink)">
   <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px)">
+    <!-- Les resultats sont qualitatifs et non chiffres : aucun chiffre de ces trois cas
+         n'est verifiable aujourd'hui, et experience.md interdit d'en publier un qui ne
+         le soit pas. Le bloc "Resultat" garde sa place pour accueillir le chiffre reel. -->
     <h2 id="cases-fr" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
       <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
       Cas concrets
@@ -244,8 +270,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">de temps récupéré sur la clôture mensuelle.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">Fini la chasse aux justificatifs</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">La clôture mensuelle se limite à valider les exceptions.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">n8n</li>
@@ -266,8 +292,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">d'emails triés sans intervention humaine.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">Tri automatique à l'arrivée</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Chaque entrant est classé et routé vers l'action qui lui correspond.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Claude</li>
@@ -288,8 +314,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Résultat</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">de délai gagné sur le traitement d'un dossier.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">Plus de saisie manuelle</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Les pièces d'un dossier sont lues automatiquement et injectées dans le traitement.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">OCR</li>
@@ -557,10 +583,10 @@ button{font-family:inherit}
   <div style="max-width:1140px;margin:0 auto;padding:0 clamp(24px,3.5vw,48px);height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px">
     <a href="#main-en" style="font-family:var(--sans);font-weight:800;font-stretch:125%;font-size:18px;letter-spacing:0.02em;color:var(--ink)">AH</a>
     <nav aria-label="Sections" style="display:flex;align-items:center;gap:clamp(12px,1.6vw,24px)">
-      <a href="#ia-en" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">AI</a>
-      <a href="#tech-en" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Tech</a>
-      <a href="#cv-en" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Resume</a>
-      <a href="#contact-en" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Contact</a>
+      <a href="#ia-en" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">AI</a>
+      <a href="#tech-en" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Tech</a>
+      <a href="#cv-en" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Resume</a>
+      <a href="#contact-en" data-act="trackNav" style="font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);border-bottom:1px dashed var(--line);transition:color 150ms ease-out,border-color 150ms ease-out" class="link-stitch">Contact</a>
       <span aria-hidden="true" style="width:1px;height:16px;background:var(--line)"></span>
       <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:clamp(11px,1vw,13px);font-weight:500;letter-spacing:0.04em">
         <a href="/" hreflang="fr" data-act="setFr" style="color:var(--ink-60);transition:color 150ms ease-out" class="link-blue">FR</a>
@@ -648,7 +674,6 @@ button{font-family:inherit}
           <p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">1-2 days / on site</p>
         </div>
       </div>
-      <p style="margin-top:24px;color:var(--ink-60);font-size:16px">[MENTION_FINANCEMENT_A_VALIDER]</p>
       <div style="margin-top:clamp(24px,3vw,40px)">
         <a href="https://calendly.com/schedule-ayoub-hidri" target="_blank" rel="noopener" data-act="trackCalendly" style="display:inline-flex;align-items:center;padding:14px 24px;border:1px solid var(--work-blue);background:var(--work-blue);color:var(--paper);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:background 150ms ease-out,border-color 150ms ease-out" class="btn-ink">Book a 30 min call</a>
       </div>
@@ -658,6 +683,9 @@ button{font-family:inherit}
 
 <section aria-labelledby="cases-en" style="border-bottom:1px solid var(--ink)">
   <div style="max-width:1140px;margin:0 auto;padding:clamp(64px,7vw,104px) clamp(24px,3.5vw,48px)">
+    <!-- Les resultats sont qualitatifs et non chiffres : aucun chiffre de ces trois cas
+         n'est verifiable aujourd'hui, et experience.md interdit d'en publier un qui ne
+         le soit pas. Le bloc "Resultat" garde sa place pour accueillir le chiffre reel. -->
     <h2 id="cases-en" style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">
       <span aria-hidden="true" style="font-size:10px;line-height:1">✕</span>
       Real cases
@@ -676,8 +704,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Result</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">of time recovered on the monthly close.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">No more receipt chasing</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">The monthly close comes down to reviewing the exceptions.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">n8n</li>
@@ -698,8 +726,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Result</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">of email sorted with no human step.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">Sorted on arrival</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">Every incoming message is classified and routed to its matching action.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">Claude</li>
@@ -720,8 +748,8 @@ button{font-family:inherit}
         </div>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line)">
           <p style="font-family:var(--mono);font-size:clamp(12px,1vw,13px);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink)">Result</p>
-          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">[CHIFFRE_A_VALIDER]</p>
-          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">faster turnaround on a claim file.</p>
+          <p style="margin-top:8px;font-family:var(--sans);font-weight:800;font-stretch:110%;font-size:clamp(28px,2.6vw,32px);line-height:1.1;letter-spacing:-0.01em">No manual data entry</p>
+          <p style="margin-top:8px;color:var(--ink-60);font-size:clamp(16px,1.1vw,17px)">The documents in a file are read automatically and fed into claims processing.</p>
         </div>
         <ul style="padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
           <li style="border:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:12px;letter-spacing:0.04em">OCR</li>
@@ -986,7 +1014,7 @@ button{font-family:inherit}
 <script>
 (function () {
   var TITLES = {
-    fr: "Ayoub Hidri : Consultant IA & automatisation pour PME, ing\u00e9nieur full stack senior",
+    fr: "Ayoub Hidri : Consultant IA & automatisation pour PME, ingénieur full stack senior",
     en: 'Ayoub Hidri: AI and automation consultant for SMEs, senior full stack engineer'
   };
   var blocks = {};
@@ -994,14 +1022,26 @@ button{font-family:inherit}
     blocks[el.getAttribute('data-lang-block')] = el;
   });
   var lang = 'fr';
+  var params = new URLSearchParams(window.location.search);
 
+  // ?debug=analytics ecrit chaque evenement dans la console. C'est la seule
+  // facon de verifier l'instrumentation tant qu'aucune instance Umami n'existe.
+  var debug = params.get('debug') === 'analytics';
+
+  // La langue est ajoutee ici plutot qu'a chaque appel : un evenement sans
+  // langue ne dit pas grand-chose, et l'oubli serait invisible.
   function track(name, data) {
+    var payload = data || {};
+    payload.lang = lang;
+    if (debug && window.console) console.log('[analytics]', name, payload);
     var u = window.umami;
-    if (u && typeof u.track === 'function') u.track(name, data);
+    if (u && typeof u.track === 'function') u.track(name, payload);
   }
 
+  // Renvoie true seulement si la langue a change, pour que l'appelant sache
+  // s'il doit compter une bascule.
   function setLang(next) {
-    if (next === lang) return;
+    if (next === lang) return false;
     lang = next;
     Object.keys(blocks).forEach(function (key) {
       blocks[key].hidden = key !== lang;
@@ -1009,6 +1049,7 @@ button{font-family:inherit}
     document.documentElement.lang = lang;
     document.title = TITLES[lang];
     if (window.scrollTo) window.scrollTo(0, 0);
+    return true;
   }
 
   function toggle(button) {
@@ -1018,21 +1059,40 @@ button{font-family:inherit}
     if (panel) panel.hidden = !open;
     var sign = button.querySelector('[aria-hidden="true"]');
     if (sign) sign.textContent = open ? '-' : '+';
+    if (open) track('cv_open', { role: button.getAttribute('aria-controls') });
   }
 
   var actions = {
-    setFr: function () { setLang('fr'); },
-    setEn: function () { setLang('en'); },
+    setFr: function () { if (setLang('fr')) track('lang_switch'); },
+    setEn: function () { if (setLang('en')) track('lang_switch'); },
     toggle: toggle,
-    trackCalendly: function () { track('cta_calendly', { lang: lang }); },
-    trackMailto: function () { track('cta_mailto', { lang: lang }); },
-    trackCardIa: function () { track('track_card', { track: 'ia', lang: lang }); },
-    trackCardTech: function () { track('track_card', { track: 'tech', lang: lang }); },
-    downloadPdf: function () { track('download_pdf', { lang: lang }); window.print(); }
+    trackNav: function (el) {
+      var to = (el.getAttribute('href') || '').replace('#', '').replace(/-(fr|en)$/, '');
+      track('nav_click', { to: to });
+    },
+    trackCalendly: function () { track('cta_calendly'); },
+    trackMailto: function () { track('cta_mailto'); },
+    trackCardIa: function () { track('track_card', { track: 'ia' }); },
+    trackCardTech: function () { track('track_card', { track: 'tech' }); },
+    downloadPdf: function () { track('download_pdf'); window.print(); }
   };
   var PREVENT_DEFAULT = { setFr: 1, setEn: 1 };
 
+  // Les liens sortants non instrumentes (GitHub, LinkedIn, Medium) sont mesures
+  // ici, en un point, plutot que par un data-act sur chacun des douze : un lien
+  // ajoute plus tard est compte sans que personne ait a y penser. Ceux qui
+  // portent deja un data-act sont ignores, sinon Calendly compterait double.
+  function trackOutbound(link) {
+    if (link.getAttribute('data-act')) return;
+    if (!/^https?:/i.test(link.getAttribute('href') || '')) return;
+    if (link.hostname === window.location.hostname) return;
+    track('outbound', { host: link.hostname });
+  }
+
   document.addEventListener('click', function (event) {
+    var link = event.target.closest('a[href]');
+    if (link) trackOutbound(link);
+
     var el = event.target.closest('[data-act]');
     if (!el) return;
     var act = el.getAttribute('data-act');
@@ -1042,8 +1102,40 @@ button{font-family:inherit}
     fn(el, event);
   });
 
+  // hero-title-fr, contact-en-title et proof-fr designent tous une section :
+  // on retire le suffixe de langue puis -title pour obtenir un nom stable,
+  // comparable entre les deux locales sur le tableau de bord.
+  function sectionName(el) {
+    var id = el.getAttribute('aria-labelledby') || '';
+    return id.replace(/-(fr|en)(-|$)/, '$2').replace('-title', '');
+  }
+
+  // Quelles sections sont vraiment lues : sans cette mesure on sait combien de
+  // visiteurs arrivent, pas si le parcours PME est atteint ou si la lecture
+  // s'arrete au hero. Le bloc de langue masque est en display:none, donc ses
+  // sections ne croisent jamais et ne comptent pas.
+  function watchSections() {
+    if (!window.IntersectionObserver) return;
+    var seen = {};
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var name = sectionName(entry.target);
+        var key = name + ':' + lang;
+        if (seen[key]) return;
+        seen[key] = 1;
+        track('section_view', { section: name });
+      });
+      // Marge negative plutot qu'un seuil : une section plus haute que la
+      // fenetre n'atteint jamais un ratio de 40%, et ne serait jamais comptee.
+    }, { rootMargin: '-25% 0px -25% 0px', threshold: 0 });
+    document.querySelectorAll('section[aria-labelledby]').forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+  watchSections();
+
   // Deep links: /en/ or ?lang=en open the English block directly.
-  var params = new URLSearchParams(window.location.search);
   if (params.get('lang') === 'en' || /^\/en\/?$/.test(window.location.pathname)) setLang('en');
 
   // Print the language currently on screen, both accordions expanded.

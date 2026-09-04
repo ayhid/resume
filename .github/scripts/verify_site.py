@@ -46,6 +46,21 @@ OPTIONAL = ["en"]
 FORBIDDEN = ["README.md", "og-image.html", "specs", ".planning",
              ".github", ".claude", ".playwright-mcp", "_site"]
 
+# Authoring placeholders that must never reach a visitor. Two kinds, one rule.
+#
+# [UMAMI_HOST] and [UMAMI_WEBSITE_ID] stand in for a self-hosted Umami instance
+# that does not exist yet. The page is instrumented and the loader sits
+# commented out in the head; the failure this guards against is not the missing
+# instance but the half-done fix -- uncommenting the tag while leaving the
+# placeholders, which publishes a request to a host named "[UMAMI_HOST]" on
+# every visit and measures nothing at all.
+#
+# _A_VALIDER marks copy nobody has verified: an unverifiable case-study figure,
+# or a training-financing claim the current Qualiopi/portage status may not
+# support. specs/experience.md forbids publishing either, and a substring match
+# is a cheap way to make that forbidding real rather than aspirational.
+PLACEHOLDERS = ["[UMAMI_HOST]", "[UMAMI_WEBSITE_ID]", "_A_VALIDER"]
+
 # Void elements never close, so they must not be pushed onto the tag stack.
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
         "link", "meta", "param", "source", "track", "wbr"}
@@ -124,6 +139,21 @@ def check_headings(checker):
             % (checker.h1, len(checker.lang_blocks), checker.lang_blocks or "[]"))
 
 
+def check_placeholders(text):
+    """Fail on any unresolved authoring placeholder left in the page.
+
+    Deliberately a plain substring scan over the raw source rather than a check
+    on rendered text: a placeholder inside an HTML comment still ships to every
+    visitor who views source, and the comment is exactly where the analytics one
+    lives.
+    """
+    for token in PLACEHOLDERS:
+        count = text.count(token)
+        if count:
+            errors.append("unresolved placeholder in index.html: %s (%d occurrence(s))"
+                          % (token, count))
+
+
 def check_manifest(root):
     """Assert the required assets are present and that nothing else arrived.
 
@@ -180,8 +210,10 @@ def main(dest):
 
     index = root / "index.html"
     if index.exists():
+        markup = index.read_text(encoding="utf-8")
+        check_placeholders(markup)
         checker = Checker()
-        checker.feed(index.read_text(encoding="utf-8"))
+        checker.feed(markup)
         checker.close()
         for tag, line in checker.stack:
             errors.append("unclosed <%s> opened at line %d" % (tag, line))
