@@ -11,7 +11,7 @@
   - Second, unrelated request in the OG generator: `og-image.html:5` (Sora + Plus Jakarta Sans).
 
 **Scheduling:**
-- Calendly — the primary conversion path. Three CTAs link to `https://calendly.com/schedule-ayoub-hidri` (`index.html:221`, `index.html:530` in the FR block; `index.html:651`, `index.html:960` in the EN block), each `target="_blank" rel="noopener"` and tagged `data-act="trackCalendly"`.
+- Calendly — the primary conversion path. Three CTAs link to `https://calendly.com/opkod/meeting-ayoub-hidri` (`index.html:221`, `index.html:530` in the FR block; `index.html:651`, `index.html:960` in the EN block), each `target="_blank" rel="noopener"` and tagged `data-act="trackCalendly"`.
   - SDK/Client: none — plain outbound anchors, no embed widget, no API call.
   - Auth: none.
 
