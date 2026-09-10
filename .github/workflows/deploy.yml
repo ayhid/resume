@@ -7,9 +7,7 @@ name: Deploy to GitHub Pages
 # environment, long after verify has gone green.
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ resume ]
 
 # No ambient scope; each job asks for exactly what it needs.
 permissions: {}
