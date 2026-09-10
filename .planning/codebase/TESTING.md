@@ -88,17 +88,17 @@ which conflicts with the stated "no build step, no runtime dependency" goal in
 ## Mocking
 
 Not applicable. The page has no network calls of its own and no injectable
-seams. The only external runtime is the PostHog analytics script, which is
+seams. The only external runtime is the Umami analytics script, which is
 commented out in `index.html:71-77` and already guarded:
 
 ```js
 function track(name, data) {
-  var ph = window.posthog;
+  var u = window.umami;
   if (u && typeof u.track === 'function') u.track(name, data);
 }
 ```
 
-To assert analytics behavior in a future test, set `window.posthog = { track: spy }`
+To assert analytics behavior in a future test, set `window.umami = { track: spy }`
 before interacting — no mocking library is needed.
 
 ## Fixtures and Factories

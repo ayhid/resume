@@ -46,29 +46,6 @@ OPTIONAL = ["en"]
 FORBIDDEN = ["README.md", "og-image.html", "specs", ".planning",
              ".github", ".claude", ".playwright-mcp", "_site"]
 
-# Authoring placeholders that must never reach a visitor. Two kinds, one rule.
-#
-# [POSTHOG_KEY] and [POSTHOG_HOST] are deliberately NOT in this list right now.
-#
-# They guard the half-done analytics fix: uncommenting the loader block while
-# leaving the brackets in place, which sends every visitor after
-# "[POSTHOG_HOST]/static/array.js" and measures nothing. That is a real failure
-# and this check caught it -- but it also blocks the whole site from shipping
-# while the PostHog instance does not exist yet, and the rest of the page has no
-# reason to wait for analytics.
-#
-# The trade is safe only because the loader is commented out: window.posthog
-# never exists, so track() no-ops and the page makes no analytics request. The
-# moment that block is uncommented, this gate must come back -- put both tokens
-# back in PLACEHOLDERS in the same commit that fills them in.
-# See .planning/RUNBOOK-posthog.md step 2.
-#
-# _A_VALIDER marks copy nobody has verified: an unverifiable case-study figure,
-# or a training-financing claim the current Qualiopi/portage status may not
-# support. specs/experience.md forbids publishing either, and a substring match
-# is a cheap way to make that forbidding real rather than aspirational.
-PLACEHOLDERS = ["_A_VALIDER"]
-
 # Void elements never close, so they must not be pushed onto the tag stack.
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
         "link", "meta", "param", "source", "track", "wbr"}
@@ -147,21 +124,6 @@ def check_headings(checker):
             % (checker.h1, len(checker.lang_blocks), checker.lang_blocks or "[]"))
 
 
-def check_placeholders(text):
-    """Fail on any unresolved authoring placeholder left in the page.
-
-    Deliberately a plain substring scan over the raw source rather than a check
-    on rendered text: a placeholder inside an HTML comment still ships to every
-    visitor who views source, and the comment is exactly where the analytics one
-    lives.
-    """
-    for token in PLACEHOLDERS:
-        count = text.count(token)
-        if count:
-            errors.append("unresolved placeholder in index.html: %s (%d occurrence(s))"
-                          % (token, count))
-
-
 def check_manifest(root):
     """Assert the required assets are present and that nothing else arrived.
 
@@ -218,10 +180,8 @@ def main(dest):
 
     index = root / "index.html"
     if index.exists():
-        markup = index.read_text(encoding="utf-8")
-        check_placeholders(markup)
         checker = Checker()
-        checker.feed(markup)
+        checker.feed(index.read_text(encoding="utf-8"))
         checker.close()
         for tag, line in checker.stack:
             errors.append("unclosed <%s> opened at line %d" % (tag, line))

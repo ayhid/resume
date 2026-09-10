@@ -1,17 +1,15 @@
 name: Deploy to GitHub Pages
 
-# main is the production branch: it is what Pages publishes to
-# ayoub-hidri.dev. This branch carries the v2 rewrite and must NOT publish:
-# Actions runs the workflow as it exists on the pushed branch, so leaving
-# these triggers on resume means every push here overwrites the live v1. Changing it here is only half the switch -- the
+# resume is the production branch: it is what Pages publishes to
+# ayoub-hidri.dev. Changing it here is only half the switch -- the
 # github-pages environment enforces a deployment branch policy, so a branch
 # absent from that allowlist fails when the deploy job requests the
 # environment, long after verify has gone green.
 on:
   push:
-    branches: [ main ]
+    branches: [ resume ]
   pull_request:
-    branches: [ main ]
+    branches: [ resume ]
 
 # No ambient scope; each job asks for exactly what it needs.
 permissions: {}
@@ -41,7 +39,7 @@ jobs:
     # Assert on the event, not only the ref: a pull request's ref is
     # refs/pull/N/merge, so a ref-only test would silently stop protecting
     # production the moment a manual or scheduled trigger is added.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/resume'
     runs-on: ubuntu-latest
     permissions:
       contents: read
