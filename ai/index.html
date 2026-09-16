@@ -296,6 +296,14 @@
       border-bottom: 1px solid rgba(216, 180, 254, 0.3);
     }
 
+    /* On phones the header stacks tall enough to cover the screen once
+       stuck, so let it scroll away with the page instead. */
+    @media (max-width: 767px) {
+      .sticky-header {
+        position: static;
+      }
+    }
+
     /* CTA Section */
     .cta-section {
       background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
