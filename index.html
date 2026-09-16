@@ -1078,12 +1078,6 @@
                   </div>
                   <p class="text-xs text-slate-500">Claude Code skills for ticket-driven development</p>
                 </a>
-                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
-                  </div>
-                  <p class="text-xs text-slate-500">AI-powered file organizer, rules + Claude Haiku</p>
-                </a>
                 <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
@@ -1636,12 +1630,6 @@
                   </div>
                   <p class="text-xs text-slate-500">Skills Claude Code pour le développement piloté par tickets</p>
                 </a>
-                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
-                  </div>
-                  <p class="text-xs text-slate-500">Rangement de fichiers par IA, règles + Claude Haiku</p>
-                </a>
                 <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
@@ -1744,30 +1732,32 @@
       }
     }
 
-    function toggleLanguage() {
-      const enSection = document.getElementById('lang-en');
-      const frSection = document.getElementById('lang-fr');
-      const toggleText = document.getElementById('lang-toggle-text');
+    const TITLES = {
+      en: 'Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript',
+      fr: 'Ayoub Hidri — Ingénieur IA & Full Stack | Agents LLM, React/TypeScript'
+    };
 
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+      document.documentElement.lang = lang;
+      document.title = TITLES[lang];
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'en' ? 'fr' : 'en';
       trackEvent('Language Switch', {
         from_language: currentLang,
-        to_language: currentLang === 'en' ? 'fr' : 'en'
+        to_language: next
       });
+      setLanguage(next);
+    }
 
-      if (currentLang === 'en') {
-        enSection.classList.remove('active');
-        frSection.classList.add('active');
-        currentLang = 'fr';
-        document.documentElement.lang = 'fr';
-        document.title = 'Ayoub Hidri — Ingénieur IA & Full Stack | Agents LLM, React/TypeScript';
-      } else {
-        frSection.classList.remove('active');
-        enSection.classList.add('active');
-        toggleText.textContent = 'FR';
-        currentLang = 'en';
-        document.documentElement.lang = 'en';
-        document.title = 'Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript';
-      }
+    // ?lang=fr deep-links straight to the French version, without counting
+    // as a language switch.
+    if (new URLSearchParams(window.location.search).get('lang') === 'fr') {
+      setLanguage('fr');
     }
 
     function downloadPDF() {
