@@ -12,7 +12,7 @@ case "$DEST" in
 esac
 
 # Required — a missing entry is a failure, not a warning.
-REQUIRED=(index.html CNAME robots.txt sitemap.xml og-image.png)
+REQUIRED=(index.html CNAME robots.txt sitemap.xml og-image.png ai)
 # Optional — copied when present. `en/` arrives in Phase 10.
 OPTIONAL=(en)
 

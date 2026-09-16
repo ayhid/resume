@@ -664,6 +664,10 @@
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
                 Medium
               </a>
+              <a href="/ai/" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors print:hidden">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                AI resume
+              </a>
             </div>
           </header>
 
@@ -1074,12 +1078,6 @@
                   </div>
                   <p class="text-xs text-slate-500">Claude Code skills for ticket-driven development</p>
                 </a>
-                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
-                  </div>
-                  <p class="text-xs text-slate-500">AI-powered file organizer, rules + Claude Haiku</p>
-                </a>
                 <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
@@ -1222,6 +1220,10 @@
               <a href="https://github.com/opkod-france" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors">
                 <i class="devicon-github-original"></i>
                 Opkod
+              </a>
+              <a href="/ai/?lang=fr" class="flex items-center gap-2 text-slate-600 hover:text-purple-600 transition-colors print:hidden">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                CV IA
               </a>
             </div>
           </header>
@@ -1628,12 +1630,6 @@
                   </div>
                   <p class="text-xs text-slate-500">Skills Claude Code pour le développement piloté par tickets</p>
                 </a>
-                <a href="https://github.com/ayhid/tidyfiles" target="_blank" rel="noopener" class="block group">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">tidyfiles</span>
-                  </div>
-                  <p class="text-xs text-slate-500">Rangement de fichiers par IA, règles + Claude Haiku</p>
-                </a>
                 <a href="https://github.com/ayhid/bmad-strapi-agent" target="_blank" rel="noopener" class="block group">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">bmad-strapi-agent</span>
@@ -1736,30 +1732,32 @@
       }
     }
 
-    function toggleLanguage() {
-      const enSection = document.getElementById('lang-en');
-      const frSection = document.getElementById('lang-fr');
-      const toggleText = document.getElementById('lang-toggle-text');
+    const TITLES = {
+      en: 'Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript',
+      fr: 'Ayoub Hidri — Ingénieur IA & Full Stack | Agents LLM, React/TypeScript'
+    };
 
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+      document.documentElement.lang = lang;
+      document.title = TITLES[lang];
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'en' ? 'fr' : 'en';
       trackEvent('Language Switch', {
         from_language: currentLang,
-        to_language: currentLang === 'en' ? 'fr' : 'en'
+        to_language: next
       });
+      setLanguage(next);
+    }
 
-      if (currentLang === 'en') {
-        enSection.classList.remove('active');
-        frSection.classList.add('active');
-        currentLang = 'fr';
-        document.documentElement.lang = 'fr';
-        document.title = 'Ayoub Hidri — Ingénieur IA & Full Stack | Agents LLM, React/TypeScript';
-      } else {
-        frSection.classList.remove('active');
-        enSection.classList.add('active');
-        toggleText.textContent = 'FR';
-        currentLang = 'en';
-        document.documentElement.lang = 'en';
-        document.title = 'Ayoub Hidri — AI Engineer & Full Stack Developer | LLM Agents, React/TypeScript';
-      }
+    // ?lang=fr deep-links straight to the French version, without counting
+    // as a language switch.
+    if (new URLSearchParams(window.location.search).get('lang') === 'fr') {
+      setLanguage('fr');
     }
 
     function downloadPDF() {
