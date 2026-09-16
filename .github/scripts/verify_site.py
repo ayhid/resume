@@ -20,7 +20,11 @@ import xml.etree.ElementTree as ET
 # The production manifest, mirroring the REQUIRED array of stage-site.sh.
 # The two lists are the same D-06 manifest expressed once per side of the check:
 # the staging script decides what is copied, this script asserts what arrived.
-REQUIRED = ["index.html", "CNAME", "robots.txt", "sitemap.xml", "og-image.png"]
+REQUIRED = ["index.html", "CNAME", "robots.txt", "sitemap.xml", "og-image.png", "ai"]
+
+# Every published page, each parsed with the same markup checks. The AI resume
+# at ai/ is a second copy of the page structure, so it gets the same scrutiny.
+PAGES = ["index.html", "ai/index.html"]
 
 # The optional half of that same manifest, mirroring the OPTIONAL array of
 # stage-site.sh: `en/` is copied when present and tolerated when absent (D-07).
@@ -178,16 +182,19 @@ def main(dest):
     check_manifest(root)
     check_tree(root)
 
-    index = root / "index.html"
-    if index.exists():
+    for page in PAGES:
+        path = root / page
+        if not path.exists():
+            continue
         checker = Checker()
-        checker.feed(index.read_text(encoding="utf-8"))
+        checker.feed(path.read_text(encoding="utf-8"))
         checker.close()
         for tag, line in checker.stack:
-            errors.append("unclosed <%s> opened at line %d" % (tag, line))
+            errors.append("%s: unclosed <%s> opened at line %d" % (page, tag, line))
         for element_id, count in sorted(checker.ids.items()):
             if count > 1:
-                errors.append("duplicate id: %s (%d occurrences)" % (element_id, count))
+                errors.append("%s: duplicate id: %s (%d occurrences)"
+                              % (page, element_id, count))
         check_headings(checker)
 
     sitemap = root / "sitemap.xml"
